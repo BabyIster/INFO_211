@@ -61,7 +61,7 @@ create table candidature
   adresse_email			varchar(50),
   cv				text,
   date_depot			date,
-  id_qualififaction 	integer references qualification
+  id_qualification 	integer references qualification
 );
 
 
@@ -92,7 +92,7 @@ create table secteur_activite
 
 create table index_activite
 (
-  id_activie			integer references secteur_activite,
+  id_activite			integer references secteur_activite,
   id_offre_emploi			integer references offre_emploi
 );
 

@@ -32,29 +32,38 @@ public class CandidatureDAO
   @SuppressWarnings({ "rawtypes", "unchecked" })
   public List<Candidature> findAll()
   {
-    Query query = entityManager.createQuery("select Candidature from Candidature Candidature order by Candidature.id");
+    Query query = entityManager.createQuery("select * from Candidature candidature order by candidature.id");
     List l = query.getResultList(); 
     
     return (List<Candidature>)l;
   }
   
+
+  public List<Candidature> findBySectorAndQualification()
+  {
+    Query query = entityManager.createQuery("select Candidature from Candidature candidature where order by candidature.id");
+    List l = query.getResultList(); 
+    
+    return (List<Candidature>)l;
+  }
+
   public Candidature persist(Candidature Candidature) {
-	EntityManager Ent = JPAUtil.getEntityManager();
-	Ent.persist(Candidature);
+	EntityManager Cand = JPAUtil.getEntityManager();
+	Cand.persist(Candidature);
 	
 	return Candidature;
   }
   
   public Candidature update(Candidature Candidature) {
-	EntityManager Ent = JPAUtil.getEntityManager();
-	Ent.merge(Candidature);
+	EntityManager Cand = JPAUtil.getEntityManager();
+	Cand.merge(Candidature);
 	
 	return Candidature;
   }
   
   public void remove(Candidature Candidature) {
-	EntityManager Ent = JPAUtil.getEntityManager();
-	Ent.remove(Candidature);
+	EntityManager Cand = JPAUtil.getEntityManager();
+	Cand.remove(Candidature);
   }
   //-----------------------------------------------------------------------------
 }
