@@ -32,7 +32,7 @@ public class CandidatureDAO
   @SuppressWarnings({ "rawtypes", "unchecked" })
   public List<Candidature> findAll()
   {
-    Query query = entityManager.createQuery("select * from Candidature candidature order by candidature.id");
+    Query query = entityManager.createQuery("select * from Candidature order by id");
     List l = query.getResultList(); 
     
     return (List<Candidature>)l;
@@ -41,7 +41,7 @@ public class CandidatureDAO
 
   public List<Candidature> findBySectorAndQualification()
   {
-    Query query = entityManager.createQuery("select Candidature from Candidature candidature where order by candidature.id");
+    Query query = entityManager.createQuery("SELECT * FROM index_activite_candidature INNER JOIN candidature cand ON id_candidature = cand.id WHERE id_activite = 1 AND id_qualification = 1");
     List l = query.getResultList(); 
     
     return (List<Candidature>)l;
