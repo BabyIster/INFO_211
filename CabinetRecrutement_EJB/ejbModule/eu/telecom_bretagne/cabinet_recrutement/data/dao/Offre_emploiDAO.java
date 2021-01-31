@@ -42,7 +42,16 @@ public class Offre_emploiDAO
   @SuppressWarnings({ "rawtypes", "unchecked" })
   public List<Offre_emploi> findAll()
   {
-    Query query = entityManager.createQuery("select Offre_emploi from Offre_emploi Offre_emploi order by Offre_emploi.id");
+    Query query = entityManager.createQuery("select * from Offre_emploi order by id");
+    List l = query.getResultList();
+
+    return (List<Offre_emploi>)l;
+  }
+
+
+  public List<Offre_emploi> findAll()
+  {
+    Query query = entityManager.createQuery("select * from Offre_emploi order by id");
     List l = query.getResultList();
 
     return (List<Offre_emploi>)l;

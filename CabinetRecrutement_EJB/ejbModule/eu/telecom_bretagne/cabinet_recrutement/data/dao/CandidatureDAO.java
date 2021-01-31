@@ -39,9 +39,13 @@ public class CandidatureDAO
   }
   
 
-  public List<Candidature> findBySectorAndQualification()
+  public List<Candidature> findBySectorAndQualification(int sector, int qualification)
   {
-    Query query = entityManager.createQuery("SELECT * FROM index_activite_candidature INNER JOIN candidature cand ON id_candidature = cand.id WHERE id_activite = 1 AND id_qualification = 1");
+
+    String findString = "SELECT * FROM index_activite_candidature INNER JOIN candidature cand ON id_candidature = cand.id WHERE id_activite = "+ sector +" AND id_qualification = " + qualification;
+
+
+    Query query = entityManager.createQuery(findString);
     List l = query.getResultList(); 
     
     return (List<Candidature>)l;
