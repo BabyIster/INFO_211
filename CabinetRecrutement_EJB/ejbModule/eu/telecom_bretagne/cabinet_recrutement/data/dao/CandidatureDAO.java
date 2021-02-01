@@ -1,5 +1,14 @@
+package eu.telecom_bretagne.cabinet_recrutement.data.dao;
+import java.util.List;
+
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
 import eu.telecom_bretagne.cabinet_recrutement.data.model.Candidature;
-import jpaUtils.JPAUtil;
+import eu.telecom_bretagne.cabinet_recrutement.service.JPAUtil;
 
 /**
  * Session Bean implementation class CandidatureDAO

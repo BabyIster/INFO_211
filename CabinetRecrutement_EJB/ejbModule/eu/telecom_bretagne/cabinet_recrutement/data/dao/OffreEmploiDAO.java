@@ -8,16 +8,16 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import eu.telecom_bretagne.cabinet_recrutement.data.model.Offre_emploi;
-import jpaUtils.JPAUtil;
+import eu.telecom_bretagne.cabinet_recrutement.data.model.OffreEmploi;
+import eu.telecom_bretagne.cabinet_recrutement.service.JPAUtil;
 
 /**
- * Session Bean implementation class Offre_emploiDAO
+ * Session Bean implementation class OffreEmploiDAO
  * @author Florian GUILLOT & Matthieu LE JEUNE
  */
 @Stateless
 @LocalBean
-public class Offre_emploiDAO
+public class OffreEmploiDAO
 {
   //-----------------------------------------------------------------------------
   /**
@@ -29,42 +29,42 @@ public class Offre_emploiDAO
   /**
    * Default constructor.
    */
-  public Offre_emploiDAO()
+  public OffreEmploiDAO()
   {
     // TODO Auto-generated constructor stub
   }
   //-----------------------------------------------------------------------------
-  public Offre_emploi findById(Integer id)
+  public OffreEmploi findById(Integer id)
   {
-    return entityManager.find(Offre_emploi.class, id);
+    return entityManager.find(OffreEmploi.class, id);
   }
   //----------------------------------------------------------------------------
   @SuppressWarnings({ "rawtypes", "unchecked" })
-  public List<Offre_emploi> findAll()
+  public List<OffreEmploi> findAll()
   {
-    Query query = entityManager.createQuery("select Offre_emploi from Offre_emploi Offre_emploi order by Offre_emploi.id");
+    Query query = entityManager.createQuery("select OffreEmploi from OffreEmploi OffreEmploi order by OffreEmploi.id");
     List l = query.getResultList();
 
-    return (List<Offre_emploi>)l;
+    return (List<OffreEmploi>)l;
   }
 
-  public Offre_emploi persist(Offre_emploi Offre_emploi) {
+  public OffreEmploi persist(OffreEmploi OffreEmploi) {
 	EntityManager Offre = JPAUtil.getEntityManager();
-	Offre.persist(Offre_emploi);
+	Offre.persist(OffreEmploi);
 
-	return Offre_emploi;
+	return OffreEmploi;
   }
 
-  public Offre_emploi update(Offre_emploi Offre_emploi) {
+  public OffreEmploi update(OffreEmploi OffreEmploi) {
 	EntityManager Offre = JPAUtil.getEntityManager();
-	Offre.merge(Offre_emploi);
+	Offre.merge(OffreEmploi);
 
-	return Offre_emploi;
+	return OffreEmploi;
   }
 
-  public void remove(Offre_emploi Offre_emploi) {
+  public void remove(OffreEmploi OffreEmploi) {
 	EntityManager Offre = JPAUtil.getEntityManager();
-	Offre.remove(Offre_emploi);
+	Offre.remove(OffreEmploi);
   }
   //-----------------------------------------------------------------------------
 }
