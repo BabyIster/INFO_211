@@ -51,6 +51,8 @@ public class ServicesLocator
     String nomJNDI = null;
     if(nomEJB.equals("ServiceEntreprise"))
       nomJNDI = "java:global/CabinetRecrutement/CabinetRecrutement_EJB/ServiceEntreprise!eu.telecom_bretagne.cabinet_recrutement.service.IServiceEntreprise";
+    if(nomEJB.equals("ServiceCandidature"))
+        nomJNDI = "java:global/CabinetRecrutement/CabinetRecrutement_EJB/ServiceCandidature!eu.telecom_bretagne.cabinet_recrutement.service.IServiceCandidature";
     else if(nomEJB.equals("Service_XXX"))
       nomJNDI = "*** À compléter ***";
 
@@ -60,6 +62,9 @@ public class ServicesLocator
     
     else if(nomEJB.equals("EntrepriseDAO"))
       nomJNDI = "java:global/CabinetRecrutement/CabinetRecrutement_EJB/EntrepriseDAO!eu.telecom_bretagne.cabinet_recrutement.data.dao.EntrepriseDAO";
+    
+    else if(nomEJB.equals("CandidatureDAO"))
+        nomJNDI = "java:global/CabinetRecrutement/CabinetRecrutement_EJB/CandidatureDAO!eu.telecom_bretagne.cabinet_recrutement.data.dao.CandidatureDAO";
 
     else
       throw new ServicesLocatorException("Il n'y a pas d'EJB avec ce nom...");
