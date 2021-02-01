@@ -42,6 +42,7 @@ create table offre_emploi
   descriptif      text,
   profil_recherche		text,
   date_depot		date,
+  id_qualification 		integer references qualification,
   id_entreprise   integer references entreprise
 );
 
@@ -96,12 +97,6 @@ create table index_activite
   id_offre_emploi			integer references offre_emploi
 );
 
- create table index_qualification
-(
-  id_qualification 		integer references qualification,
-  id_offre_emploi	integer references offre_emploi
-);
-
  create table index_activite_candidature
 (
   id_activite 		integer references secteur_activite,
@@ -119,7 +114,7 @@ insert into entreprise values (nextval('entreprise_id_seq'),'SQL inc','Entrepris
 
 -- Insertion des offres d'emploi
 
-insert into offre_emploi values (nextval('offre_emploi_id_seq'),'Stage ingénieur database','Connaissance en SQL requise','Ingénieur avec dominance gestion de bdd','27/01/2021','2');
+insert into offre_emploi values (nextval('offre_emploi_id_seq'),'Stage ingénieur database','Connaissance en SQL requise','Ingénieur avec dominance gestion de bdd','27/01/2021','1','2');
 
 -- Insertion qualification
 
@@ -144,10 +139,6 @@ insert into secteur_activite values (nextval('secteur_activite_id_seq'),'BDD');
 -- Insertion index activite
 
 insert into index_activite values('1','1');
-
--- Insertion index qualification
-
-insert into index_qualification values ('1','1');
 
 -- Insertion index d'activite pour candidature
 
