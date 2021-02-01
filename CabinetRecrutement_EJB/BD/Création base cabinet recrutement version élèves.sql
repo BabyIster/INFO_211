@@ -93,14 +93,20 @@ create table secteur_activite
 
 create table index_activite
 (
-  id_activite			integer references secteur_activite,
-  id_offre_emploi			integer references offre_emploi
+  id_activite integer NOT NULL,
+  id_offre_emploi integer NOT NULL,
+  primary key (id_activite,id_offre_emploi),
+  foreign key (id_offre_emploi) references candidature(id),
+  foreign key (id_activite) references secteur_activite(id)
 );
 
  create table index_activite_candidature
 (
-  id_activite 		integer references secteur_activite,
-  id_candidature	integer references candidature
+  id_activite integer NOT NULL,
+  id_candidature integer NOT NULL,
+  primary key (id_activite,id_candidature),
+  foreign key (id_candidature) references candidature(id),
+  foreign key (id_activite) references secteur_activite(id)
 );
 
 -- +----------------------------------------------------------------------------------------------+
