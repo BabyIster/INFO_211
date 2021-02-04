@@ -9,7 +9,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import eu.telecom_bretagne.cabinet_recrutement.data.model.Entreprise;
-import eu.telecom_bretagne.cabinet_recrutement.service.JPAUtil;
+import jpaUtils.JPAUtil;
 
 /**
  * Session Bean implementation class EntrepriseDAO
@@ -42,7 +42,7 @@ public class EntrepriseDAO
   @SuppressWarnings({ "rawtypes", "unchecked" })
   public List<Entreprise> findAll()
   {
-    Query query = entityManager.createQuery("select entreprise from Entreprise entreprise order by entreprise.id");
+    Query query = entityManager.createQuery("select * from Entreprise entreprise order by entreprise.id");
     List l = query.getResultList();
 
     return (List<Entreprise>)l;

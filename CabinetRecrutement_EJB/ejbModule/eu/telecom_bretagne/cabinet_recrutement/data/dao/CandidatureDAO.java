@@ -1,14 +1,5 @@
-package eu.telecom_bretagne.cabinet_recrutement.data.dao;
-import java.util.List;
-
-import javax.ejb.LocalBean;
-import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-
 import eu.telecom_bretagne.cabinet_recrutement.data.model.Candidature;
-import eu.telecom_bretagne.cabinet_recrutement.service.JPAUtil;
+import jpaUtils.JPAUtil;
 
 /**
  * Session Bean implementation class CandidatureDAO
@@ -41,29 +32,42 @@ public class CandidatureDAO
   @SuppressWarnings({ "rawtypes", "unchecked" })
   public List<Candidature> findAll()
   {
-    Query query = entityManager.createQuery("select Candidature from Candidature Candidature order by Candidature.id");
+    Query query = entityManager.createQuery("select * from Candidature order by id");
     List l = query.getResultList(); 
     
     return (List<Candidature>)l;
   }
   
+
+  public List<Candidature> findBySectorAndQualification(int sector, int qualification)
+  {
+
+    String findString = "SELECT * FROM index_activite_candidature INNER JOIN candidature cand ON id_candidature = cand.id WHERE id_activite = "+ sector +" AND id_qualification = " + qualification;
+
+
+    Query query = entityManager.createQuery(findString);
+    List l = query.getResultList(); 
+    
+    return (List<Candidature>)l;
+  }
+
   public Candidature persist(Candidature Candidature) {
-	EntityManager Ent = JPAUtil.getEntityManager();
-	Ent.persist(Candidature);
+	EntityManager Cand = JPAUtil.getEntityManager();
+	Cand.persist(Candidature);
 	
 	return Candidature;
   }
   
   public Candidature update(Candidature Candidature) {
-	EntityManager Ent = JPAUtil.getEntityManager();
-	Ent.merge(Candidature);
+	EntityManager Cand = JPAUtil.getEntityManager();
+	Cand.merge(Candidature);
 	
 	return Candidature;
   }
   
   public void remove(Candidature Candidature) {
-	EntityManager Ent = JPAUtil.getEntityManager();
-	Ent.remove(Candidature);
+	EntityManager Cand = JPAUtil.getEntityManager();
+	Cand.remove(Candidature);
   }
   //-----------------------------------------------------------------------------
 }

@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import eu.telecom_bretagne.cabinet_recrutement.data.dao.EntrepriseDAO;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.Entreprise;
+import eu.telecom_bretagne.cabinet_recrutement.data.dao.CandidatureDAO;
+import eu.telecom_bretagne.cabinet_recrutement.data.model.Candidature;
 import eu.telecom_bretagne.cabinet_recrutement.front.utils.ServicesLocator;
 import eu.telecom_bretagne.cabinet_recrutement.front.utils.ServicesLocatorException;
 
@@ -42,6 +44,8 @@ public class ControlesDAOServlet extends HttpServlet
     
     // Récupération de la réféence vers le(s) DAO(s)
     EntrepriseDAO entrepriseDAO = null;
+    CandidatureDAO candidatureDAO = null;
+    
     try
     {
       entrepriseDAO = (EntrepriseDAO) ServicesLocator.getInstance().getRemoteInterface("EntrepriseDAO");
@@ -50,7 +54,18 @@ public class ControlesDAOServlet extends HttpServlet
     {
       e.printStackTrace();
     }
-    out.println("Contrôles de fonctionnement du DAO EntrepriseDAO");
+    out.println("Contrôles de fonctionnement du DAO EntrepriseDAO-test");
+    out.println();
+    
+    try
+    {
+      candidatureDAO = (CandidatureDAO) ServicesLocator.getInstance().getRemoteInterface("CandidatureDAO");
+    }
+    catch (ServicesLocatorException e)
+    {
+      e.printStackTrace();
+    }
+    out.println("Contrôles de fonctionnement du DAO CandidatureDAO");
     out.println();
     
     // Contrôle(s) de fonctionnalités.
@@ -61,6 +76,15 @@ public class ControlesDAOServlet extends HttpServlet
     for(Entreprise entreprise : entreprises)
     {
       out.println(entreprise.getNom());
+    }
+    out.println();
+    
+    out.println("Liste des candidatures :");
+    List<Candidature> candidatures = candidatureDAO.findAll();
+    
+    for(Candidature candidature : candidatures)
+    {
+      out.println(candidature.getNom());
     }
     out.println();
     
@@ -78,6 +102,12 @@ public class ControlesDAOServlet extends HttpServlet
     out.println(e.getNom());
     out.println(e.getDescriptif());
     out.println(e.getAdressePostale());
+    out.println();
+    
+    out.println("Obtention de la candidature secteur 1 et qualification 1 :");
+    Candidature c = candidatureDAO.findBySectorAndQualification(1,1);
+    out.println(c.getId());
+    out.println(c.getNom());
     out.println();
   }
   //-----------------------------------------------------------------------------

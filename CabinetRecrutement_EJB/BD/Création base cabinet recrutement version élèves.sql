@@ -42,6 +42,7 @@ create table offre_emploi
   descriptif      text,
   profil_recherche		text,
   date_depot		date,
+  id_qualification 		integer references qualification,
   id_entreprise   integer references entreprise
 );
 
@@ -61,7 +62,7 @@ create table candidature
   adresse_email			varchar(50),
   cv				text,
   date_depot			date,
-  id_qualififaction 	integer references qualification
+  id_qualification 	integer references qualification
 );
 
 
@@ -92,20 +93,20 @@ create table secteur_activite
 
 create table index_activite
 (
-  id_activie			integer references secteur_activite,
-  id_offre_emploi			integer references offre_emploi
-);
-
- create table index_qualification
-(
-  id_qualification 		integer references qualification,
-  id_offre_emploi	integer references offre_emploi
+  id_activite integer NOT NULL,
+  id_offre_emploi integer NOT NULL,
+  primary key (id_activite,id_offre_emploi),
+  foreign key (id_offre_emploi) references candidature(id),
+  foreign key (id_activite) references secteur_activite(id)
 );
 
  create table index_activite_candidature
 (
-  id_activite 		integer references secteur_activite,
-  id_candidature	integer references candidature
+  id_activite integer NOT NULL,
+  id_candidature integer NOT NULL,
+  primary key (id_activite,id_candidature),
+  foreign key (id_candidature) references candidature(id),
+  foreign key (id_activite) references secteur_activite(id)
 );
 
 -- +----------------------------------------------------------------------------------------------+
@@ -119,7 +120,7 @@ insert into entreprise values (nextval('entreprise_id_seq'),'SQL inc','Entrepris
 
 -- Insertion des offres d'emploi
 
-insert into offre_emploi values (nextval('offre_emploi_id_seq'),'Stage ingénieur database','Connaissance en SQL requise','Ingénieur avec dominance gestion de bdd','27/01/2021','2');
+insert into offre_emploi values (nextval('offre_emploi_id_seq'),'Stage ingénieur database','Connaissance en SQL requise','Ingénieur avec dominance gestion de bdd','27/01/2021','1','2');
 
 -- Insertion qualification
 
@@ -144,10 +145,6 @@ insert into secteur_activite values (nextval('secteur_activite_id_seq'),'BDD');
 -- Insertion index activite
 
 insert into index_activite values('1','1');
-
--- Insertion index qualification
-
-insert into index_qualification values ('1','1');
 
 -- Insertion index d'activite pour candidature
 

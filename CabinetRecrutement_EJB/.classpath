@@ -12,6 +12,5 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/opt/libraries/hibernate-release-5.3.20.Final/lib/jpa-metamodel-generator/hibernate-jpamodelgen-5.3.20.Final.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
