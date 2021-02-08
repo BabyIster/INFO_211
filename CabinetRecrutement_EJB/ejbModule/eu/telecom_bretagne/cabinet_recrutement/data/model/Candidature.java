@@ -42,7 +42,7 @@ public class Candidature implements Serializable {
 
 	//bi-directional many-to-one association to Qualification
 	@ManyToOne
-	@JoinColumn(name="id_qualififaction")
+	@JoinColumn(name="id_qualification")
 	private Qualification qualification;
 
 	//bi-directional many-to-one association to MessageCandidature

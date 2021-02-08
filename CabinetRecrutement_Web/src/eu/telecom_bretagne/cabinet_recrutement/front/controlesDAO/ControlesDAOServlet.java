@@ -54,7 +54,7 @@ public class ControlesDAOServlet extends HttpServlet
     {
       e.printStackTrace();
     }
-    out.println("Contrôles de fonctionnement du DAO EntrepriseDAO-test");
+    out.println("Contrôles de fonctionnement du DAO EntrepriseDAO");
     out.println();
     
     try
@@ -84,7 +84,8 @@ public class ControlesDAOServlet extends HttpServlet
     
     for(Candidature candidature : candidatures)
     {
-      out.println(candidature.getNom());
+      out.print(candidature.getNom());
+      out.println(candidature.getPrenom());
     }
     out.println();
     
@@ -104,11 +105,14 @@ public class ControlesDAOServlet extends HttpServlet
     out.println(e.getAdressePostale());
     out.println();
     
-    /*out.println("Obtention de la candidature secteur 1 et qualification 1 :");
-    Candidature c = candidatureDAO.findBySectorAndQualification(1,1);
-    out.println(c.getId());
-    out.println(c.getNom());
-    out.println();*/
+    out.println("Obtention de la candidature secteur 1 et qualification 1 :");
+    List<Candidature> c = candidatureDAO.findBySectorAndQualification(1,1);
+    for(Candidature candidature : c)
+    {
+      out.print(candidature.getNom());
+      out.println(candidature.getPrenom());
+    }
+    out.println();
   }
   //-----------------------------------------------------------------------------
 }

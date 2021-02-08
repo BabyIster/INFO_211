@@ -42,7 +42,7 @@ public class EntrepriseDAO
   @SuppressWarnings({ "rawtypes", "unchecked" })
   public List<Entreprise> findAll()
   {
-    Query query = entityManager.createQuery("select * from Entreprise entreprise order by entreprise.id");
+    Query query = entityManager.createQuery("select entreprise from Entreprise entreprise order by entreprise.id");
     List l = query.getResultList();
 
     return (List<Entreprise>)l;
