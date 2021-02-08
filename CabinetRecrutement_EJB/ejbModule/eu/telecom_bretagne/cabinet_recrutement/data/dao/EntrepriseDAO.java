@@ -9,7 +9,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import eu.telecom_bretagne.cabinet_recrutement.data.model.Entreprise;
-import jpaUtils.JPAUtil;
+import eu.telecom_bretagne.cabinet_recrutement.service.JPAUtil;
 
 /**
  * Session Bean implementation class EntrepriseDAO

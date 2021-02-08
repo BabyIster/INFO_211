@@ -3,7 +3,6 @@
 	<name>CabinetRecrutement</name>
 	<comment></comment>
 	<projects>
-		<project>CabinetRecrutement_EJB</project>
 		<project>CabinetRecrutement_Web</project>
 	</projects>
 	<buildSpec>
