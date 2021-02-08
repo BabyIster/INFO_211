@@ -52,14 +52,12 @@ public class CandidatureDAO
 
   public List<Candidature> findBySectorAndQualification(int sector, int qualification)
   {
-
-    String findString = "SELECT candidature FROM index_activite_candidature INNER JOIN Candidature cand ON id_candidature = cand.id WHERE id_activite = "+ sector +" AND id_qualification = " + qualification;
-
-
-    Query query = entityManager.createQuery(findString);
-    List l = query.getResultList(); 
+	List<Candidature> candidatures = null;
+	candidatures = entityManager.createNativeQuery("SELECT * FROM index_activite_candidature INNER JOIN Candidature cand ON id_candidature = cand.id WHERE id_activite = ? AND id_qualification = ?", Candidature.class)
+            .setParameter(1, sector).setParameter(2, qualification)
+            .getResultList();
     
-    return (List<Candidature>)l;
+    return candidatures;
   }
 
   public Candidature persist(Candidature Candidature) {

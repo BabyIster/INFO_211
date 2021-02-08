@@ -109,8 +109,8 @@ public class ControlesDAOServlet extends HttpServlet
     List<Candidature> c = candidatureDAO.findBySectorAndQualification(1,1);
     for(Candidature candidature : c)
     {
-      out.print(candidature.getNom());
-      out.println(candidature.getPrenom());
+      out.print("Nom : "+candidature.getNom() + " ");
+      out.println("Prenom : " + candidature.getPrenom());
     }
     out.println();
   }
