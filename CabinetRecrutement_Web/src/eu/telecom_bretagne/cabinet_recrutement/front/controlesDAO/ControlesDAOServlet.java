@@ -14,6 +14,8 @@ import eu.telecom_bretagne.cabinet_recrutement.data.dao.EntrepriseDAO;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.Entreprise;
 import eu.telecom_bretagne.cabinet_recrutement.data.dao.CandidatureDAO;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.Candidature;
+import eu.telecom_bretagne.cabinet_recrutement.data.dao.OffreEmploiDAO;
+import eu.telecom_bretagne.cabinet_recrutement.data.model.OffreEmploi;
 import eu.telecom_bretagne.cabinet_recrutement.front.utils.ServicesLocator;
 import eu.telecom_bretagne.cabinet_recrutement.front.utils.ServicesLocatorException;
 
@@ -45,6 +47,7 @@ public class ControlesDAOServlet extends HttpServlet
     // Récupération de la réféence vers le(s) DAO(s)
     EntrepriseDAO entrepriseDAO = null;
     CandidatureDAO candidatureDAO = null;
+    OffreEmploiDAO offreEmploiDAO = null;
     
     try
     {
@@ -68,6 +71,17 @@ public class ControlesDAOServlet extends HttpServlet
     out.println("Contrôles de fonctionnement du DAO CandidatureDAO");
     out.println();
     
+    try
+    {
+      offreEmploiDAO = (OffreEmploiDAO) ServicesLocator.getInstance().getRemoteInterface("OffreEmploiDAO");
+    }
+    catch (ServicesLocatorException e)
+    {
+      e.printStackTrace();
+    }
+    out.println("Contrôles de fonctionnement du DAO OffreEmploiDAO");
+    out.println();
+    
     // Contrôle(s) de fonctionnalités.
     
     out.println("Liste des entreprises :");
@@ -86,6 +100,16 @@ public class ControlesDAOServlet extends HttpServlet
     {
       out.print(candidature.getNom());
       out.println(candidature.getPrenom());
+    }
+    out.println();
+    
+    out.println("Liste des offres :");
+    List<OffreEmploi> offres = offreEmploiDAO.findAll();
+    
+    for(OffreEmploi offreEmploi: offres)
+    {
+      out.print(offreEmploi.getTitre());
+      out.println(offreEmploi.getDescriptif());
     }
     out.println();
     

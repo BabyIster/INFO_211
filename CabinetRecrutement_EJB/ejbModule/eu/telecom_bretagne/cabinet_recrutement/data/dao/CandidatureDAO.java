@@ -11,7 +11,6 @@ import javax.persistence.Query;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.Candidature;
 import eu.telecom_bretagne.cabinet_recrutement.service.JPAUtil;
 
-
 /**
  * Session Bean implementation class CandidatureDAO
  * @author Florian GUILLOT & Matthieu LE JEUNE
