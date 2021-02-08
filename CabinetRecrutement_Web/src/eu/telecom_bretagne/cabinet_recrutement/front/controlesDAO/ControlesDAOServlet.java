@@ -104,11 +104,11 @@ public class ControlesDAOServlet extends HttpServlet
     out.println(e.getAdressePostale());
     out.println();
     
-    out.println("Obtention de la candidature secteur 1 et qualification 1 :");
+    /*out.println("Obtention de la candidature secteur 1 et qualification 1 :");
     Candidature c = candidatureDAO.findBySectorAndQualification(1,1);
     out.println(c.getId());
     out.println(c.getNom());
-    out.println();
+    out.println();*/
   }
   //-----------------------------------------------------------------------------
 }

@@ -12,16 +12,16 @@
 -- | Suppression des tables                                                                       |
 -- +----------------------------------------------------------------------------------------------+
 
-drop table if exists "message_offre_emploi";
-drop table if exists "message_candidature";
-drop table if exists "index_activite_candidature";
-drop table if exists "index_qualification";
-drop table if exists "index_activite";
-drop table if exists "candidature";
-drop table if exists "offre_emploi";
-drop table if exists "entreprise";
-drop table if exists "secteur_activite";
-drop table if exists "qualification";
+drop table if exists "message_offre_emploi" CASCADE;
+drop table if exists "message_candidature" CASCADE;
+drop table if exists "index_activite_candidature" CASCADE;
+drop table if exists "index_qualification" CASCADE;
+drop table if exists "index_activite" CASCADE;
+drop table if exists "candidature" CASCADE;
+drop table if exists "offre_emploi" CASCADE;
+drop table if exists "entreprise" CASCADE;
+drop table if exists "secteur_activite" CASCADE;
+drop table if exists "qualification" CASCADE;
 
 -- +----------------------------------------------------------------------------------------------+
 -- | Création des tables                                                                          |
@@ -35,6 +35,12 @@ create table entreprise
   adresse_postale varchar(30) -- Pour simplifier, adresse_postale = ville.
 );
 
+create table qualification
+(
+  id			serial primary key,
+  intitule			varchar(50) not null
+);
+
 create table offre_emploi
 (
   id              serial primary key,
@@ -42,14 +48,8 @@ create table offre_emploi
   descriptif      text,
   profil_recherche		text,
   date_depot		date,
-  id_qualification 		integer references qualification,
-  id_entreprise   integer references entreprise
-);
-
-create table qualification
-(
-  id			serial primary key,
-  intitule			varchar(50) not null
+  id_qualification 		integer references qualification(id),
+  id_entreprise   integer references entreprise(id)
 );
 
 create table candidature
@@ -62,7 +62,7 @@ create table candidature
   adresse_email			varchar(50),
   cv				text,
   date_depot			date,
-  id_qualification 	integer references qualification
+  id_qualification 	integer references qualification(id)
 );
 
 
@@ -71,8 +71,8 @@ create table message_offre_emploi
   id              serial primary key,
   date_envoi          date,
   corps_message     text,
-  id_offre_emploi		integer references offre_emploi,
-  id_candidature		integer references candidature
+  id_offre_emploi		integer references offre_emploi(id),
+  id_candidature		integer references candidature(id)
 );
 
  create table message_candidature
@@ -80,8 +80,8 @@ create table message_offre_emploi
   id              serial primary key,
   date_envoi           date,
   corps_message     text,
-  id_offre_emploi		integer references offre_emploi,
-  id_candidature		integer references candidature
+  id_offre_emploi		integer references offre_emploi(id),
+  id_candidature		integer references candidature(id)
 );
 
 
@@ -118,13 +118,13 @@ create table index_activite
 insert into entreprise values (nextval('entreprise_id_seq'),'IMT Atlantique','IMT Atlantique est une grande école pionnière en formation, en recherche et en entrepreneuriat et en tout plein de choses...','Plouzané');
 insert into entreprise values (nextval('entreprise_id_seq'),'SQL inc','Entreprise spécialisé dans la mise en place de bdd','Plouzané');
 
--- Insertion des offres d'emploi
-
-insert into offre_emploi values (nextval('offre_emploi_id_seq'),'Stage ingénieur database','Connaissance en SQL requise','Ingénieur avec dominance gestion de bdd','27/01/2021','1','2');
-
 -- Insertion qualification
 
 insert into qualification values (nextval('qualification_id_seq'),'Ingénieur junior');
+
+-- Insertion des offres d'emploi
+
+insert into offre_emploi values (nextval('offre_emploi_id_seq'),'Stage ingénieur database','Connaissance en SQL requise','Ingénieur avec dominance gestion de bdd','27/01/2021','1','2');
 
 -- Insertion d'une candidature
 
