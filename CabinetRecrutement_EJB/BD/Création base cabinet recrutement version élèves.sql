@@ -117,14 +117,25 @@ create table index_activite
 
 insert into entreprise values (nextval('entreprise_id_seq'),'IMT Atlantique','IMT Atlantique est une grande école pionnière en formation, en recherche et en entrepreneuriat et en tout plein de choses...','Plouzané');
 insert into entreprise values (nextval('entreprise_id_seq'),'SQL inc','Entreprise spécialisé dans la mise en place de bdd','Plouzané');
+insert into entreprise values (nextval('entreprise_id_seq'),'Ifremer','Entreprise de pêche','Brest');
+insert into entreprise values (nextval('entreprise_id_seq'),'EDF','Entreprise de fabrication de tazer','Brest');
+insert into entreprise values (nextval('entreprise_id_seq'),'Brasserie and co','Entreprise de fabrication de bière','Tregana');
 
 -- Insertion qualification
 
-insert into qualification values (nextval('qualification_id_seq'),'Ingénieur junior');
+insert into qualification values (nextval('qualification_id_seq'),'BAC');
+insert into qualification values (nextval('qualification_id_seq'),'Licence');
+insert into qualification values (nextval('qualification_id_seq'),'Ingénieur');
+insert into qualification values (nextval('qualification_id_seq'),'Master');
+insert into qualification values (nextval('qualification_id_seq'),'Doctorant');
 
 -- Insertion des offres d'emploi
 
 insert into offre_emploi values (nextval('offre_emploi_id_seq'),'Stage ingénieur database','Connaissance en SQL requise','Ingénieur avec dominance gestion de bdd','27/01/2021','1','2');
+insert into offre_emploi values (nextval('offre_emploi_id_seq'),'Professeur','Pedagogie requise','Professeur spécialisé dans l informatique','29/01/2021','5','1');
+insert into offre_emploi values (nextval('offre_emploi_id_seq'),'Pêcheur','Compétence en pêche requise','Pêcheur spécialisé dans les sous-marins','01/02/2021','1','3');
+insert into offre_emploi values (nextval('offre_emploi_id_seq'),'Electricien','Compétence energie atomique requise','Ingénieur spécialisé en énergie','02/02/2021','3','4');
+insert into offre_emploi values (nextval('offre_emploi_id_seq'),'Brasseur','Compétence brassage requise','Licence de brasseur spécialisé bière','05/02/2021','2','5');
 
 -- Insertion d'une candidature
 
@@ -141,6 +152,10 @@ insert into message_candidature values (nextval('message_candidature_id_seq'),'2
 -- Insertion secteur activité
 
 insert into secteur_activite values (nextval('secteur_activite_id_seq'),'BDD');
+insert into secteur_activite values (nextval('secteur_activite_id_seq'),'Pêche');
+insert into secteur_activite values (nextval('secteur_activite_id_seq'),'Energie');
+insert into secteur_activite values (nextval('secteur_activite_id_seq'),'Alcool');
+insert into secteur_activite values (nextval('secteur_activite_id_seq'),'Education');
 
 -- Insertion index activite
 
