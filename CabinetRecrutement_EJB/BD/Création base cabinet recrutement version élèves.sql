@@ -139,15 +139,26 @@ insert into offre_emploi values (nextval('offre_emploi_id_seq'),'Brasseur','Comp
 
 -- Insertion d'une candidature
 
-insert into candidature values (nextval('candidature_id_seq'),'Jean','Bon','17/08/1999','Plouzane','bon.jean@gmail.com','Chef de projet bdd','27/01/2021','1');
+insert into candidature values (nextval('candidature_id_seq'),'Jean','Bon','17/08/1999','Plouzane','bon.jean@gmail.com','Chef de projet bdd','27/01/2021','3');
+insert into candidature values (nextval('candidature_id_seq'),'Marc','Suin','17/08/1970','Brest','marc@suin.com','Professeur d info','29/01/2021','5');
+insert into candidature values (nextval('candidature_id_seq'),'Sam','Fisher','17/08/1960','Brest','sam@wanadoo.com','Pecheur amateur','01/02/2021','1');
+insert into candidature values (nextval('candidature_id_seq'),'Arnold','Watt','17/08/1980','Brest','watt@wanadoo.com','Pilote de projet energie','03/02/2021','3');
+insert into candidature values (nextval('candidature_id_seq'),'Clément','Drunk','17/08/1990','Brest','drunk@wanadoo.com','Chef d équipe brassage','03/02/2021','2');
 
 -- Insertion message offre d'emploi
 
-insert into message_offre_emploi values (nextval('message_offre_emploi_id_seq'),'27/01/2020','Bien reçu','1','1');
+insert into message_offre_emploi values (nextval('message_offre_emploi_id_seq'),'27/01/2020','Votre candidature nous intérésse','1','1');
+insert into message_offre_emploi values (nextval('message_offre_emploi_id_seq'),'29/01/2020','Nous nous avons envoyé une convocation par mail','2','2');
+insert into message_offre_emploi values (nextval('message_offre_emploi_id_seq'),'01/01/2020','Désolé nous ne prennons pas d amateur','3','3');
+insert into message_offre_emploi values (nextval('message_offre_emploi_id_seq'),'04/02/2020','Pouvez-nous convenir d un entretien ?','4','4');
+insert into message_offre_emploi values (nextval('message_offre_emploi_id_seq'),'06/02/2020','Rendez-vous au bar','5','5');
 
 -- Insertion message candidature
 
-insert into message_candidature values (nextval('message_candidature_id_seq'),'27/01/2020','Votre offre m intérésse','1','1');
+insert into message_candidature values (nextval('message_candidature_id_seq'),'28/01/2020','Votre offre m intérésse','1','1');
+insert into message_candidature values (nextval('message_candidature_id_seq'),'30/01/2020','Bien reçu','2','2');
+insert into message_candidature values (nextval('message_candidature_id_seq'),'05/02/2020','Je suis disponible mardi','4','4');
+insert into message_candidature values (nextval('message_candidature_id_seq'),'07/02/2020','OK','5','5');
 
 -- Insertion secteur activité
 
@@ -160,7 +171,15 @@ insert into secteur_activite values (nextval('secteur_activite_id_seq'),'Educati
 -- Insertion index activite
 
 insert into index_activite values('1','1');
+insert into index_activite values('2','5');
+insert into index_activite values('3','2');
+insert into index_activite values('4','3');
+insert into index_activite values('5','4');
 
 -- Insertion index d'activite pour candidature
 
 insert into index_activite_candidature values ('1','1');
+insert into index_activite_candidature values ('2','5');
+insert into index_activite_candidature values ('3','2');
+insert into index_activite_candidature values ('4','3');
+insert into index_activite_candidature values ('5','4');
