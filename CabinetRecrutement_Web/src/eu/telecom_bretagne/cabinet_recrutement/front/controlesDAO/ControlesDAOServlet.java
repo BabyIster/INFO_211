@@ -137,6 +137,15 @@ public class ControlesDAOServlet extends HttpServlet
       out.println("Prenom : " + candidature.getPrenom());
     }
     out.println();
+  
+  out.println("Obtention des offres d'emploi de l'entreprise 1");
+  List<OffreEmploi> o = offreEmploiDAO.findByEntreprise(1);
+  for(OffreEmploi offreEmploi : o)
+  {
+	  out.print(offreEmploi.getTitre());
+      out.println(offreEmploi.getDescriptif());
   }
+  out.println();
+}
   //-----------------------------------------------------------------------------
 }
