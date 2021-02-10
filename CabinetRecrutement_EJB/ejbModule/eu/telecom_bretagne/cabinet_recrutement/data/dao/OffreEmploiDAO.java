@@ -58,6 +58,16 @@ public class OffreEmploiDAO
     
     return offreEmplois;
   }
+  
+  public List<OffreEmploi> findBySectorAndQualification(int sector, int qualification)
+  {
+	List<OffreEmploi> offreEmplois = null;
+	offreEmplois = entityManager.createNativeQuery("SELECT * FROM index_activite INNER JOIN offre_Emploi offre ON id_offre_emploi = offre.id WHERE id_activite = ? AND id_qualification = ?", OffreEmploi.class)
+            .setParameter(1, sector).setParameter(2, qualification)
+            .getResultList();
+    
+    return offreEmplois;
+  }
 
   public OffreEmploi persist(OffreEmploi OffreEmploi) {
 	EntityManager Offre = JPAUtil.getEntityManager();

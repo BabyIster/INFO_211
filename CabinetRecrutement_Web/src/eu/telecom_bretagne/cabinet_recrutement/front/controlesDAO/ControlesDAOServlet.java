@@ -129,7 +129,7 @@ public class ControlesDAOServlet extends HttpServlet
     out.println(e.getAdressePostale());
     out.println();
     
-    out.println("Obtention de la candidature secteur 1 et qualification 1 :");
+    out.println("Obtention des candidatures secteur 1 et qualification 1 :");
     List<Candidature> c = candidatureDAO.findBySectorAndQualification(1,1);
     for(Candidature candidature : c)
     {
@@ -146,6 +146,16 @@ public class ControlesDAOServlet extends HttpServlet
       out.println(offreEmploiEnt.getDescriptif());
   }
   out.println();
+  
+  out.println("Obtention des offres secteur 1 et qualification 1 :");
+  o = offreEmploiDAO.findBySectorAndQualification(1,1);
+  for(OffreEmploi offreEmploiSecQual : o)
+  {
+	  out.print(offreEmploiSecQual.getTitre() + " Desc : ");
+      out.println(offreEmploiSecQual.getDescriptif());
+  }
+  out.println();
+  
 }
   //-----------------------------------------------------------------------------
 }
