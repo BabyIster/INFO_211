@@ -76,7 +76,7 @@ public class ControlesDAOServlet extends HttpServlet
     
     for(SecteurActivite secteur : secteurs)
     {
-      out.println(secteur.getIntitule());
+      out.println(secteur.getId()+" : "+secteur.getIntitule());
     }
     out.println();
     
@@ -99,7 +99,7 @@ public class ControlesDAOServlet extends HttpServlet
     
     for(Entreprise entreprise : entreprises)
     {
-      out.println(entreprise.getNom());
+      out.println(entreprise.getNom()+" à "+entreprise.getAdressePostale());
     }
     out.println();
     
@@ -146,7 +146,7 @@ public class ControlesDAOServlet extends HttpServlet
     
     for(OffreEmploi offreEmploi: offres)
     {
-      out.print("Titre : " +offreEmploi.getTitre() + " Description : ");
+      out.print("Titre : " +offreEmploi.getTitre() + " | Description : ");
       out.println(offreEmploi.getDescriptif());
     }
     out.println();
@@ -157,8 +157,8 @@ public class ControlesDAOServlet extends HttpServlet
     out.println("Divers Contrôles de fonctionnement du DAO OffreEmploiDAO");
 
     
-    out.println("Obtention des candidatures secteur 1 et qualification 1 :");
-    List<Candidature> c = candidatureDAO.findBySectorAndQualification(1,1);
+    out.println("Obtention des candidatures secteur 1 et qualification 3 :");
+    List<Candidature> c = candidatureDAO.findBySectorAndQualification(1,3);
     for(Candidature candidature : c)
     {
       out.print("Nom : "+candidature.getNom());
