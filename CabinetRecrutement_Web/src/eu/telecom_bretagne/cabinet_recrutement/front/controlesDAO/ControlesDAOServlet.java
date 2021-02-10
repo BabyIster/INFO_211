@@ -15,7 +15,9 @@ import eu.telecom_bretagne.cabinet_recrutement.data.model.Entreprise;
 import eu.telecom_bretagne.cabinet_recrutement.data.dao.CandidatureDAO;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.Candidature;
 import eu.telecom_bretagne.cabinet_recrutement.data.dao.OffreEmploiDAO;
+import eu.telecom_bretagne.cabinet_recrutement.data.dao.Secteur_activiteDAO;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.OffreEmploi;
+import eu.telecom_bretagne.cabinet_recrutement.data.model.SecteurActivite;
 import eu.telecom_bretagne.cabinet_recrutement.front.utils.ServicesLocator;
 import eu.telecom_bretagne.cabinet_recrutement.front.utils.ServicesLocatorException;
 
@@ -48,7 +50,8 @@ public class ControlesDAOServlet extends HttpServlet
     EntrepriseDAO entrepriseDAO = null;
     CandidatureDAO candidatureDAO = null;
     OffreEmploiDAO offreEmploiDAO = null;
-    
+    Secteur_activiteDAO secteuractiviteDAO = null;
+
     try
     {
       entrepriseDAO = (EntrepriseDAO) ServicesLocator.getInstance().getRemoteInterface("EntrepriseDAO");
@@ -60,6 +63,9 @@ public class ControlesDAOServlet extends HttpServlet
     out.println("Contrôles de fonctionnement du DAO EntrepriseDAO");
     out.println();
     
+    // ---------------------------------------------------------------------------------------------------------------
+
+    
     try
     {
       candidatureDAO = (CandidatureDAO) ServicesLocator.getInstance().getRemoteInterface("CandidatureDAO");
@@ -70,6 +76,8 @@ public class ControlesDAOServlet extends HttpServlet
     }
     out.println("Contrôles de fonctionnement du DAO CandidatureDAO");
     out.println();
+    
+// ---------------------------------------------------------------------------------------------------------------
     
     try
     {
@@ -137,6 +145,42 @@ public class ControlesDAOServlet extends HttpServlet
       out.println("Prenom : " + candidature.getPrenom());
     }
     out.println();
+  
+    
+    // ---------------------------------------------------------------------------------------------------------------
+
+        
+    try
+    {
+    	secteuractiviteDAO = (Secteur_activiteDAO) ServicesLocator.getInstance().getRemoteInterface("Secteur_activiteDAO");
+    }
+    catch (ServicesLocatorException error)
+    {
+      error.printStackTrace();
+    }
+    out.println("Contrôles de fonctionnement du DAO Secteur_activiteDAO");
+    out.println();
+    
+    out.println("Liste des secteur_activite :");
+    List<SecteurActivite> secteur = secteuractiviteDAO.findAll();
+    
+    for(SecteurActivite secteurs : secteur)
+    {
+      out.println(secteurs.getIntitule());
+    }
+    
+    out.println("Listes des offre d'emplois par secteur d'activité :");
+    
+    for(SecteurActivite secteurs : secteur) {
+    	out.println("Offre pour : " + secteurs.getIntitule());
+    	for(int i = 0; i < secteur.size(); i ++) {
+        	if(offres.get(i).getSecteurActivites() == secteur) {
+        		out.println(" - " + offres.get(i).getTitre());
+        	}
+        }
+    }
+    
   }
+    
   //-----------------------------------------------------------------------------
 }
