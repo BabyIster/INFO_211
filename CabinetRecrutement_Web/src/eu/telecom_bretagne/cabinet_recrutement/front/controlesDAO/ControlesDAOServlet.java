@@ -90,6 +90,19 @@ public class ControlesDAOServlet extends HttpServlet
     out.println("Contrôles de fonctionnement du DAO OffreEmploiDAO");
     out.println();
     
+// ---------------------------------------------------------------------------------------------------------------
+    
+    try
+    {
+    	secteuractiviteDAO = (Secteur_activiteDAO) ServicesLocator.getInstance().getRemoteInterface("Secteur_activiteDAO");
+    }
+    catch (ServicesLocatorException error)
+    {
+      error.printStackTrace();
+    }
+    out.println("Contrôles de fonctionnement du DAO Secteur_activiteDAO");
+    out.println();
+    
     // Contrôle(s) de fonctionnalités.
     
     out.println("Liste des entreprises :");
@@ -145,7 +158,7 @@ public class ControlesDAOServlet extends HttpServlet
       out.println("Prenom : " + candidature.getPrenom());
     }
     out.println();
-  }
+    
   out.println();
   out.println("Obtention des offres d'emploi de l'entreprise 2");
   List<OffreEmploi> o = offreEmploiDAO.findByEntreprise(2);
@@ -158,18 +171,6 @@ public class ControlesDAOServlet extends HttpServlet
   
     
     // ---------------------------------------------------------------------------------------------------------------
-
-        
-    try
-    {
-    	secteuractiviteDAO = (Secteur_activiteDAO) ServicesLocator.getInstance().getRemoteInterface("Secteur_activiteDAO");
-    }
-    catch (ServicesLocatorException error)
-    {
-      error.printStackTrace();
-    }
-    out.println("Contrôles de fonctionnement du DAO Secteur_activiteDAO");
-    out.println();
     
     out.println("Liste des secteur_activite :");
     List<SecteurActivite> secteur = secteuractiviteDAO.findAll();
@@ -178,6 +179,7 @@ public class ControlesDAOServlet extends HttpServlet
     {
       out.println(secteurs.getIntitule());
     }
+    out.println();
     
     out.println("Listes des offre d'emplois par secteur d'activité :");
     
@@ -189,8 +191,9 @@ public class ControlesDAOServlet extends HttpServlet
         	}
         }
     }
+    out.println();
     
-  }
+    
   out.println("Obtention des offres secteur 1 et qualification 1 :");
   o = offreEmploiDAO.findBySectorAndQualification(1,1);
   for(OffreEmploi offreEmploiSecQual : o)
