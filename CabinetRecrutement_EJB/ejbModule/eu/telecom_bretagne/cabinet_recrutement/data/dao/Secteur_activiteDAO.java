@@ -44,7 +44,7 @@ public class Secteur_activiteDAO
   @SuppressWarnings({ "rawtypes", "unchecked" })
   public List<SecteurActivite> findAll()
   {
-    Query query = entityManager.createQuery("select secteur_activite from SecteurActivite secteur_activite order by secteur_activite.intitule");
+    Query query = entityManager.createQuery("select secteur_activite from SecteurActivite secteur_activite order by secteur_activite.id");
 
     List l = query.getResultList();
 

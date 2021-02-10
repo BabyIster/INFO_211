@@ -15,9 +15,11 @@ import eu.telecom_bretagne.cabinet_recrutement.data.model.Entreprise;
 import eu.telecom_bretagne.cabinet_recrutement.data.dao.CandidatureDAO;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.Candidature;
 import eu.telecom_bretagne.cabinet_recrutement.data.dao.OffreEmploiDAO;
-import eu.telecom_bretagne.cabinet_recrutement.data.dao.Secteur_activiteDAO;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.OffreEmploi;
+import eu.telecom_bretagne.cabinet_recrutement.data.dao.Secteur_activiteDAO;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.SecteurActivite;
+import eu.telecom_bretagne.cabinet_recrutement.data.dao.QualificationDAO;
+import eu.telecom_bretagne.cabinet_recrutement.data.model.Qualification;
 import eu.telecom_bretagne.cabinet_recrutement.front.utils.ServicesLocator;
 import eu.telecom_bretagne.cabinet_recrutement.front.utils.ServicesLocatorException;
 
@@ -51,6 +53,7 @@ public class ControlesDAOServlet extends HttpServlet
     CandidatureDAO candidatureDAO = null;
     OffreEmploiDAO offreEmploiDAO = null;
     Secteur_activiteDAO secteuractiviteDAO = null;
+    QualificationDAO qualificationDAO = null;
 
     try
     {
@@ -101,6 +104,19 @@ public class ControlesDAOServlet extends HttpServlet
       error.printStackTrace();
     }
     out.println("Contrôles de fonctionnement du DAO Secteur_activiteDAO");
+    out.println();
+    
+// ---------------------------------------------------------------------------------------------------------------
+    
+    try
+    {
+    	qualificationDAO = (QualificationDAO) ServicesLocator.getInstance().getRemoteInterface("QualificationDAO");
+    }
+    catch (ServicesLocatorException error)
+    {
+      error.printStackTrace();
+    }
+    out.println("Contrôles de fonctionnement du DAO QualificationDAO");
     out.println();
     
     // Contrôle(s) de fonctionnalités.
@@ -164,8 +180,8 @@ public class ControlesDAOServlet extends HttpServlet
   List<OffreEmploi> o = offreEmploiDAO.findByEntreprise(2);
   for(OffreEmploi offreEmploiEnt : o)
   {
-      out.println(offreEmploiEnt.getDescriptif());
 	  out.print(offreEmploiEnt.getTitre() + " Desc : ");
+	  out.println(offreEmploiEnt.getDescriptif());
   }
   out.println();
   
@@ -173,19 +189,28 @@ public class ControlesDAOServlet extends HttpServlet
     // ---------------------------------------------------------------------------------------------------------------
     
     out.println("Liste des secteur_activite :");
-    List<SecteurActivite> secteur = secteuractiviteDAO.findAll();
+    List<SecteurActivite> secteurs = secteuractiviteDAO.findAll();
     
-    for(SecteurActivite secteurs : secteur)
+    for(SecteurActivite secteur : secteurs)
     {
-      out.println(secteurs.getIntitule());
+      out.println(secteur.getIntitule());
+    }
+    out.println();
+    
+    out.println("Liste des qualifications :");
+    List<Qualification> qualifications = qualificationDAO.findAll();
+    
+    for(Qualification qualification : qualifications)
+    {
+      out.println(qualification.getIntitule());
     }
     out.println();
     
     out.println("Listes des offre d'emplois par secteur d'activité :");
     
-    for(SecteurActivite secteurs : secteur) {
-    	out.println("Offre pour : " + secteurs.getIntitule());
-    	for(int i = 0; i < secteur.size(); i ++) {
+    for(SecteurActivite secteur : secteurs) {
+    	out.println("Offre pour : " + secteur.getIntitule());
+    	for(int i = 0; i < secteurs.size(); i ++) {
         	if(offres.get(i).getSecteurActivites() == secteur) {
         		out.println(" - " + offres.get(i).getTitre());
         	}
