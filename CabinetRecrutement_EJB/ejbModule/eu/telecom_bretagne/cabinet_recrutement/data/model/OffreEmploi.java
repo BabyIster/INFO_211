@@ -159,6 +159,7 @@ public class OffreEmploi implements Serializable {
 	public Set<SecteurActivite> getSecteurActivites() {
 		return this.secteurActivites;
 	}
+	
 
 	public void setSecteurActivites(Set<SecteurActivite> secteurActivites) {
 		this.secteurActivites = secteurActivites;
