@@ -99,7 +99,7 @@ public class ControlesDAOServlet extends HttpServlet
     
     for(Entreprise entreprise : entreprises)
     {
-      out.println(entreprise.getNom()+" à "+entreprise.getAdressePostale());
+      out.println(entreprise.getId()+" : "+entreprise.getNom()+" à "+entreprise.getAdressePostale());
     }
     out.println();
     
@@ -123,8 +123,7 @@ public class ControlesDAOServlet extends HttpServlet
     
     for(Candidature candidature : candidatures)
     {
-      out.print(candidature.getNom() + " ");
-      out.println(candidature.getPrenom());
+      out.println(candidature.getId()+" : "+candidature.getNom() + " " + candidature.getPrenom());
     }
     out.println();
     
@@ -147,7 +146,8 @@ public class ControlesDAOServlet extends HttpServlet
     for(OffreEmploi offreEmploi: offres)
     {
       out.print("Titre : " +offreEmploi.getTitre() + " | Description : ");
-      out.println(offreEmploi.getDescriptif());
+      out.print(offreEmploi.getDescriptif()+ " | proposé par l'entreprise n°");
+      out.println(offreEmploi.getEntreprise().getId());
     }
     out.println();
     
@@ -155,14 +155,14 @@ public class ControlesDAOServlet extends HttpServlet
 
     
     out.println("Divers Contrôles de fonctionnement du DAO OffreEmploiDAO");
-
+    out.println();
     
     out.println("Obtention des candidatures secteur 1 et qualification 3 :");
     List<Candidature> c = candidatureDAO.findBySectorAndQualification(1,3);
     for(Candidature candidature : c)
     {
       out.print("Nom : "+candidature.getNom());
-      out.println(" Prenom : " + candidature.getPrenom());
+      out.println(" | Prenom : " + candidature.getPrenom());
     }
     out.println();
     
@@ -171,12 +171,20 @@ public class ControlesDAOServlet extends HttpServlet
   List<OffreEmploi> o = offreEmploiDAO.findByEntreprise(2);
   for(OffreEmploi offreEmploiEnt : o)
   {
-	  out.print("Titre : "+offreEmploiEnt.getTitre() + " Description : ");
+	  out.print("Titre : "+offreEmploiEnt.getTitre() + " | Description : ");
 	  out.println(offreEmploiEnt.getDescriptif());
   }
   out.println();  
   
   out.println("-------------------------------------------------------------------------------------------");
+  
+  out.println("La candidature n°3 correspond à :");
+  out.println("Prenom : "+candidatureDAO.findById(3).getPrenom());
+  out.println("Nom : "+candidatureDAO.findById(3).getNom());
+  
+  out.println();
+  out.println("Ajout d'une candidature");
+  Candidature nouvelleCand;
   }
 
 }
