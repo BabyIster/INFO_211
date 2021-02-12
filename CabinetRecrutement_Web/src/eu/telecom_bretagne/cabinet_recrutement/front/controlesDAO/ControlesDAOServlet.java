@@ -184,8 +184,8 @@ public class ControlesDAOServlet extends HttpServlet
   
   out.println();
   out.println("Ajout d'une candidature");
-  Candidature nouvelleCand = new Candidature("Matthieu","Old", null, null, null, null, null, null);
-  out.println(nouvelleCand.getId());
+  Candidature nouvelleCand = Candidature.create("Matthieu","Old", null, null, null, null, null, null);
+  
   nouvelleCand = candidatureDAO.persist(nouvelleCand);
   
   out.println("Liste des candidatures :");

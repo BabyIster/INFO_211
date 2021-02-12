@@ -60,15 +60,17 @@ public class Candidature implements Serializable {
 	protected Candidature() {
 	}
 	
-	public Candidature(String nomC, String prenomC, Date dateNaissanceC, String postaleC, String mailC, String cvC, Date dateDepotC, Qualification qualificationC) {
-		this.nom=nomC;
-		this.prenom=prenomC;
-		this.dateNaissance=dateNaissanceC;
-		this.adresseEmail=mailC;
-		this.adressePostale=postaleC;
-		this.cv=cvC;
-		this.dateDepot=dateDepotC;
-		this.qualification=qualificationC;
+	public static Candidature create(String nomC, String prenomC, Date dateNaissanceC, String postaleC, String mailC, String cvC, Date dateDepotC, Qualification qualificationC) {
+		Candidature c = new Candidature();
+		c.setNom(nomC);
+		c.setPrenom(prenomC);
+		c.setDateNaissance(dateNaissanceC);
+		c.setAdresseEmail(mailC);
+		c.setAdressePostale(postaleC);
+		c.setCv(cvC);
+		c.setDateDepot(dateDepotC);
+		c.setQualification(qualificationC);
+		return c;
 	}
 
 	public Integer getId() {
