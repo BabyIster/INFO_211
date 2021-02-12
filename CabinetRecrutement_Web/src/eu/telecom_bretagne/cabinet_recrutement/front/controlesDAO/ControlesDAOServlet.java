@@ -210,7 +210,7 @@ public class ControlesDAOServlet extends HttpServlet
   Date dateC = new Date(1,1,1);
   Candidature nouvelleCand = Candidature.create("Matthieu","Old", dateC, "44470", "@", "cv", dateC, qualificationDAO.findById(4));
   
-  nouvelleCand = candidatureDAO.persist(nouvelleCand);
+  //nouvelleCand = candidatureDAO.persist(candidatureDAO.findById(2));
   
   out.println("Liste des candidatures :");
   candidatures = candidatureDAO.findAll();
