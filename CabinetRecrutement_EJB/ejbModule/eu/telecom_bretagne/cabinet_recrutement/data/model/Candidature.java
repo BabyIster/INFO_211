@@ -57,7 +57,18 @@ public class Candidature implements Serializable {
 	@ManyToMany(mappedBy="candidatures")
 	private Set<SecteurActivite> secteurActivites;
 
-	public Candidature() {
+	protected Candidature() {
+	}
+	
+	public Candidature(String nomC, String prenomC, Date dateNaissanceC, String postaleC, String mailC, String cvC, Date dateDepotC, Qualification qualificationC) {
+		this.nom=nomC;
+		this.prenom=prenomC;
+		this.dateNaissance=dateNaissanceC;
+		this.adresseEmail=mailC;
+		this.adressePostale=postaleC;
+		this.cv=cvC;
+		this.dateDepot=dateDepotC;
+		this.qualification=qualificationC;
 	}
 
 	public Integer getId() {
