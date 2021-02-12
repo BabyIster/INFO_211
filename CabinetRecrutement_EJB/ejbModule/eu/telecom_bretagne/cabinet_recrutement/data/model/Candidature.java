@@ -59,6 +59,19 @@ public class Candidature implements Serializable {
 
 	public Candidature() {
 	}
+	
+	public static Candidature create(String nomC, String prenomC, Date dateNaissanceC, String postaleC, String mailC, String cvC, Date dateDepotC, Qualification qualificationC) {
+		Candidature c = new Candidature();
+		c.setNom(nomC);
+		c.setPrenom(prenomC);
+		c.setDateNaissance(dateNaissanceC);
+		c.setAdresseEmail(mailC);
+		c.setAdressePostale(postaleC);
+		c.setCv(cvC);
+		c.setDateDepot(dateDepotC);
+		c.setQualification(qualificationC);
+		return c;
+	}
 
 	public Integer getId() {
 		return this.id;

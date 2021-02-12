@@ -73,7 +73,7 @@ public class ServicesLocator
         nomJNDI = "java:global/CabinetRecrutement/CabinetRecrutement_EJB/QualificationDAO!eu.telecom_bretagne.cabinet_recrutement.data.dao.QualificationDAO";
     
     else
-      throw new ServicesLocatorException("Il n'y a pas d'EJB avec ce nom...");
+      throw new ServicesLocatorException("Il n'y a pas d'EJB avec ce nom...()");
     
     // La méthode recherche d'abord le stub dans le cache, s'il est absent,
     // il est récupéré via JNDI.
