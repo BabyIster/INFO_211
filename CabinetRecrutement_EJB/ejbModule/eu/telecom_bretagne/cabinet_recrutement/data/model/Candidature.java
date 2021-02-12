@@ -57,7 +57,7 @@ public class Candidature implements Serializable {
 	@ManyToMany(mappedBy="candidatures")
 	private Set<SecteurActivite> secteurActivites;
 
-	protected Candidature() {
+	public Candidature() {
 	}
 	
 	public static Candidature create(String nomC, String prenomC, Date dateNaissanceC, String postaleC, String mailC, String cvC, Date dateDepotC, Qualification qualificationC) {

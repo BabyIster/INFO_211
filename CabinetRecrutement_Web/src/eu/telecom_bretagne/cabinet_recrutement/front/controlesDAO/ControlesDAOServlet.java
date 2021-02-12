@@ -2,6 +2,7 @@ package eu.telecom_bretagne.cabinet_recrutement.front.controlesDAO;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -152,6 +153,28 @@ public class ControlesDAOServlet extends HttpServlet
     out.println();
     
     out.println("-------------------------------------------------------------------------------------------");
+    
+    try
+    {
+    	qualificationDAO = (QualificationDAO) ServicesLocator.getInstance().getRemoteInterface("QualificationDAO");
+    }
+    catch (ServicesLocatorException e)
+    {
+      e.printStackTrace();
+    }
+    out.println("Contrôles de fonctionnement du DAO QualificationDAO");
+    out.println();
+    
+    out.println("Liste des qualifications :");
+    List<Qualification> qualifications = qualificationDAO.findAll();
+    
+    for(Qualification qualification: qualifications)
+    {
+    	out.println(qualification.getId()+" : "+qualification.getIntitule());
+    }
+    out.println();
+    
+    out.println("-------------------------------------------------------------------------------------------");
 
     
     out.println("Divers Contrôles de fonctionnement du DAO OffreEmploiDAO");
@@ -184,7 +207,8 @@ public class ControlesDAOServlet extends HttpServlet
   
   out.println();
   out.println("Ajout d'une candidature");
-  Candidature nouvelleCand = Candidature.create("Matthieu","Old", null, null, null, null, null, null);
+  Date dateC = new Date(1,1,1);
+  Candidature nouvelleCand = Candidature.create("Matthieu","Old", dateC, "44470", "@", "cv", dateC, qualificationDAO.findById(4));
   
   nouvelleCand = candidatureDAO.persist(nouvelleCand);
   
