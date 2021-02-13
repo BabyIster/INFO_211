@@ -124,10 +124,10 @@ insert into entreprise values (nextval('entreprise_id_seq'),'Brasserie and co','
 -- Insertion qualification
 
 insert into qualification values (nextval('qualification_id_seq'),'BAC');
-insert into qualification values (nextval('qualification_id_seq'),'Licence');
-insert into qualification values (nextval('qualification_id_seq'),'Ingénieur');
-insert into qualification values (nextval('qualification_id_seq'),'Master');
-insert into qualification values (nextval('qualification_id_seq'),'Doctorant');
+insert into qualification values (nextval('qualification_id_seq'),'CAP/BEP');
+insert into qualification values (nextval('qualification_id_seq'),'Bac+3');
+insert into qualification values (nextval('qualification_id_seq'),'Bac+5');
+insert into qualification values (nextval('qualification_id_seq'),'Doctorat');
 
 -- Insertion des offres d'emploi
 
@@ -162,11 +162,11 @@ insert into message_candidature values (nextval('message_candidature_id_seq'),'0
 
 -- Insertion secteur activité
 
-insert into secteur_activite values (nextval('secteur_activite_id_seq'),'BDD');
-insert into secteur_activite values (nextval('secteur_activite_id_seq'),'Pêche');
-insert into secteur_activite values (nextval('secteur_activite_id_seq'),'Energie');
-insert into secteur_activite values (nextval('secteur_activite_id_seq'),'Alcool');
-insert into secteur_activite values (nextval('secteur_activite_id_seq'),'Education');
+insert into secteur_activite values (nextval('secteur_activite_id_seq'),'Informatique');
+insert into secteur_activite values (nextval('secteur_activite_id_seq'),'Environnement');
+insert into secteur_activite values (nextval('secteur_activite_id_seq'),'Industrie/Ingénierie/Production');
+insert into secteur_activite values (nextval('secteur_activite_id_seq'),'Achats/Logistique');
+insert into secteur_activite values (nextval('secteur_activite_id_seq'),'Formation/Enseignement');
 
 -- Insertion index activite
 

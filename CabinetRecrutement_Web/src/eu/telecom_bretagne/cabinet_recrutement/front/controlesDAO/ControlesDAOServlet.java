@@ -162,13 +162,13 @@ public class ControlesDAOServlet extends HttpServlet
     nouvelleCand = candidatureDAO.persist(nouvelleCand);
     
     out.println("Candidature ajoutée :");
-    out.println(nouvelleCand.getId()+" : "+nouvelleCand.getNom() + " " + nouvelleCand.getPrenom());
+    out.println(nouvelleCand.getId()+" : "+nouvelleCand.getPrenom() + " " + nouvelleCand.getNom());
     out.println();
     
     out.println("Modification de la candidature :");
     nouvelleCand.setNom("YOUNG");
     nouvelleCand=candidatureDAO.update(nouvelleCand);
-    out.println(nouvelleCand.getId()+" : "+nouvelleCand.getNom() + " " + nouvelleCand.getPrenom());
+    out.println(nouvelleCand.getId()+" : "+nouvelleCand.getPrenom() + " " + nouvelleCand.getNom());
     out.println();
     
     out.println("Suppression de la candidature");
