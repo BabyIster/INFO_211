@@ -9,6 +9,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import eu.telecom_bretagne.cabinet_recrutement.data.model.Qualification;
+import eu.telecom_bretagne.cabinet_recrutement.data.model.SecteurActivite;
 import eu.telecom_bretagne.cabinet_recrutement.service.JPAUtil;
 
 /**
@@ -63,6 +64,17 @@ public class QualificationDAO
           entityManager.merge(qualification);
       }
       return qualification;
+  }
+  
+  /**
+   * Utilisé uniquement pour nos tests afin de ne pas se retrouver avec plusieurs fois la même qualification
+   * @param qualification
+   */
+  public void remove(Qualification  qualification) {
+	  if (qualification != null) {
+		  Qualification temp = entityManager.merge(qualification);
+          entityManager.remove(temp);
+      }
   }
 
   //-----------------------------------------------------------------------------

@@ -93,6 +93,9 @@ public class ControlesDAOServlet extends HttpServlet
     out.println(nouveauSecteur.getId()+" : "+nouveauSecteur.getIntitule());
     out.println();
     
+    out.println("Supression du secteur Agriculture");
+    secteuractiviteDAO.remove(nouveauSecteur);
+    
     out.println("-------------------------------------------------------------------------------------------");
     
     try
@@ -115,7 +118,20 @@ public class ControlesDAOServlet extends HttpServlet
     }
     out.println();
     
+    out.println("Ajout de l'entreprise AMD :");
+    Entreprise AMD=new Entreprise("AMD", "Entreprise d'electronique","New York");
+    entrepriseDAO.persist(AMD);
+    out.println(AMD.getId()+" : "+AMD.getNom() +" | "+ AMD.getDescriptif());
+    out.println();
     
+    out.println("Modification du descriptif :");
+    AMD.setDescriptif("Entreprise d'electronique spécialisé dans les processeurs");
+    AMD=entrepriseDAO.update(AMD);
+    out.println(AMD.getId()+" : "+AMD.getNom() +" | "+ AMD.getDescriptif());
+    out.println();
+    
+    out.println("Supression de l'entreprise AMD (présent uniquement pour nos tests)");
+    entrepriseDAO.remove(AMD);
     
     out.println("-------------------------------------------------------------------------------------------");
     
@@ -138,6 +154,21 @@ public class ControlesDAOServlet extends HttpServlet
     	out.println(qualification.getId()+" : "+qualification.getIntitule());
     }
     out.println();
+    
+    out.println("Ajout de la qualification PDG :");
+    Qualification PDG=new Qualification("PDG");
+    qualificationDAO.persist(PDG);
+    out.println(PDG.getId()+" : "+PDG.getIntitule());
+    out.println();
+    
+    out.println("Modification de l'intitulé :");
+    PDG.setIntitule("CEO");
+    PDG=qualificationDAO.update(PDG);
+    out.println(PDG.getId()+" : "+PDG.getIntitule());
+    out.println();
+    
+    out.println("Supression de l'intitulé CEO (présent uniquement pour nos tests)");
+    qualificationDAO.remove(PDG);
     
     out.println("-------------------------------------------------------------------------------------------");
 

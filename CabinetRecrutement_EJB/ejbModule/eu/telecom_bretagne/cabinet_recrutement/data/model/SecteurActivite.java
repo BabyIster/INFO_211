@@ -40,7 +40,7 @@ public class SecteurActivite implements Serializable {
 	@JoinTable(
 		name="index_activite"
 		, joinColumns={
-			@JoinColumn(name="id_activie")
+			@JoinColumn(name="id_activite")
 			}
 		, inverseJoinColumns={
 			@JoinColumn(name="id_offre_emploi")

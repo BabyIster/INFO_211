@@ -32,6 +32,12 @@ public class Entreprise implements Serializable {
 
 	public Entreprise() {
 	}
+	
+	public Entreprise(String nomc, String desc, String addr) {
+		this.nom=nomc;
+		this.descriptif=desc;
+		this.adressePostale=addr;
+	}
 
 	public Integer getId() {
 		return this.id;

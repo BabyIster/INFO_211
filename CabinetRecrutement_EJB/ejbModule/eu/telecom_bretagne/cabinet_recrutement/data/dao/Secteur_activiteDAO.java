@@ -64,6 +64,18 @@ public class Secteur_activiteDAO
       }
       return secteur;
   }
+  
+  /**
+   * Utilisé uniquement pour nos tests afin de ne pas se retrouver avec plusieurs fois le même secteur 
+   * @param secteur
+   */
+  public void remove(SecteurActivite secteur) {
+	  if (secteur != null) {
+		  SecteurActivite temp = entityManager.merge(secteur);
+          entityManager.remove(temp);
+      }
+  }
+  
 
   //-----------------------------------------------------------------------------
 }

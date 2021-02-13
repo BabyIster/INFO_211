@@ -24,7 +24,7 @@ public class Qualification implements Serializable {
 	//bi-directional many-to-one association to Candidature
 	@OneToMany(mappedBy="qualification")
 	private Set<Candidature> candidatures;
-
+	
 	//bi-directional many-to-many association to OffreEmploi
 	@ManyToMany
 	@JoinTable(
@@ -37,8 +37,12 @@ public class Qualification implements Serializable {
 			}
 		)
 	private Set<OffreEmploi> offreEmplois;
-
+	
 	public Qualification() {
+	}
+	
+	public Qualification(String intitulec) {
+		this.intitule=intitulec;
 	}
 
 	public Integer getId() {
