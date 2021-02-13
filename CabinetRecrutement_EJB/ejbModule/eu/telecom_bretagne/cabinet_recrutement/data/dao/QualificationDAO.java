@@ -52,17 +52,17 @@ public class QualificationDAO
   }
 
   public Qualification  persist(Qualification  qualification) {
-	EntityManager Ent = JPAUtil.getEntityManager();
-	Ent.persist(qualification);
-
-	return qualification;
+	  if (qualification != null) {
+          entityManager.persist(qualification);
+      }
+      return qualification;
   }
 
   public Qualification  update(Qualification  qualification) {
-	EntityManager Ent = JPAUtil.getEntityManager();
-	Ent.merge(qualification);
-
-	return qualification;
+	  if (qualification != null) {
+          entityManager.merge(qualification);
+      }
+      return qualification;
   }
 
   //-----------------------------------------------------------------------------

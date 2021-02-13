@@ -49,22 +49,24 @@ public class EntrepriseDAO
   }
 
   public Entreprise persist(Entreprise entreprise) {
-	EntityManager Ent = JPAUtil.getEntityManager();
-	Ent.persist(entreprise);
-
-	return entreprise;
+	  if (entreprise != null) {
+          entityManager.persist(entreprise);
+      }
+      return entreprise;
   }
 
   public Entreprise update(Entreprise entreprise) {
-	EntityManager Ent = JPAUtil.getEntityManager();
-	Ent.merge(entreprise);
-
-	return entreprise;
+	  if (entreprise != null) {
+          entityManager.merge(entreprise);
+      }
+      return entreprise;
   }
 
   public void remove(Entreprise entreprise) {
-	EntityManager Ent = JPAUtil.getEntityManager();
-	Ent.remove(entreprise);
+	  if (entreprise != null) {
+          Entreprise temp = entityManager.merge(entreprise);
+          entityManager.remove(temp);
+      }
   }
   //-----------------------------------------------------------------------------
 }

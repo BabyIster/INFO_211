@@ -107,6 +107,28 @@ public class ControlesDAOServlet extends HttpServlet
     
     
     out.println("-------------------------------------------------------------------------------------------");
+    
+    try
+    {
+    	qualificationDAO = (QualificationDAO) ServicesLocator.getInstance().getRemoteInterface("QualificationDAO");
+    }
+    catch (ServicesLocatorException e)
+    {
+      e.printStackTrace();
+    }
+    out.println("Contrôles de fonctionnement du DAO QualificationDAO");
+    out.println();
+    
+    out.println("Liste des qualifications :");
+    List<Qualification> qualifications = qualificationDAO.findAll();
+    
+    for(Qualification qualification: qualifications)
+    {
+    	out.println(qualification.getId()+" : "+qualification.getIntitule());
+    }
+    out.println();
+    
+    out.println("-------------------------------------------------------------------------------------------");
 
     try
     {
@@ -121,6 +143,39 @@ public class ControlesDAOServlet extends HttpServlet
     
     out.println("Liste des candidatures :");
     List<Candidature> candidatures = candidatureDAO.findAll();
+    
+    for(Candidature candidature : candidatures)
+    {
+      out.println(candidature.getId()+" : "+candidature.getNom() + " " + candidature.getPrenom());
+    }
+    out.println();
+    
+    out.println("La candidature n°3 correspond à :");
+    out.println("Prenom : "+candidatureDAO.findById(3).getPrenom());
+    out.println("Nom : "+candidatureDAO.findById(3).getNom());
+    
+    out.println();
+    
+    out.println("Ajout de la candidature de Matthieu (new Candidature(\"Matthieu\",\"Old\", dateC, \"44470\", \"@\", \"cv\", dateC, qualificationDAO.findById(4)))");
+    Date dateC = new Date(1,1,1);
+    Candidature nouvelleCand = new Candidature("Matthieu","Old", dateC, "44470", "@", "cv", dateC, qualificationDAO.findById(4));
+    nouvelleCand = candidatureDAO.persist(nouvelleCand);
+    
+    out.println("Candidature ajoutée :");
+    out.println(nouvelleCand.getId()+" : "+nouvelleCand.getNom() + " " + nouvelleCand.getPrenom());
+    out.println();
+    
+    out.println("Modification de la candidature :");
+    nouvelleCand.setNom("YOUNG");
+    nouvelleCand=candidatureDAO.update(nouvelleCand);
+    out.println(nouvelleCand.getId()+" : "+nouvelleCand.getNom() + " " + nouvelleCand.getPrenom());
+    out.println();
+    
+    out.println("Suppression de la candidature");
+    candidatureDAO.remove(nouvelleCand);
+    
+    out.println("Liste des candidatures :");
+    candidatures = candidatureDAO.findAll();
     
     for(Candidature candidature : candidatures)
     {
@@ -154,29 +209,6 @@ public class ControlesDAOServlet extends HttpServlet
     
     out.println("-------------------------------------------------------------------------------------------");
     
-    try
-    {
-    	qualificationDAO = (QualificationDAO) ServicesLocator.getInstance().getRemoteInterface("QualificationDAO");
-    }
-    catch (ServicesLocatorException e)
-    {
-      e.printStackTrace();
-    }
-    out.println("Contrôles de fonctionnement du DAO QualificationDAO");
-    out.println();
-    
-    out.println("Liste des qualifications :");
-    List<Qualification> qualifications = qualificationDAO.findAll();
-    
-    for(Qualification qualification: qualifications)
-    {
-    	out.println(qualification.getId()+" : "+qualification.getIntitule());
-    }
-    out.println();
-    
-    out.println("-------------------------------------------------------------------------------------------");
-
-    
     out.println("Divers Contrôles de fonctionnement du DAO OffreEmploiDAO");
     out.println();
     
@@ -201,25 +233,5 @@ public class ControlesDAOServlet extends HttpServlet
   
   out.println("-------------------------------------------------------------------------------------------");
   
-  out.println("La candidature n°3 correspond à :");
-  out.println("Prenom : "+candidatureDAO.findById(3).getPrenom());
-  out.println("Nom : "+candidatureDAO.findById(3).getNom());
-  
-  out.println();
-  out.println("Ajout d'une candidature");
-  Date dateC = new Date(1,1,1);
-  Candidature nouvelleCand = new Candidature("Matthieu","Old", dateC, "44470", "@", "cv", dateC, qualificationDAO.findById(4));
-  
-  nouvelleCand = candidatureDAO.persist(nouvelleCand);
-  
-  out.println("Liste des candidatures :");
-  candidatures = candidatureDAO.findAll();
-  
-  for(Candidature candidature : candidatures)
-  {
-    out.println(candidature.getId()+" : "+candidature.getNom() + " " + candidature.getPrenom());
   }
-  out.println();
-  }
-
 }

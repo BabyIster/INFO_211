@@ -9,6 +9,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import eu.telecom_bretagne.cabinet_recrutement.data.model.Candidature;
+import eu.telecom_bretagne.cabinet_recrutement.data.model.Entreprise;
 import eu.telecom_bretagne.cabinet_recrutement.service.JPAUtil;
 
 /**
@@ -59,23 +60,25 @@ public class CandidatureDAO
     return candidatures;
   }
 
-  public Candidature persist(Candidature Candidature) {
-      if (Candidature != null) {
-          entityManager.persist(Candidature);
+  public Candidature persist(Candidature candidature) {
+      if (candidature != null) {
+          entityManager.persist(candidature);
       }
-      return Candidature;
+      return candidature;
   }
   
-  public Candidature update(Candidature Candidature) {
-	  if (Candidature != null) {
-		  entityManager.merge(Candidature);
+  public Candidature update(Candidature candidature) {
+	  if (candidature != null) {
+		  entityManager.merge(candidature);
 	  }
-	return Candidature;
+	return candidature;
   }
   
-  public void remove(Candidature Candidature) {
-	EntityManager Cand = JPAUtil.getEntityManager(); //A changer merge puis supprimer
-	Cand.remove(Candidature);
+  public void remove(Candidature candidature) {
+	  if (candidature != null) {
+          Candidature temp = entityManager.merge(candidature);
+          entityManager.remove(temp);
+      }
   }
   //-----------------------------------------------------------------------------
 }

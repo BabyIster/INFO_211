@@ -60,15 +60,15 @@ public class Candidature implements Serializable {
 	public Candidature() {
 	}
 	
-	public Candidature(String nomC, String prenomC, Date dateNaissanceC, String postaleC, String mailC, String cvC, Date dateDepotC, Qualification qualificationC) {
-		nom=nomC;
-		prenom=prenomC;
-		dateNaissance=dateNaissanceC;
-		adresseEmail=mailC;
-		adressePostale=postaleC;
-		cv=cvC;
-		dateDepot=dateDepotC;
-		qualification=qualificationC;
+	public Candidature(String prenomC, String nomC, Date dateNaissanceC, String postaleC, String mailC, String cvC, Date dateDepotC, Qualification qualificationC) {
+		this.nom=nomC;
+		this.prenom=prenomC;
+		this.dateNaissance=dateNaissanceC;
+		this.adresseEmail=mailC;
+		this.adressePostale=postaleC;
+		this.cv=cvC;
+		this.dateDepot=dateDepotC;
+		this.qualification=qualificationC;
 	}
 
 	public Integer getId() {
