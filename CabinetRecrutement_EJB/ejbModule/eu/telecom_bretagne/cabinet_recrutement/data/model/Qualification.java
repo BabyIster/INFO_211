@@ -26,16 +26,16 @@ public class Qualification implements Serializable {
 	private Set<Candidature> candidatures;
 	
 	//bi-directional many-to-many association to OffreEmploi
-	@ManyToMany
-	@JoinTable(
-		name="index_qualification"
-		, joinColumns={
-			@JoinColumn(name="id_qualification")
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="id_offre_emploi")
-			}
-		)
+		@ManyToMany
+		@JoinTable(
+			name="index_activite"
+			, joinColumns={
+				@JoinColumn(name="id_activite")
+				}
+			, inverseJoinColumns={
+				@JoinColumn(name="id_offre_emploi")
+				}
+			)
 	private Set<OffreEmploi> offreEmplois;
 	
 	public Qualification() {

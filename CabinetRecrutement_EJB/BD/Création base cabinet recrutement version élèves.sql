@@ -15,7 +15,6 @@
 drop table if exists "message_offre_emploi" CASCADE;
 drop table if exists "message_candidature" CASCADE;
 drop table if exists "index_activite_candidature" CASCADE;
-drop table if exists "index_qualification" CASCADE;
 drop table if exists "index_activite" CASCADE;
 drop table if exists "candidature" CASCADE;
 drop table if exists "offre_emploi" CASCADE;
