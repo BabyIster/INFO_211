@@ -60,21 +60,21 @@ public class CandidatureDAO
   }
 
   public Candidature persist(Candidature Candidature) {
-	EntityManager Cand = JPAUtil.getEntityManager();
-	Cand.persist(Candidature);
-	
-	return Candidature;
+      if (Candidature != null) {
+          entityManager.persist(Candidature);
+      }
+      return Candidature;
   }
   
   public Candidature update(Candidature Candidature) {
-	EntityManager Cand = JPAUtil.getEntityManager();
-	Cand.merge(Candidature);
-	
+	  if (Candidature != null) {
+		  entityManager.merge(Candidature);
+	  }
 	return Candidature;
   }
   
   public void remove(Candidature Candidature) {
-	EntityManager Cand = JPAUtil.getEntityManager();
+	EntityManager Cand = JPAUtil.getEntityManager(); //A changer merge puis supprimer
 	Cand.remove(Candidature);
   }
   //-----------------------------------------------------------------------------
