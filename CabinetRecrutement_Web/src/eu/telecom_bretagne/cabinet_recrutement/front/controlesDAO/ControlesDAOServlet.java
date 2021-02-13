@@ -202,8 +202,6 @@ public class ControlesDAOServlet extends HttpServlet
     Date dateC = new Date(1,1,1);
     Candidature nouvelleCand = new Candidature("Matthieu","Old", dateC, "44470", "@", "cv", dateC, qualificationDAO.findById(4));
     nouvelleCand = candidatureDAO.persist(nouvelleCand);
-    
-    out.println("Candidature ajoutée :");
     out.println(nouvelleCand.getId()+" : "+nouvelleCand.getPrenom() + " " + nouvelleCand.getNom());
     out.println();
     
@@ -249,11 +247,6 @@ public class ControlesDAOServlet extends HttpServlet
     }
     out.println();
     
-    out.println("-------------------------------------------------------------------------------------------");
-    
-    out.println("Divers Contrôles de fonctionnement du DAO OffreEmploiDAO");
-    out.println();
-    
     out.println("Obtention des candidatures secteur 1 et qualification 3 :");
     List<Candidature> c = candidatureDAO.findBySectorAndQualification(1,3);
     for(Candidature candidature : c)
@@ -263,7 +256,6 @@ public class ControlesDAOServlet extends HttpServlet
     }
     out.println();
     
-  out.println();
   out.println("Obtention des offres d'emploi de l'entreprise 2");
   List<OffreEmploi> o = offreEmploiDAO.findByEntreprise(2);
   for(OffreEmploi offreEmploiEnt : o)
@@ -272,6 +264,22 @@ public class ControlesDAOServlet extends HttpServlet
 	  out.println(offreEmploiEnt.getDescriptif());
   }
   out.println();  
+  
+  out.println("Création d'une offre d'emploi : ");
+  OffreEmploi nouvelleOffre = new OffreEmploi("Stage de cuisine", "Nous recherchons un stagiaire pour nos cuisines", "Jeune dynamique");
+  nouvelleOffre = offreEmploiDAO.persist(nouvelleOffre);
+  out.println(nouvelleOffre.getId()+" : "+nouvelleOffre.getDescriptif() + " | " + nouvelleOffre.getProfilRecherche());
+  //il faudra s OCCUPER DE LA AJOUT DANS LES INDEX
+  out.println();
+  
+  out.println("Modification de l'offre :");
+  nouvelleOffre.setProfilRecherche("Jeune cuisinier dynamique a la recherche de la recette secrète");
+  nouvelleOffre=offreEmploiDAO.update(nouvelleOffre);
+  out.println(nouvelleOffre.getId()+" : "+nouvelleOffre.getDescriptif() + " | " + nouvelleOffre.getProfilRecherche());
+  out.println();
+  
+  out.println("Suppression de l'offre");
+  offreEmploiDAO.remove(nouvelleOffre);
   
   out.println("-------------------------------------------------------------------------------------------");
   

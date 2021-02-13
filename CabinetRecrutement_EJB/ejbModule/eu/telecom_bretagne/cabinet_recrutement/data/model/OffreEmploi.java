@@ -55,6 +55,12 @@ public class OffreEmploi implements Serializable {
 
 	public OffreEmploi() {
 	}
+	
+	public OffreEmploi(String titrec, String desc, String profile ) {
+		this.titre=titrec;
+		this.descriptif=desc;
+		this.profilRecherche=profile;
+	}
 
 	public Integer getId() {
 		return this.id;

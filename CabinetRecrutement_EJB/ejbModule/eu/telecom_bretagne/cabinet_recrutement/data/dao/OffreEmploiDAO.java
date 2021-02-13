@@ -69,23 +69,25 @@ public class OffreEmploiDAO
     return offreEmplois;
   }
 
-  public OffreEmploi persist(OffreEmploi OffreEmploi) {
-	EntityManager Offre = JPAUtil.getEntityManager();
-	Offre.persist(OffreEmploi);
-
-	return OffreEmploi;
+  public OffreEmploi persist(OffreEmploi offreEmploi) {
+      if (offreEmploi != null) {
+          entityManager.persist(offreEmploi);
+      }
+      return offreEmploi;
   }
 
-  public OffreEmploi update(OffreEmploi OffreEmploi) {
-	EntityManager Offre = JPAUtil.getEntityManager();
-	Offre.merge(OffreEmploi);
-
-	return OffreEmploi;
+  public OffreEmploi update(OffreEmploi offreEmploi) {
+	  if (offreEmploi != null) {
+          entityManager.merge(offreEmploi);
+      }
+      return offreEmploi;
   }
 
-  public void remove(OffreEmploi OffreEmploi) {
-	EntityManager Offre = JPAUtil.getEntityManager();
-	Offre.remove(OffreEmploi);
+  public void remove(OffreEmploi offreEmploi) {
+	  if (offreEmploi != null) {
+		  OffreEmploi temp = entityManager.merge(offreEmploi);
+          entityManager.remove(temp);
+      }
   }
   //-----------------------------------------------------------------------------
 }
