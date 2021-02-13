@@ -44,7 +44,7 @@ public class Secteur_activiteDAO
   @SuppressWarnings({ "rawtypes", "unchecked" })
   public List<SecteurActivite> findAll()
   {
-    Query query = entityManager.createQuery("select secteur_activite from SecteurActivite secteur_activite order by secteur_activite.id");
+    Query query = entityManager.createQuery("select secteur from SecteurActivite secteur order by secteur.id");
 
     List l = query.getResultList();
 
@@ -52,17 +52,17 @@ public class Secteur_activiteDAO
   }
 
   public SecteurActivite persist(SecteurActivite secteur) {
-	EntityManager Ent = JPAUtil.getEntityManager();
-	Ent.persist(secteur);
-
-	return secteur;
+	  if (secteur != null) {
+          entityManager.persist(secteur);
+      }
+      return secteur;
   }
 
   public SecteurActivite update(SecteurActivite secteur) {
-	EntityManager Ent = JPAUtil.getEntityManager();
-	Ent.merge(secteur);
-
-	return secteur;
+	  if (secteur != null) {
+          entityManager.merge(secteur);
+      }
+      return secteur;
   }
 
   //-----------------------------------------------------------------------------

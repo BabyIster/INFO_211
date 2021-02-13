@@ -81,7 +81,18 @@ public class ControlesDAOServlet extends HttpServlet
     }
     out.println();
     
- 
+    out.println("Ajout du secteur Electronique/Microélectronique : ");
+    SecteurActivite nouveauSecteur = new SecteurActivite("Electronique/Microélectronique");
+    nouveauSecteur=secteuractiviteDAO.persist(nouveauSecteur);
+    out.println(nouveauSecteur.getId()+" : "+nouveauSecteur.getIntitule());
+    out.println();
+    
+    out.println("Modification en Agriculture : ");
+    nouveauSecteur.setIntitule("Agriculture");
+    nouveauSecteur=secteuractiviteDAO.update(nouveauSecteur);
+    out.println(nouveauSecteur.getId()+" : "+nouveauSecteur.getIntitule());
+    out.println();
+    
     out.println("-------------------------------------------------------------------------------------------");
     
     try
