@@ -207,7 +207,9 @@ public class ControlesDAOServlet extends HttpServlet
     out.println();
     
     out.println("Ajout de la candidature de Matthieu (new Candidature(\"Matthieu\",\"Old\", dateC, \"44470\", \"@\", \"cv\", dateC, qualificationDAO.findById(4)))");
-    Date dateC = new Date(1,1,1);
+ 
+    Date today = new Date(0,0,0);
+    
     Set<SecteurActivite> secteurActivites = new HashSet<SecteurActivite>();
     secteurActivites.add(secteurActiviteDAO.findById(3)); //La candidature sera du secteur 3
     Candidature nouvelleCand = new Candidature("Matthieu","Old", dateC, "44470", "@", "cv", dateC, qualificationDAO.findById(4), secteurActivites);
