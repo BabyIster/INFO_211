@@ -81,13 +81,18 @@ public class OffreEmploiDAO
           entityManager.merge(offreEmploi);
       }
       return offreEmploi;
-  }
+  } 
 
   public void remove(OffreEmploi offreEmploi) {
-	  if (offreEmploi != null) {
+	  try {
 		  OffreEmploi temp = entityManager.merge(offreEmploi);
           entityManager.remove(temp);
-      }
+	} catch (Exception e) {
+		e.printStackTrace();
+		return;
+	}
+		  
+      
   }
   //-----------------------------------------------------------------------------
 }

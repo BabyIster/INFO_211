@@ -70,10 +70,13 @@ public class Secteur_activiteDAO
    * @param secteur
    */
   public void remove(SecteurActivite secteur) {
-	  if (secteur != null) {
+	  try {
 		  SecteurActivite temp = entityManager.merge(secteur);
           entityManager.remove(temp);
-      }
+	} catch (Exception e) {
+		e.printStackTrace();
+		return;
+	}
   }
   
 

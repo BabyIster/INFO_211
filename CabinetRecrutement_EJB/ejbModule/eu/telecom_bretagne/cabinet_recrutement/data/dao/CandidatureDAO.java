@@ -75,10 +75,14 @@ public class CandidatureDAO
   }
   
   public void remove(Candidature candidature) {
-	  if (candidature != null) {
-          Candidature temp = entityManager.merge(candidature);
+	  try {
+		  Candidature temp = entityManager.merge(candidature);
           entityManager.remove(temp);
-      }
+	} catch (Exception e) {
+		e.printStackTrace();
+		return;
+	}
+   
   }
   //-----------------------------------------------------------------------------
 }

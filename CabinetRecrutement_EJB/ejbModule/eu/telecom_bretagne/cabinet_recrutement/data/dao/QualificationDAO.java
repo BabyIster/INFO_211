@@ -71,10 +71,14 @@ public class QualificationDAO
    * @param qualification
    */
   public void remove(Qualification  qualification) {
-	  if (qualification != null) {
+	  try {
 		  Qualification temp = entityManager.merge(qualification);
           entityManager.remove(temp);
-      }
+	} catch (Exception e) {
+		e.printStackTrace();
+		return;
+	}
+	  
   }
 
   //-----------------------------------------------------------------------------
