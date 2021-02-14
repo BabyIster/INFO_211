@@ -9,8 +9,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import eu.telecom_bretagne.cabinet_recrutement.data.model.Qualification;
-import eu.telecom_bretagne.cabinet_recrutement.data.model.SecteurActivite;
-import eu.telecom_bretagne.cabinet_recrutement.service.JPAUtil;
 
 /**
  * Session Bean implementation class qualification_activiteDAO
@@ -71,10 +69,14 @@ public class QualificationDAO
    * @param qualification
    */
   public void remove(Qualification  qualification) {
-	  if (qualification != null) {
+	  try {
 		  Qualification temp = entityManager.merge(qualification);
           entityManager.remove(temp);
-      }
+	} catch (Exception e) {
+		e.printStackTrace();
+		return;
+	}
+	  
   }
 
   //-----------------------------------------------------------------------------

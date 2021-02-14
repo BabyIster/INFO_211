@@ -9,7 +9,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import eu.telecom_bretagne.cabinet_recrutement.data.model.Entreprise;
-import eu.telecom_bretagne.cabinet_recrutement.service.JPAUtil;
 
 /**
  * Session Bean implementation class EntrepriseDAO
@@ -63,10 +62,13 @@ public class EntrepriseDAO
   }
 
   public void remove(Entreprise entreprise) {
-	  if (entreprise != null) {
-          Entreprise temp = entityManager.merge(entreprise);
+	  try {
+		  Entreprise temp = entityManager.merge(entreprise);
           entityManager.remove(temp);
-      }
+	} catch (Exception e) {
+		e.printStackTrace();
+		return;
+	}
   }
   //-----------------------------------------------------------------------------
 }

@@ -8,9 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import eu.telecom_bretagne.cabinet_recrutement.data.model.Candidature;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.OffreEmploi;
-import eu.telecom_bretagne.cabinet_recrutement.service.JPAUtil;
 
 /**
  * Session Bean implementation class OffreEmploiDAO
@@ -81,13 +79,18 @@ public class OffreEmploiDAO
           entityManager.merge(offreEmploi);
       }
       return offreEmploi;
-  }
+  } 
 
   public void remove(OffreEmploi offreEmploi) {
-	  if (offreEmploi != null) {
+	  try {
 		  OffreEmploi temp = entityManager.merge(offreEmploi);
           entityManager.remove(temp);
-      }
+	} catch (Exception e) {
+		e.printStackTrace();
+		return;
+	}
+		  
+      
   }
   //-----------------------------------------------------------------------------
 }
