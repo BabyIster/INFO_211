@@ -33,11 +33,24 @@ public class EntrepriseDAO
     // TODO Auto-generated constructor stub
   }
   //-----------------------------------------------------------------------------
+  
+  /**
+   * Recherche de l'objet candidature grâce à l'id en entrée
+   * 
+   * @param id de l'entreprise a trouver
+   * @return l'objet entreprise correspondant à l'id
+   */
   public Entreprise findById(Integer id)
   {
     return entityManager.find(Entreprise.class, id);
   }
   //----------------------------------------------------------------------------
+  
+  /**
+   * Liste toutes les entreprises présentent dans la base
+   * 
+   * @return la liste
+   */
   @SuppressWarnings({ "rawtypes", "unchecked" })
   public List<Entreprise> findAll()
   {
@@ -47,6 +60,12 @@ public class EntrepriseDAO
     return (List<Entreprise>)l;
   }
 
+  /**
+   * Création d'une entreprise
+   * 
+   * @param entreprise Object Entreprise en entrée
+   * @return On retourne l'objet crée
+   */
   public Entreprise persist(Entreprise entreprise) {
 	  if (entreprise != null) {
           entityManager.persist(entreprise);
@@ -54,6 +73,12 @@ public class EntrepriseDAO
       return entreprise;
   }
 
+  /**
+   * Modification d'une entreprise (avec un set fait au préalable)
+   * 
+   * @param entreprise
+   * @return
+   */
   public Entreprise update(Entreprise entreprise) {
 	  if (entreprise != null) {
           entityManager.merge(entreprise);
@@ -61,6 +86,11 @@ public class EntrepriseDAO
       return entreprise;
   }
 
+  /**
+   * Suppression d'une entreprise
+   * 
+   *    * @param entreprise a supprimer
+   */
   public void remove(Entreprise entreprise) {
 	  try {
 		  Entreprise temp = entityManager.merge(entreprise);

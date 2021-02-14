@@ -33,11 +33,24 @@ public class CandidatureDAO
     // TODO Auto-generated constructor stub
   }
   //-----------------------------------------------------------------------------
+  
+  /**
+   * Recherche de l'objet candidature grâce à l'id en entrée
+   * 
+   * @param id de la candidature a trouver
+   * @return la candidature correspondante à l'id
+   */
   public Candidature findById(Integer id)
   {
     return entityManager.find(Candidature.class, id);
   }
   //----------------------------------------------------------------------------
+  
+  /**
+   * Liste toutes les candidatures présentent dans la base
+   * 
+   * @return la liste
+   */
   @SuppressWarnings({ "rawtypes", "unchecked" })
   public List<Candidature> findAll()
   {
@@ -47,7 +60,13 @@ public class CandidatureDAO
     return (List<Candidature>)l;
   }
   
-
+/**
+ * Recherche une candidature correspondant au secteur et a la qualification
+ * 
+ * @param sector
+ * @param qualification
+ * @return
+ */
   public List<Candidature> findBySectorAndQualification(int sector, int qualification)
   {
 	List<Candidature> candidatures = null;
@@ -57,7 +76,13 @@ public class CandidatureDAO
     
     return candidatures;
   }
-
+  
+  /**
+   * Création d'une candidature
+   * 
+   * @param candidature Object Candidature en entrée
+   * @return On retourne l'objet crée
+   */
   public Candidature persist(Candidature candidature) {
       if (candidature != null) {
           entityManager.persist(candidature);
@@ -65,6 +90,12 @@ public class CandidatureDAO
       return candidature;
   }
   
+  /**
+   * Modification d'une candidature (avec un set fait au préalable)
+   * 
+   * @param candidature
+   * @return
+   */
   public Candidature update(Candidature candidature) {
 	  if (candidature != null) {
 		  entityManager.merge(candidature);
@@ -72,6 +103,11 @@ public class CandidatureDAO
 	return candidature;
   }
   
+  /**
+   * Suppression d'une candidature
+   * 
+   *    * @param candidature à supprimer
+   */
   public void remove(Candidature candidature) {
 	  try {
 		  Candidature temp = entityManager.merge(candidature);

@@ -33,11 +33,24 @@ public class MessageCandidatureDAO
     // TODO Auto-generated constructor stub
   }
   //-----------------------------------------------------------------------------
+  
+  /**
+   * Recherche de l'objet MessageCandidature grâce à l'id en entrée
+   * 
+   * @param id du message a trouver
+   * @return le message correspondant à l'id
+   */
   public MessageCandidature findById(Integer id)
   {
     return entityManager.find(MessageCandidature.class, id);
   }
   //----------------------------------------------------------------------------
+  
+  /**
+   * Liste tous les messages des candidats présents dans la base
+   * 
+   * @return la liste
+   */
   @SuppressWarnings({ "rawtypes", "unchecked" })
   public List<MessageCandidature> findAll()
   {
@@ -47,6 +60,12 @@ public class MessageCandidatureDAO
     return (List<MessageCandidature>)l;
   }
   
+  /**
+   * Recherche des messages lié à une offre
+   * 
+   * @param idOffre
+   * @return la liste messages
+   */
   public List<MessageCandidature> findByOffre(int idOffre)
   {
 	List<MessageCandidature> messageCandidatures = null;
@@ -57,6 +76,12 @@ public class MessageCandidatureDAO
     return messageCandidatures;
   }
   
+  /**
+   * Recherche des messages lié à une candidature
+   * 
+   * @param idOffre
+   * @return la liste messages
+   */
   public List<MessageCandidature> findByCandidature(int idCandidature)
   {
 	List<MessageCandidature> messageCandidatures = null;
@@ -67,14 +92,25 @@ public class MessageCandidatureDAO
     return messageCandidatures;
   }
 
-
+  /**
+   * Création d'un MessageCandidature
+   * 
+   * @param MessageCandidature Object Message en entrée
+   * @return On retourne l'objet crée
+   */
   public MessageCandidature persist(MessageCandidature messageCandidature) {
       if (messageCandidature != null) {
           entityManager.persist(messageCandidature);
       }
       return messageCandidature;
   }
-
+  
+  /**
+   * Modification d'un message (avec un set fait au préalable)
+   * 
+   * @param MessageCandidature
+   * @return
+   */
   public MessageCandidature update(MessageCandidature messageCandidature) {
 	  if (messageCandidature != null) {
           entityManager.merge(messageCandidature);
@@ -82,6 +118,11 @@ public class MessageCandidatureDAO
       return messageCandidature;
   }
 
+  /**
+   * Suppression d'un message
+   * 
+   *    * @param MessageCandidature à supprimer
+   */
   public void remove(MessageCandidature messageCandidature) {
 	  if (messageCandidature != null) {
 		  MessageCandidature temp = entityManager.merge(messageCandidature);
