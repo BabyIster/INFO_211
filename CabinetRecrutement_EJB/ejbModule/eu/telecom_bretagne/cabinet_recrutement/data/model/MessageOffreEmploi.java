@@ -39,6 +39,13 @@ public class MessageOffreEmploi implements Serializable {
 
 	public MessageOffreEmploi() {
 	}
+	
+	public MessageOffreEmploi(String msg, Date envoi, OffreEmploi offre, Candidature cand) {
+		this.corpsMessage=msg;
+		this.dateEnvoi=envoi;
+		this.candidature=cand;
+		this.offreEmploi=offre;
+	}
 
 	public Integer getId() {
 		return this.id;

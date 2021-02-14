@@ -24,6 +24,8 @@ import eu.telecom_bretagne.cabinet_recrutement.data.dao.QualificationDAO;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.Qualification;
 import eu.telecom_bretagne.cabinet_recrutement.data.dao.MessageCandidatureDAO;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.MessageCandidature;
+import eu.telecom_bretagne.cabinet_recrutement.data.dao.MessageOffreEmploiDAO;
+import eu.telecom_bretagne.cabinet_recrutement.data.model.MessageOffreEmploi;
 import eu.telecom_bretagne.cabinet_recrutement.front.utils.ServicesLocator;
 import eu.telecom_bretagne.cabinet_recrutement.front.utils.ServicesLocatorException;
 
@@ -60,6 +62,7 @@ public class ControlesDAOServlet extends HttpServlet
     Secteur_activiteDAO secteuractiviteDAO = null;
     QualificationDAO qualificationDAO = null;
     MessageCandidatureDAO messageCandidatureDAO = null;
+    MessageOffreEmploiDAO messageOffreEmploiDAO = null;
 
     
     out.println("-------------------------------------------------------------------------------------------");
@@ -337,8 +340,8 @@ public class ControlesDAOServlet extends HttpServlet
   out.println();
   
   out.println("Message(s) envoyé à l'offre n°2 :");
-  List<MessageCandidature> msgOffre1 = messageCandidatureDAO.findByOffre(2);
-  for(MessageCandidature msgCand: msgOffre1)
+  List<MessageCandidature> msgOffre2 = messageCandidatureDAO.findByOffre(2);
+  for(MessageCandidature msgCand: msgOffre2)
   {
     out.print("Messages : " +msgCand.getCorpsMessage() + " | Envoyé par : ");
     out.print(msgCand.getCandidature().getPrenom()+ " | Vers l'offre : ");
@@ -348,5 +351,68 @@ public class ControlesDAOServlet extends HttpServlet
   
   out.println("Suppression du message");
   messageCandidatureDAO.remove(nouveauMsgCand);
+  
+out.println("-------------------------------------------------------------------------------------------");
+  
+  try
+  {
+	  messageOffreEmploiDAO = (MessageOffreEmploiDAO) ServicesLocator.getInstance().getRemoteInterface("MessageOffreEmploiDAO");
+  }
+  catch (ServicesLocatorException e)
+  {
+    e.printStackTrace();
+  }
+  out.println("Contrôles de fonctionnement du DAO MessageOffreEmploiDAO");
+  out.println();
+  
+  out.println("Liste des messages candidats :");
+  List<MessageOffreEmploi> msgOffres = messageOffreEmploiDAO.findAll();
+  
+  for(MessageOffreEmploi msgOffre: msgOffres)
+  {
+    out.print("Messages : " +msgOffre.getCorpsMessage() + " | Envoyé par : ");
+    out.print(msgOffre.getCandidature().getPrenom()+ " | Vers l'offre : ");
+    out.println(msgOffre.getOffreEmploi().getTitre()+" | Le : "+msgOffre.getDateEnvoi());
+  }
+  out.println();
+  
+  out.println("Une entreprise à envoyé un message via une offre :");
+  MessageOffreEmploi nouveauMsgOffre = new MessageOffreEmploi("L'avez-vous reçu ?", dateC, offreEmploiDAO.findById(2), candidatureDAO.findById(2));
+  nouveauMsgOffre = messageOffreEmploiDAO.persist(nouveauMsgOffre);
+  out.print("Messages : " +nouveauMsgOffre.getCorpsMessage() + " | Envoyé par : ");
+  out.print(nouveauMsgOffre.getOffreEmploi().getTitre()+ " | Vers l'offre : ");
+  out.println(nouveauMsgOffre.getCandidature().getPrenom()+" | Le : "+nouveauMsgOffre.getDateEnvoi());
+  out.println();
+  
+  out.println("Modification du message :");
+  nouveauMsgOffre.setCorpsMessage("Avez-vous bien reçu le mail de convocation");
+  nouveauMsgOffre = messageOffreEmploiDAO.update(nouveauMsgOffre);
+  out.print("Messages : " +nouveauMsgOffre.getCorpsMessage() + " | Envoyé par : ");
+  out.print(nouveauMsgOffre.getOffreEmploi().getTitre()+ " | Vers l'offre : ");
+  out.println(nouveauMsgOffre.getCandidature().getPrenom()+" | Le : "+nouveauMsgOffre.getDateEnvoi());
+  out.println();
+  
+  out.println("Message(s) de l'offre n°1 :");
+  List<MessageOffreEmploi> msgOffre1 = messageOffreEmploiDAO.findByOffre(1);
+  for(MessageOffreEmploi msgOffre: msgOffre1)
+  {
+    out.print("Messages : " +msgOffre.getCorpsMessage() + " | Envoyé à : ");
+    out.print(msgOffre.getCandidature().getPrenom()+ " | Via l'offre : ");
+    out.println(msgOffre.getOffreEmploi().getTitre()+" | Le : "+msgOffre.getDateEnvoi());
+  }
+  out.println();
+  
+  out.println("Message(s) envoyé à la candidature n°2 :");
+  List<MessageOffreEmploi> msgCand2 = messageOffreEmploiDAO.findByOffre(2);
+  for(MessageOffreEmploi msgCand: msgCand2)
+  {
+    out.print("Messages : " +msgCand.getCorpsMessage() + " | Envoyé à : ");
+    out.print(msgCand.getCandidature().getPrenom()+ " | Via l'offre : ");
+    out.println(msgCand.getOffreEmploi().getTitre()+" | Le : "+msgCand.getDateEnvoi());
+  }
+  out.println();
+  
+  out.println("Suppression du message");
+  messageOffreEmploiDAO.remove(nouveauMsgOffre);
   }
 }
