@@ -26,6 +26,11 @@ public class OffreEmploi implements Serializable {
 	private Date dateDepot;
 
 	private String descriptif;
+	
+	//bi-directional many-to-one association to Qualification
+	@ManyToOne
+	@JoinColumn(name="id_qualification")
+	private Qualification qualification;
 
 	@Column(name="profil_recherche")
 	private String profilRecherche;
@@ -56,10 +61,13 @@ public class OffreEmploi implements Serializable {
 	public OffreEmploi() {
 	}
 	
-	public OffreEmploi(String titrec, String desc, String profile ) {
+	public OffreEmploi(String titrec, String desc, String profile, Entreprise entreprisec, Date depot, Qualification qual ) {
 		this.titre=titrec;
 		this.descriptif=desc;
 		this.profilRecherche=profile;
+		this.entreprise=entreprisec;
+		this.dateDepot=depot;
+		this.qualification=qual;
 	}
 
 	public Integer getId() {

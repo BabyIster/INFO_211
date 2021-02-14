@@ -266,16 +266,18 @@ public class ControlesDAOServlet extends HttpServlet
   out.println();  
   
   out.println("Création d'une offre d'emploi : ");
-  OffreEmploi nouvelleOffre = new OffreEmploi("Stage de cuisine", "Nous recherchons un stagiaire pour nos cuisines", "Jeune dynamique");
+  OffreEmploi nouvelleOffre = new OffreEmploi("Stage de cuisine", "Nous recherchons un stagiaire pour nos cuisines", "Jeune dynamique", entrepriseDAO.findById(5), dateC, qualificationDAO.findById(2));
   nouvelleOffre = offreEmploiDAO.persist(nouvelleOffre);
-  out.println(nouvelleOffre.getId()+" : "+nouvelleOffre.getDescriptif() + " | " + nouvelleOffre.getProfilRecherche());
+  out.print(nouvelleOffre.getId()+" : "+nouvelleOffre.getDescriptif() + " | " + nouvelleOffre.getProfilRecherche());
+  out.println(" | proposé par l'entreprise n°"+nouvelleOffre.getEntreprise().getId());
   //il faudra s OCCUPER DE LA AJOUT DANS LES INDEX
   out.println();
   
   out.println("Modification de l'offre :");
   nouvelleOffre.setProfilRecherche("Jeune cuisinier dynamique a la recherche de la recette secrète");
   nouvelleOffre=offreEmploiDAO.update(nouvelleOffre);
-  out.println(nouvelleOffre.getId()+" : "+nouvelleOffre.getDescriptif() + " | " + nouvelleOffre.getProfilRecherche());
+  out.print(nouvelleOffre.getId()+" : "+nouvelleOffre.getDescriptif() + " | " + nouvelleOffre.getProfilRecherche());
+  out.println(" | proposé par l'entreprise n°"+nouvelleOffre.getEntreprise().getId());
   out.println();
   
   out.println("Suppression de l'offre");
