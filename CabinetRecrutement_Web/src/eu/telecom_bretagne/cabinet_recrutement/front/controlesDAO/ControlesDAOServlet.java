@@ -22,6 +22,8 @@ import eu.telecom_bretagne.cabinet_recrutement.data.dao.Secteur_activiteDAO;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.SecteurActivite;
 import eu.telecom_bretagne.cabinet_recrutement.data.dao.QualificationDAO;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.Qualification;
+import eu.telecom_bretagne.cabinet_recrutement.data.dao.MessageCandidatureDAO;
+import eu.telecom_bretagne.cabinet_recrutement.data.model.MessageCandidature;
 import eu.telecom_bretagne.cabinet_recrutement.front.utils.ServicesLocator;
 import eu.telecom_bretagne.cabinet_recrutement.front.utils.ServicesLocatorException;
 
@@ -57,6 +59,7 @@ public class ControlesDAOServlet extends HttpServlet
     OffreEmploiDAO offreEmploiDAO = null;
     Secteur_activiteDAO secteuractiviteDAO = null;
     QualificationDAO qualificationDAO = null;
+    MessageCandidatureDAO messageCandidatureDAO = null;
 
     
     out.println("-------------------------------------------------------------------------------------------");
@@ -285,5 +288,65 @@ public class ControlesDAOServlet extends HttpServlet
   
   out.println("-------------------------------------------------------------------------------------------");
   
+  try
+  {
+	  messageCandidatureDAO = (MessageCandidatureDAO) ServicesLocator.getInstance().getRemoteInterface("MessageCandidatureDAO");
+  }
+  catch (ServicesLocatorException e)
+  {
+    e.printStackTrace();
+  }
+  out.println("Contrôles de fonctionnement du DAO MessageCandidatureDAO");
+  out.println();
+  
+  out.println("Liste des messages candidats :");
+  List<MessageCandidature> msgCands = messageCandidatureDAO.findAll();
+  
+  for(MessageCandidature msgCand: msgCands)
+  {
+    out.print("Messages : " +msgCand.getCorpsMessage() + " | Envoyé par : ");
+    out.print(msgCand.getCandidature().getPrenom()+ " | Vers l'offre : ");
+    out.println(msgCand.getOffreEmploi().getTitre()+" | Le : "+msgCand.getDateEnvoi());
+  }
+  out.println();
+  
+  out.println("Un candidat à envoyé un message :");
+  MessageCandidature nouveauMsgCand = new MessageCandidature("Disponible Mercredi", dateC, candidatureDAO.findById(5), offreEmploiDAO.findById(4));
+  nouveauMsgCand = messageCandidatureDAO.persist(nouveauMsgCand);
+  out.print("Messages : " +nouveauMsgCand.getCorpsMessage() + " | Envoyé par : ");
+  out.print(nouveauMsgCand.getCandidature().getPrenom()+ " | Vers l'offre : ");
+  out.println(nouveauMsgCand.getOffreEmploi().getTitre()+" | Le : "+nouveauMsgCand.getDateEnvoi());
+  out.println();
+  
+  out.println("Modification du message :");
+  nouveauMsgCand.setCorpsMessage("Je suis disponible Mercredi");
+  nouveauMsgCand = messageCandidatureDAO.update(nouveauMsgCand);
+  out.print("Messages : " +nouveauMsgCand.getCorpsMessage() + " | Envoyé par : ");
+  out.print(nouveauMsgCand.getCandidature().getPrenom()+ " | Vers l'offre : ");
+  out.println(nouveauMsgCand.getOffreEmploi().getTitre()+" | Le : "+nouveauMsgCand.getDateEnvoi());
+  out.println();
+  
+  out.println("Message(s) du candidat n°1 :");
+  List<MessageCandidature> msgCand1 = messageCandidatureDAO.findByCandidature(1);
+  for(MessageCandidature msgCand: msgCand1)
+  {
+    out.print("Messages : " +msgCand.getCorpsMessage() + " | Envoyé par : ");
+    out.print(msgCand.getCandidature().getPrenom()+ " | Vers l'offre : ");
+    out.println(msgCand.getOffreEmploi().getTitre()+" | Le : "+msgCand.getDateEnvoi());
+  }
+  out.println();
+  
+  out.println("Message(s) envoyé à l'offre n°2 :");
+  List<MessageCandidature> msgOffre1 = messageCandidatureDAO.findByOffre(2);
+  for(MessageCandidature msgCand: msgOffre1)
+  {
+    out.print("Messages : " +msgCand.getCorpsMessage() + " | Envoyé par : ");
+    out.print(msgCand.getCandidature().getPrenom()+ " | Vers l'offre : ");
+    out.println(msgCand.getOffreEmploi().getTitre()+" | Le : "+msgCand.getDateEnvoi());
+  }
+  out.println();
+  
+  out.println("Suppression du message");
+  messageCandidatureDAO.remove(nouveauMsgCand);
   }
 }

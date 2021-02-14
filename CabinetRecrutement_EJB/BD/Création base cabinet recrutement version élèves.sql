@@ -54,8 +54,8 @@ create table offre_emploi
 create table candidature
 (
   id              serial primary key,
-  nom			varchar(50) not null,
   prenom		varchar(50) not null,
+  nom			varchar(50) not null,
   date_naissance	date,
   adresse_postale		varchar(30),
   adresse_email			varchar(50),

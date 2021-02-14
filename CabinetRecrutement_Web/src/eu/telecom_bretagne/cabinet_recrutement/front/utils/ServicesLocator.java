@@ -71,6 +71,8 @@ public class ServicesLocator
         nomJNDI = "java:global/CabinetRecrutement/CabinetRecrutement_EJB/Secteur_activiteDAO!eu.telecom_bretagne.cabinet_recrutement.data.dao.Secteur_activiteDAO";
     else if(nomEJB.equals("QualificationDAO"))
         nomJNDI = "java:global/CabinetRecrutement/CabinetRecrutement_EJB/QualificationDAO!eu.telecom_bretagne.cabinet_recrutement.data.dao.QualificationDAO";
+    else if(nomEJB.equals("MessageCandidatureDAO"))
+        nomJNDI = "java:global/CabinetRecrutement/CabinetRecrutement_EJB/MessageCandidatureDAO!eu.telecom_bretagne.cabinet_recrutement.data.dao.MessageCandidatureDAO";
     
     else
       throw new ServicesLocatorException("Il n'y a pas d'EJB avec ce nom...()");

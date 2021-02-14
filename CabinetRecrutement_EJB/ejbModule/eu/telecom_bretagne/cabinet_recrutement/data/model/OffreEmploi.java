@@ -61,7 +61,7 @@ public class OffreEmploi implements Serializable {
 	public OffreEmploi() {
 	}
 	
-	public OffreEmploi(String titrec, String desc, String profile, Entreprise entreprisec, Date depot, Qualification qual ) {
+	public OffreEmploi(String titrec, String desc, String profile, Entreprise entreprisec, Date depot, Qualification qual) {
 		this.titre=titrec;
 		this.descriptif=desc;
 		this.profilRecherche=profile;
