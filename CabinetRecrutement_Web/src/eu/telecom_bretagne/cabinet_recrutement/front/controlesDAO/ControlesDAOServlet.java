@@ -122,20 +122,20 @@ public class ControlesDAOServlet extends HttpServlet
     
     for(Entreprise entreprise : entreprises)
     {
-      out.println(entreprise.getId()+" : "+entreprise.getNom()+" à "+entreprise.getAdressePostale());
+      out.println("ENT_"+entreprise.getId()+" : "+entreprise.getNom()+" à "+entreprise.getAdressePostale() +" à envoyer " + entreprise.getOffreEmplois().size() +" offre(s)" );
     }
     out.println();
     
     out.println("Ajout de l'entreprise AMD :");
     Entreprise AMD=new Entreprise("AMD", "Entreprise d'electronique","New York");
     entrepriseDAO.persist(AMD);
-    out.println(AMD.getId()+" : "+AMD.getNom() +" | "+ AMD.getDescriptif());
+    out.println("ENT_"+AMD.getId()+" : "+AMD.getNom() +" | "+ AMD.getDescriptif());
     out.println();
     
     out.println("Modification du descriptif :");
     AMD.setDescriptif("Entreprise d'electronique spécialisé dans les processeurs");
     AMD=entrepriseDAO.update(AMD);
-    out.println(AMD.getId()+" : "+AMD.getNom() +" | "+ AMD.getDescriptif());
+    out.println("ENT_"+AMD.getId()+" : "+AMD.getNom() +" | "+ AMD.getDescriptif());
     out.println();
     
     out.println("Supression de l'entreprise AMD (présent uniquement pour nos tests)");
@@ -251,9 +251,21 @@ public class ControlesDAOServlet extends HttpServlet
     
     for(OffreEmploi offreEmploi: offres)
     {
-      out.print("Titre : " +offreEmploi.getTitre() + " | Description : ");
+      out.print("N°"+offreEmploi.getId()+" Titre : " +offreEmploi.getTitre() + " | Description : ");
       out.print(offreEmploi.getDescriptif()+ " | proposé par l'entreprise n°");
-      out.println(offreEmploi.getEntreprise().getId());
+      out.print(offreEmploi.getEntreprise().getId()+" | secteur(s) : ");
+      Iterator iteratorSecteur = offreEmploi.getSecteurActivites().iterator();
+      while (iteratorSecteur.hasNext()) {
+    	  SecteurActivite secteur=(SecteurActivite) iteratorSecteur.next();
+          out.print(secteur.getIntitule() + " ");
+        }
+      out.print(" | qualification(s) : ");
+      Iterator iteratorQual = offreEmploi.getQualifications().iterator();
+      while (iteratorQual.hasNext()) {
+    	  Qualification qual=(Qualification) iteratorQual.next();
+          out.print(qual.getIntitule() + " ");
+        }
+      out.println("\n");
     }
     out.println();
     
