@@ -3,8 +3,10 @@ package eu.telecom_bretagne.cabinet_recrutement.front.controlesDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -59,7 +61,7 @@ public class ControlesDAOServlet extends HttpServlet
     EntrepriseDAO entrepriseDAO = null;
     CandidatureDAO candidatureDAO = null;
     OffreEmploiDAO offreEmploiDAO = null;
-    Secteur_activiteDAO secteuractiviteDAO = null;
+    Secteur_activiteDAO secteurActiviteDAO = null;
     QualificationDAO qualificationDAO = null;
     MessageCandidatureDAO messageCandidatureDAO = null;
     MessageOffreEmploiDAO messageOffreEmploiDAO = null;
@@ -69,7 +71,7 @@ public class ControlesDAOServlet extends HttpServlet
 
     try
     {
-    	secteuractiviteDAO = (Secteur_activiteDAO) ServicesLocator.getInstance().getRemoteInterface("Secteur_activiteDAO");
+    	secteurActiviteDAO = (Secteur_activiteDAO) ServicesLocator.getInstance().getRemoteInterface("Secteur_activiteDAO");
     }
     catch (ServicesLocatorException error)
     {
@@ -79,7 +81,7 @@ public class ControlesDAOServlet extends HttpServlet
     out.println();
     
     out.println("Liste des secteur_activite :");
-    List<SecteurActivite> secteurs = secteuractiviteDAO.findAll();
+    List<SecteurActivite> secteurs = secteurActiviteDAO.findAll();
     
     for(SecteurActivite secteur : secteurs)
     {
@@ -89,18 +91,18 @@ public class ControlesDAOServlet extends HttpServlet
     
     out.println("Ajout du secteur Electronique/Microélectronique : ");
     SecteurActivite nouveauSecteur = new SecteurActivite("Electronique/Microélectronique");
-    nouveauSecteur=secteuractiviteDAO.persist(nouveauSecteur);
+    nouveauSecteur=secteurActiviteDAO.persist(nouveauSecteur);
     out.println(nouveauSecteur.getId()+" : "+nouveauSecteur.getIntitule());
     out.println();
     
     out.println("Modification en Agriculture : ");
     nouveauSecteur.setIntitule("Agriculture");
-    nouveauSecteur=secteuractiviteDAO.update(nouveauSecteur);
+    nouveauSecteur=secteurActiviteDAO.update(nouveauSecteur);
     out.println(nouveauSecteur.getId()+" : "+nouveauSecteur.getIntitule());
     out.println();
     
     out.println("Supression du secteur Agriculture");
-    secteuractiviteDAO.remove(nouveauSecteur);
+    secteurActiviteDAO.remove(nouveauSecteur);
     
     out.println("-------------------------------------------------------------------------------------------");
     
@@ -206,7 +208,9 @@ public class ControlesDAOServlet extends HttpServlet
     
     out.println("Ajout de la candidature de Matthieu (new Candidature(\"Matthieu\",\"Old\", dateC, \"44470\", \"@\", \"cv\", dateC, qualificationDAO.findById(4)))");
     Date dateC = new Date(1,1,1);
-    Candidature nouvelleCand = new Candidature("Matthieu","Old", dateC, "44470", "@", "cv", dateC, qualificationDAO.findById(4));
+    Set<SecteurActivite> secteurActivites = new HashSet<SecteurActivite>();
+    secteurActivites.add(secteurActiviteDAO.findById(3)); //La candidature sera du secteur 3
+    Candidature nouvelleCand = new Candidature("Matthieu","Old", dateC, "44470", "@", "cv", dateC, qualificationDAO.findById(4), secteurActivites);
     nouvelleCand = candidatureDAO.persist(nouvelleCand);
     out.println(nouvelleCand.getId()+" : "+nouvelleCand.getPrenom() + " " + nouvelleCand.getNom());
     out.println();
@@ -272,7 +276,7 @@ public class ControlesDAOServlet extends HttpServlet
   out.println();  
   
   out.println("Création d'une offre d'emploi : ");
-  OffreEmploi nouvelleOffre = new OffreEmploi("Stage de cuisine", "Nous recherchons un stagiaire pour nos cuisines", "Jeune dynamique", entrepriseDAO.findById(5), dateC, qualificationDAO.findById(2));
+  OffreEmploi nouvelleOffre = new OffreEmploi("Stage de cuisine", "Nous recherchons un stagiaire pour nos cuisines", "Jeune dynamique", entrepriseDAO.findById(5), dateC, qualificationDAO.findById(2), secteurActivites);
   nouvelleOffre = offreEmploiDAO.persist(nouvelleOffre);
   out.print(nouvelleOffre.getId()+" : "+nouvelleOffre.getDescriptif() + " | " + nouvelleOffre.getProfilRecherche());
   out.println(" | proposé par l'entreprise n°"+nouvelleOffre.getEntreprise().getId());
