@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -208,7 +207,8 @@ public class ControlesDAOServlet extends HttpServlet
     
     out.println("Ajout de la candidature de Matthieu");
  
-    Date today = new Date(0,0,0);
+    @SuppressWarnings("deprecation")
+	Date today = new Date(0,0,0);
     
     Set<SecteurActivite> secteurActivites = new HashSet<SecteurActivite>();
     secteurActivites.add(secteurActiviteDAO.findById(3)); //La candidature sera du secteur 3
@@ -248,8 +248,34 @@ public class ControlesDAOServlet extends HttpServlet
     out.println("Contrôles de fonctionnement du DAO OffreEmploiDAO");
     out.println();
     
-    out.println("Liste des offres :");
     List<OffreEmploi> offres = offreEmploiDAO.findAll();
+
+    out.println("offre pour chaque enteprises ");
+    out.println(" ");
+    out.println(" *************************************************************** ");
+    out.println(" ");
+
+    for(Entreprise entreprise : entreprises)
+    {
+      out.println(entreprise.getId()+" : "+entreprise.getNom()+" à "+entreprise.getAdressePostale());
+      
+      out.println("Entreprise n° :" + entreprise.getId());
+
+      for(OffreEmploi offreEmploi: offres) {
+
+      	if(offreEmploi.getEntreprise().getId() == entreprise.getId()) {
+      		 out.print("Titre : " +offreEmploi.getTitre() + " | Description : ");
+      	      out.print(offreEmploi.getDescriptif());
+      	}
+       
+      }
+    }
+    
+    out.println(" ");
+    out.println(" *************************************************************** ");
+
+    
+    out.println("Liste des offres :");
     
     for(OffreEmploi offreEmploi: offres)
     {
