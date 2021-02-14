@@ -60,7 +60,7 @@ public class Candidature implements Serializable {
 	public Candidature() {
 	}
 	
-	public Candidature(String prenomC, String nomC, Date dateNaissanceC, String postaleC, String mailC, String cvC, Date dateDepotC, Qualification qualificationC) {
+	public Candidature(String prenomC, String nomC, Date dateNaissanceC, String postaleC, String mailC, String cvC, Date dateDepotC, Qualification qualificationC, Set<SecteurActivite> secteurs) {
 		this.nom=nomC;
 		this.prenom=prenomC;
 		this.dateNaissance=dateNaissanceC;
@@ -69,6 +69,7 @@ public class Candidature implements Serializable {
 		this.cv=cvC;
 		this.dateDepot=dateDepotC;
 		this.qualification=qualificationC;
+		this.secteurActivites=secteurs;
 	}
 
 	public Integer getId() {
