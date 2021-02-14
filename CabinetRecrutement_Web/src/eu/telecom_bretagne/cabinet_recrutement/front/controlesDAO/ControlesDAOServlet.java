@@ -206,13 +206,13 @@ public class ControlesDAOServlet extends HttpServlet
     
     out.println();
     
-    out.println("Ajout de la candidature de Matthieu (new Candidature(\"Matthieu\",\"Old\", dateC, \"44470\", \"@\", \"cv\", dateC, qualificationDAO.findById(4)))");
+    out.println("Ajout de la candidature de Matthieu");
  
     Date today = new Date(0,0,0);
     
     Set<SecteurActivite> secteurActivites = new HashSet<SecteurActivite>();
     secteurActivites.add(secteurActiviteDAO.findById(3)); //La candidature sera du secteur 3
-    Candidature nouvelleCand = new Candidature("Matthieu","Old", dateC, "44470", "@", "cv", dateC, qualificationDAO.findById(4), secteurActivites);
+    Candidature nouvelleCand = new Candidature("Matthieu","Old", today, "44470", "@", "cv", today, qualificationDAO.findById(4), secteurActivites);
     nouvelleCand = candidatureDAO.persist(nouvelleCand);
     out.println(nouvelleCand.getId()+" : "+nouvelleCand.getPrenom() + " " + nouvelleCand.getNom());
     out.println();
@@ -278,7 +278,7 @@ public class ControlesDAOServlet extends HttpServlet
   out.println();  
   
   out.println("Création d'une offre d'emploi : ");
-  OffreEmploi nouvelleOffre = new OffreEmploi("Stage de cuisine", "Nous recherchons un stagiaire pour nos cuisines", "Jeune dynamique", entrepriseDAO.findById(5), dateC, qualificationDAO.findById(2), secteurActivites);
+  OffreEmploi nouvelleOffre = new OffreEmploi("Stage de cuisine", "Nous recherchons un stagiaire pour nos cuisines", "Jeune dynamique", entrepriseDAO.findById(5), today, qualificationDAO.findById(2), secteurActivites);
   nouvelleOffre = offreEmploiDAO.persist(nouvelleOffre);
   out.print(nouvelleOffre.getId()+" : "+nouvelleOffre.getDescriptif() + " | " + nouvelleOffre.getProfilRecherche());
   out.println(" | proposé par l'entreprise n°"+nouvelleOffre.getEntreprise().getId());
@@ -320,7 +320,7 @@ public class ControlesDAOServlet extends HttpServlet
   out.println();
   
   out.println("Un candidat à envoyé un message :");
-  MessageCandidature nouveauMsgCand = new MessageCandidature("Disponible Mercredi", dateC, candidatureDAO.findById(5), offreEmploiDAO.findById(4));
+  MessageCandidature nouveauMsgCand = new MessageCandidature("Disponible Mercredi", today, candidatureDAO.findById(5), offreEmploiDAO.findById(4));
   nouveauMsgCand = messageCandidatureDAO.persist(nouveauMsgCand);
   out.print("Messages : " +nouveauMsgCand.getCorpsMessage() + " | Envoyé par : ");
   out.print(nouveauMsgCand.getCandidature().getPrenom()+ " | Vers l'offre : ");
@@ -383,7 +383,7 @@ out.println("-------------------------------------------------------------------
   out.println();
   
   out.println("Une entreprise à envoyé un message via une offre :");
-  MessageOffreEmploi nouveauMsgOffre = new MessageOffreEmploi("L'avez-vous reçu ?", dateC, offreEmploiDAO.findById(2), candidatureDAO.findById(2));
+  MessageOffreEmploi nouveauMsgOffre = new MessageOffreEmploi("L'avez-vous reçu ?", today, offreEmploiDAO.findById(2), candidatureDAO.findById(2));
   nouveauMsgOffre = messageOffreEmploiDAO.persist(nouveauMsgOffre);
   out.print("Messages : " +nouveauMsgOffre.getCorpsMessage() + " | Envoyé par : ");
   out.print(nouveauMsgOffre.getOffreEmploi().getTitre()+ " | Vers l'offre : ");
