@@ -4,7 +4,7 @@
                 eu.telecom_bretagne.cabinet_recrutement.service.IServiceEntreprise"%>
 
 <%
-  IServiceEntreprise  serviceEntreprise  = (IServiceEntreprise)  ServicesLocator.getInstance().getRemoteInterface("ServiceEntreprise");
+  IServiceEntreprise serviceEntreprise = (IServiceEntreprise) ServicesLocator.getInstance().getRemoteInterface("ServiceEntreprise");
 
   int nbEntreprises  = serviceEntreprise.listeDesEntreprises().size();
   int nbOffres       = 0;
