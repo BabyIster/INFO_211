@@ -8,7 +8,7 @@ import javax.ejb.Stateless;
  */
 @Stateless
 @LocalBean
-public class ServicesBean {
+public class ServicesBean implements ServicesBeanRemote {
 
     /**
      * Default constructor. 
