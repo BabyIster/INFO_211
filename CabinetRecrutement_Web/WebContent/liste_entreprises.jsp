@@ -3,7 +3,8 @@
 <%@page import="eu.telecom_bretagne.cabinet_recrutement.front.utils.ServicesLocator,
                 eu.telecom_bretagne.cabinet_recrutement.service.IServiceEntreprise,
                 eu.telecom_bretagne.cabinet_recrutement.data.model.Entreprise,
-                java.util.List"%>
+                java.util.List,
+                java.util.Set"%>
 
 <%
   IServiceEntreprise serviceEntreprise = (IServiceEntreprise) ServicesLocator.getInstance().getRemoteInterface("ServiceEntreprise");
@@ -41,9 +42,7 @@
                  <td>ENT_<%=entreprise.getId()%></td>
                  <td><%=entreprise.getNom()%></td>
                  <td><%=entreprise.getAdressePostale()%></td>
-                 <td>
-                   XXX
-                 </td>
+                 <td><%=entreprise.getOffreEmplois().size()%></td>
                   <td align="center"><a href="template.jsp?action=infos_entreprise&id=<%=entreprise.getId()%>"><i class="fa fa-eye fa-lg"></i></a></td>
                 </tr>
                 <%
