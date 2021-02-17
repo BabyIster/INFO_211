@@ -53,8 +53,8 @@ public class ServicesLocator
       nomJNDI = "java:global/CabinetRecrutement/CabinetRecrutement_EJB/ServiceEntreprise!eu.telecom_bretagne.cabinet_recrutement.service.IServiceEntreprise";
     if(nomEJB.equals("ServiceCandidature"))
         nomJNDI = "java:global/CabinetRecrutement/CabinetRecrutement_EJB/ServiceCandidature!eu.telecom_bretagne.cabinet_recrutement.service.IServiceCandidature";
-    else if(nomEJB.equals("Service_XXX"))
-      nomJNDI = "*** À compléter ***";
+    else if(nomEJB.equals("ServicesBean"))
+      nomJNDI = "java:global/CabinetRecrutement/CabinetRecrutement_EJB/ServicesBean!eu.telecom_bretagne.cabinet_recrutement.service.IServicesBeanRemote";
 
     // ATTENTION !!! La récupération d'un DAO n'existe ici que
     // pour les contrôles (utilisés dans la servlet ControleDAOServlet) :
@@ -77,7 +77,7 @@ public class ServicesLocator
         nomJNDI = "java:global/CabinetRecrutement/CabinetRecrutement_EJB/MessageOffreEmploiDAO!eu.telecom_bretagne.cabinet_recrutement.data.dao.MessageOffreEmploiDAO";
     
     else
-      throw new ServicesLocatorException("Il n'y a pas d'EJB avec ce nom...()");
+      throw new ServicesLocatorException("Il n'y a pas d'EJB avec ce nom "+nomEJB.toString());
     
     // La méthode recherche d'abord le stub dans le cache, s'il est absent,
     // il est récupéré via JNDI.
