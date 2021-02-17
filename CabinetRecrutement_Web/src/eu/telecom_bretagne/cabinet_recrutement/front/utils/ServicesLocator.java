@@ -61,8 +61,7 @@ public class ServicesLocator
     // ils ne sont normalement pas appelés par la couche IHM.
     
     else if(nomEJB.equals("EntrepriseDAO"))
-      nomJNDI = "java:global/CabinetRecrutement/CabinetRecrutement_EJB/EntrepriseDAO!eu.telecom_bretagne.cabinet_recrutement.data.dao.EntrepriseDAO";
-    
+    	nomJNDI = "java:global/CabinetRecrutement/CabinetRecrutement_EJB/EntrepriseDAO!eu.telecom_bretagne.cabinet_recrutement.data.dao.EntrepriseDAO";
     else if(nomEJB.equals("CandidatureDAO"))
         nomJNDI = "java:global/CabinetRecrutement/CabinetRecrutement_EJB/CandidatureDAO!eu.telecom_bretagne.cabinet_recrutement.data.dao.CandidatureDAO";
     else if(nomEJB.equals("OffreEmploiDAO"))
