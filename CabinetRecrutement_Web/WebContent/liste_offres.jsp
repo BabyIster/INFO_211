@@ -4,6 +4,7 @@
                 eu.telecom_bretagne.cabinet_recrutement.service.IServiceEntreprise,
                 eu.telecom_bretagne.cabinet_recrutement.service.IServiceOffresEmplois,
                 eu.telecom_bretagne.cabinet_recrutement.data.model.Entreprise,
+                eu.telecom_bretagne.cabinet_recrutement.data.model.Qualification,
                 eu.telecom_bretagne.cabinet_recrutement.data.model.OffreEmploi,
                 java.util.List,
                 java.util.Set"%>
@@ -27,7 +28,7 @@
             -->
             <thead>
               <tr>
-                <th>Numéro</th>
+                <th>Numéro d'offre</th>
                 <th>Titre</th>
                 <th>Entreprise</th>
                 <th>Qualification requise</th>
@@ -41,14 +42,21 @@
             <tbody>
               <%
               for(OffreEmploi offre : offres)
-              {
-                %>
+              {%>
                 <tr>
                  <td>N°<%=offre.getId()%></td>
                  <td><%=offre.getTitre()%></td>
                  <td><%=offre.getEntreprise().getNom()%></td>
-                 <td><%=offre.getEntreprise().getNom()%></td>
-                 <td><%=offre.getDateDepot().toString()%></td>
+                 <td><%
+                 Set <Qualification> offrequal = offre.getQualifications();
+                 for (Qualification q : offrequal)
+                 {%>
+                	 <%=q.getIntitule()%>
+                 <%
+                 }
+                 %>
+                 </td>
+                 <td><%=offre.getDateDepot()%></td>
                   <td align="center"><a href="template.jsp?action=infos_entreprise&id=<%=offre.getTitre()%>"><i class="fa fa-eye fa-lg"></i></a></td>
                 </tr>
                 <%
