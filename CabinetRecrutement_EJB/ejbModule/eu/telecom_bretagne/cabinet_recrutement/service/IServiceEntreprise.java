@@ -27,5 +27,7 @@ public interface IServiceEntreprise
    * @return la liste des entreprises dans une {@code List<Entreprise>}.
    */
   public List<Entreprise> listeDesEntreprises();
+  
+  public Entreprise CreationEntreprise(Entreprise entreprise);
   //-----------------------------------------------------------------------------
 }

@@ -17,7 +17,7 @@
       <li>
         <a href="#"><i class="fa fa-th"></i> Gestion des entreprises<span class="fa arrow"></span></a>
         <ul class="nav nav-second-level">
-          <li><a href="template.jsp?action=nouvelle_entreprise">Nouvelle entreprise</a></li>
+          <li><a href="template.jsp?action=add_entreprise">Nouvelle entreprise</a></li>
           <li><a href="template.jsp?action=liste_entreprises">Liste des entreprises</a></li>
           <li><a href="template.jsp?action=liste_offres">Liste de toutes les offres d'emploi</a></li>
         </ul> <!-- /.nav-second-level -->
@@ -25,7 +25,7 @@
       <li>
         <a href="#"><i class="fa fa-users"></i> Gestion des candidatures<span class="fa arrow"></span></a>
         <ul class="nav nav-second-level">
-          <li><a href="template.jsp?action=nouvelle_candidature">Nouvelle candidature</a></li>
+          <li><a href="template.jsp?action=add_candidature">Nouvelle candidature</a></li>
           <li><a href="template.jsp?action=liste_candidatures">Liste des candidatures</a></li>
         </ul> <!-- /.nav-second-level -->
       </li>
