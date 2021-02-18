@@ -14,5 +14,7 @@ import eu.telecom_bretagne.cabinet_recrutement.data.model.OffreEmploi;
 public interface IServiceOffresEmplois {
 	
 	public List<OffreEmploi> listeDesOffres();
+	
+	public OffreEmploi getOffre(int id);
 
 }

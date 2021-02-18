@@ -10,6 +10,7 @@ import javax.jws.WebService;
 
 import eu.telecom_bretagne.cabinet_recrutement.data.dao.EntrepriseDAO;
 import eu.telecom_bretagne.cabinet_recrutement.data.dao.OffreEmploiDAO;
+import eu.telecom_bretagne.cabinet_recrutement.data.model.Entreprise;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.OffreEmploi;
 
 /**
@@ -19,9 +20,9 @@ import eu.telecom_bretagne.cabinet_recrutement.data.model.OffreEmploi;
 @Stateless
 @LocalBean
 public class ServiceOffresEmplois implements IServiceOffresEmplois{
-	  //-----------------------------------------------------------------------------
-	  @EJB private OffreEmploiDAO         offreEmploiDAO;
-	  //-----------------------------------------------------------------------------
+	//-----------------------------------------------------------------------------
+	@EJB private OffreEmploiDAO         offreEmploiDAO;
+	//-----------------------------------------------------------------------------
     /**
      * Default constructor. 
      */
@@ -35,5 +36,10 @@ public class ServiceOffresEmplois implements IServiceOffresEmplois{
       return offreEmploiDAO.findAll();
     }
     //-----------------------------------------------------------------------------
+    @Override
+    public OffreEmploi getOffre(int id)
+    {
+      return offreEmploiDAO.findById(id);
+    }
 
 }
