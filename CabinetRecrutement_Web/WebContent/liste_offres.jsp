@@ -29,7 +29,7 @@
                 <th>Entreprise</th>
                 <th>Qualification requise</th>
                 <th>Date de dépôt</th>
-                <th>Candidatures potentielles</th>
+                <th>Informations</th>
               </tr>
             </thead>
             <!--
