@@ -16,7 +16,7 @@ IServiceEntreprise serviceCandidature = (IServiceEntreprise) ServicesLocator.get
       <div class="panel-body">
         <div class="dataTable_wrapper">
         
-		  <form action="add_entreprise_persist.jsp">
+		  <form action="template.jsp?action=add_entreprise_persist" method="post">
 		  <div class="form-group">
 		    <label for="InputNomEntreprise">Nom</label>
 		    <input type="text" class="form-control" name="InputNomEntreprise" aria-describedby="emailHelp" placeholder="Nom de l'entreprise">
