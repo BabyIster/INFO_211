@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -67,7 +68,7 @@ public class Candidature implements Serializable {
 	private Set<MessageOffreEmploi> messageOffreEmplois;
 
 	//bi-directional many-to-many association to SecteurActivite
-	@ManyToMany(mappedBy="candidatures")
+	@ManyToMany(mappedBy="candidatures", fetch=FetchType.EAGER)
 	private Set<SecteurActivite> secteurActivites;
 
 	public Candidature() {

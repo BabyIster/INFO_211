@@ -3,6 +3,8 @@
 <%@page import="eu.telecom_bretagne.cabinet_recrutement.front.utils.ServicesLocator,
                 eu.telecom_bretagne.cabinet_recrutement.service.IServiceCandidature,
                 eu.telecom_bretagne.cabinet_recrutement.data.model.Candidature,
+                eu.telecom_bretagne.cabinet_recrutement.data.model.SecteurActivite,
+                java.util.Set,
                 java.util.List"%>
 
 <%
@@ -51,7 +53,14 @@ IServiceCandidature serviceCandidature = (IServiceCandidature) ServicesLocator.g
                  <td><%=candidature.getCv()%></td>
                  <td><%=candidature.getDateDepot()%></td>               
                  <td><%=candidature.getQualification().getIntitule()%></td>
-                 <td>SOOOOOOON BITCH </td>
+                 <td><%
+                 Set<SecteurActivite> candidatureSecteur = candidature.getSecteurActivites();
+                 for (SecteurActivite q : candidatureSecteur)
+                 {%>
+                	 <li><%=q.getIntitule()%></li>
+                 <%
+                 }
+                 %></td>
                  
                  <td>           
                 <%

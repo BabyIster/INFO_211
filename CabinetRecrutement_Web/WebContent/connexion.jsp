@@ -9,14 +9,24 @@
       <div class="panel-body">
         <div class="dataTable_wrapper">
         
-		  <form>
+		  <form action="template.jsp" method="post">
 		  <div class="form-group">
-		    <label for="exampleInputEmail1">Id entreprise (ENT_ID)</label>
-		    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Prénom">
+		    <label for="exampleInputEmail1">Votre idendifiant :</label>
+		    <input type="text" class="form-control" id="identifiant" placeholder="Identifiant">
 		  </div>
 		
-		  <button type="submit" class="btn btn-primary">Valider</button>
+		  <button type="submit" class="btn btn-lg btn-success btn-block">Se connecter</button>
 		</form>
+		<br><br>
+		<div class="alert alert-info col-xs-offset-3 col-xs-6">
+                         L'identifiant est la clé primaire préfixée de :
+                         <ul>
+                           <li>pour une entreprise : <code>ENT_</code> <em>(ENT_12 par exemple)</em></li>
+                           <li>pour une candidature : <code>CAND_</code> <em>(CAND_7 par exemple)</em></li>
+                         </ul>
+                         <br>
+                         <em>Note : l'identification se fait sans mot de passe.</em>
+                       </div>
         </div> <!-- /.table-responsive -->
       </div> <!-- /.panel-body -->
     </div> <!-- /.panel -->
