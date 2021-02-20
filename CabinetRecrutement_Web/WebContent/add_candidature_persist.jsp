@@ -17,16 +17,16 @@
 
   String erreur = null;
   int id = -1;
-  SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yy");
+  //SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yy");
   
   String prenom = request.getParameter("prenom");
   String nom = request.getParameter("nom");
   String cv = request.getParameter("cv");
   String ville = request.getParameter("adresse");
   String dateNaissance = request.getParameter("date");
-  dateNaissance = "24/05/1998";
-  Date dateNaissanceFormat = formater.parse(dateNaissance);
-  
+  //Date dateNaissanceFormat = formater.parse(dateNaissance);
+  Date dateNaissanceFormat = new Date(0,0,0);
+
   String mail = request.getParameter("mail");
   Qualification qualification = null;
   Set<SecteurActivite> secteur = null;
