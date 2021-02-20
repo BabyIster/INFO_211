@@ -8,6 +8,7 @@ import javax.ejb.Stateless;
 
 import eu.telecom_bretagne.cabinet_recrutement.data.dao.CandidatureDAO;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.Candidature;
+import eu.telecom_bretagne.cabinet_recrutement.data.model.Entreprise;
 
 /**
  * Session Bean implementation class ServiceEntreprise
@@ -38,6 +39,12 @@ public class ServiceCandidature implements IServiceCandidature
   public List<Candidature> listCandidatures()
   {
     return candidatureDAO.findAll();
+  }
+  //-----------------------------------------------------------------------------
+  @Override
+  public Candidature CreationCandidature(Candidature candidature)
+  {
+    return candidatureDAO.persist(candidature);
   }
   //-----------------------------------------------------------------------------
 }

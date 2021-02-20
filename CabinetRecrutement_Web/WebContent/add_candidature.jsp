@@ -22,30 +22,30 @@ IServiceCandidature serviceCandidature = (IServiceCandidature) ServicesLocator.g
       <div class="panel-body">
         <div class="dataTable_wrapper">
         
-		  <form>
+		  <form action="template.jsp?action=add_candidature_persist" method="post">
 		  <div class="form-group">
-		    <label for="exampleInputEmail1">Prénom</label>
-		    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Prénom">
+		    <label for="prenom">Prénom</label>
+		    <input type="text" class="form-control" id="prenom" aria-describedby="emailHelp" placeholder="Prénom">
 		  </div>
 		  <div class="form-group">
-		    <label for="exampleInputEmail1">Nom</label>
-		    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Nom">
+		    <label for="nom">Nom</label>
+		    <input type="text" class="form-control" id="nom" placeholder="Nom">
 		  </div>
 		  <div class="form-group">
-		    <label for="exampleInputEmail1">Date de naissance</label>
-		    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Date de naissance">
+		    <label for="date">Date de naissance</label>
+		    <input type="text" class="form-control" id="date" placeholder="Date de naissance">
 		  </div>
 		  <div class="form-group">
-		    <label for="exampleInputEmail1">Adresse postale</label>
-		    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Adresse postale">
+		    <label for="adresse">Adresse postale</label>
+		    <input type="text" class="form-control" id="adresse" placeholder="Adresse postale">
 		  </div>
 		  <div class="form-group">
-		    <label for="exampleInputEmail1">Email</label>
-		    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Email">
+		    <label for="mail">Email</label>
+		    <input type="email" class="form-control" id="mail" placeholder="Email">
 		  </div>
 		  <div class="form-group">
-		    <label for="exampleInputEmail1">CV</label>
-		    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="CV">
+		    <label for="cv">CV</label>
+		    <textarea class="form-control" placeholder="Detailler votre cv" rows="3" name="cv"></textarea>
 		  </div>
 		
 		  <button type="submit" class="btn btn-primary">Valider</button>

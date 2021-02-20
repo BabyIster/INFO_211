@@ -28,4 +28,6 @@ public interface IServiceCandidature
    */
   public List<Candidature> listCandidatures();
   //-----------------------------------------------------------------------------
+  
+  public Candidature CreationCandidature(Candidature candidature);
 }
