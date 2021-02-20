@@ -5,11 +5,14 @@
                 eu.telecom_bretagne.cabinet_recrutement.data.model.Qualification,
                 eu.telecom_bretagne.cabinet_recrutement.data.model.OffreEmploi,
                 java.util.List,
-                java.util.Set"%>
+                java.util.Set,
+                java.text.SimpleDateFormat"%>
 
 <%
   IServiceOffresEmplois serviceOffresEmplois = (IServiceOffresEmplois) ServicesLocator.getInstance().getRemoteInterface("ServiceOffresEmplois");
   List<OffreEmploi> offres = serviceOffresEmplois.listeDesOffres();
+  
+  SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yy");
 %>
 
 <div class="row">
@@ -52,7 +55,7 @@
                  }
                  %>
                  </td>
-                 <td><%=offre.getDateDepot()%></td>
+                 <td><%=formater.format(offre.getDateDepot())%></td>
                   <td align="center"><a href="template.jsp?action=infos_offre&id=<%=offre.getId()%>"><i class="fa fa-eye fa-lg"></i></a></td>
                 </tr>
                 <%

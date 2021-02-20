@@ -6,13 +6,15 @@
                 eu.telecom_bretagne.cabinet_recrutement.data.model.OffreEmploi,
                 eu.telecom_bretagne.cabinet_recrutement.data.model.Qualification,
                 eu.telecom_bretagne.cabinet_recrutement.data.model.SecteurActivite,
-                java.util.Set"%>
+                java.util.Set,
+                java.text.SimpleDateFormat"%>
 
 <%
   String erreur = null;
   String idStringValue = request.getParameter("id");
   int id = -1;
   OffreEmploi offre = null;
+  SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yy");
   
   if(idStringValue == null)
   {
@@ -116,7 +118,7 @@
                 </tr>
                 <tr class="warning">
                   <td><strong>Date de dépôt</strong></td>
-                  <td><%=offre.getDateDepot()%></td>
+                  <td><%=formater.format(offre.getDateDepot())%></td>
                 </tr>
               </tbody>
             </table>

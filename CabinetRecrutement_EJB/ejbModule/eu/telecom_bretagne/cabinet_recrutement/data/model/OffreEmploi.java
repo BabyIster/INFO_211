@@ -3,6 +3,7 @@ package eu.telecom_bretagne.cabinet_recrutement.data.model;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
+import java.text.SimpleDateFormat;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

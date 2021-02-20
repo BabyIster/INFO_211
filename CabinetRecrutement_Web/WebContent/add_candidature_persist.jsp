@@ -6,8 +6,10 @@
                 eu.telecom_bretagne.cabinet_recrutement.data.model.Candidature,
                 eu.telecom_bretagne.cabinet_recrutement.data.model.Qualification,
                 eu.telecom_bretagne.cabinet_recrutement.data.model.SecteurActivite,
-                java.sql.Date,
-                java.util.Set"%>
+                java.util.Date,
+                java.util.Set,
+                java.text.SimpleDateFormat,
+                java.text.DateFormat"%>
 
 <%
 
@@ -15,17 +17,24 @@
 
   String erreur = null;
   int id = -1;
+  SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yy");
+  
   String prenom = request.getParameter("prenom");
   String nom = request.getParameter("nom");
   String cv = request.getParameter("cv");
   String ville = request.getParameter("adresse");
   String dateNaissance = request.getParameter("date");
+  dateNaissance = "24/05/1998";
+  Date dateNaissanceFormat = formater.parse(dateNaissance);
+  
   String mail = request.getParameter("mail");
   Qualification qualification = null;
   Set<SecteurActivite> secteur = null;
+  
   @SuppressWarnings("deprecation")
   Date today = new Date(0,0,0);
-  Candidature Candidature = new Candidature(prenom, nom, dateNaissance, ville, mail, cv, today, qualification, secteur);
+  
+  Candidature Candidature = new Candidature(prenom, nom, dateNaissanceFormat, ville, mail, cv, today, qualification, secteur);
   Candidature = serviceCandidature.CreationCandidature(Candidature);
 %>
 
@@ -59,19 +68,31 @@
               <tbody>
                 <tr class="success">
                   <td width="200"><strong>Identifiant (login)</strong></td>
-                  <td>ENT_<%=Candidature.getId()%></td>
+                  <td>CAND_<%=Candidature.getId()%></td>
+                </tr>
+                <tr class="warning">
+                  <td><strong>Prenom</strong></td>
+                  <td><%=Candidature.getPrenom()%></td>
                 </tr>
                 <tr class="warning">
                   <td><strong>Nom</strong></td>
                   <td><%=Candidature.getNom()%></td>
                 </tr>
                 <tr class="warning">
+                  <td><strong>Date de naissance</strong></td>
+                  <td><%=Candidature.getDateNaissance()%></td>
+                </tr>
+                <tr class="warning">
                   <td><strong>Adresse postale (ville)</strong></td>
                   <td><%=Candidature.getAdressePostale()%></td>
                 </tr>
                 <tr class="warning">
-                  <td><strong>Descriptif</strong></td>
-                  <td><%=Utils.text2HTML(Candidature.getDescriptif())%></td>
+                  <td><strong>CV</strong></td>
+                  <td><%=Utils.text2HTML(Candidature.getCv())%></td>
+                </tr>
+                <tr class="warning">
+                  <td><strong>Date de dépot</strong></td>
+                  <td><%=Candidature.getDateDepot()%></td>
                 </tr>
               </tbody>
             </table>

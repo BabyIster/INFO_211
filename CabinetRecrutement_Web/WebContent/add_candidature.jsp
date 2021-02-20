@@ -1,20 +1,5 @@
 <%@ page language="java" contentType="text/html" pageEncoding="ISO-8859-1"%>
 
-<%@page import="eu.telecom_bretagne.cabinet_recrutement.front.utils.ServicesLocator,
-                eu.telecom_bretagne.cabinet_recrutement.service.IServiceCandidature,
-                eu.telecom_bretagne.cabinet_recrutement.data.model.Candidature,
-                java.util.List"%>
-
-<%
-IServiceCandidature serviceCandidature = (IServiceCandidature) ServicesLocator.getInstance().getRemoteInterface("ServiceCandidature");
-  List<Candidature> candidatures = serviceCandidature.listCandidatures();
-  
-    //Set<SecteurActivite> secteurActivites = new HashSet<SecteurActivite>();
-    //SecteurActivites.add(secteurActiviteDAO.findById(3)); //La candidature sera du secteur 3
-    //Candidature nouvelleCand = new Candidature("Matthieu","Old", today, "44470", "@", "cv", today, qualificationDAO.findById(4), secteurActivites);
-    //nouvelleCand = candidatureDAO.persist(nouvelleCand);
-%>
-
 <div class="row">
   <div class="col-lg-12">
     <div class="panel panel-default">
@@ -32,7 +17,7 @@ IServiceCandidature serviceCandidature = (IServiceCandidature) ServicesLocator.g
 		    <input type="text" class="form-control" id="nom" placeholder="Nom">
 		  </div>
 		  <div class="form-group">
-		    <label for="date">Date de naissance</label>
+		    <label for="date">Date de naissance (dd/MM/yyyy)</label>
 		    <input type="text" class="form-control" id="date" placeholder="Date de naissance">
 		  </div>
 		  <div class="form-group">
