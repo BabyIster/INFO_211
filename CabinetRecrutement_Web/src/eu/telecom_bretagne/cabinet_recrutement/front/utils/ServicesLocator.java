@@ -55,7 +55,11 @@ public class ServicesLocator
         nomJNDI = "java:global/CabinetRecrutement/CabinetRecrutement_EJB/ServiceCandidature!eu.telecom_bretagne.cabinet_recrutement.service.IServiceCandidature";
     else if(nomEJB.equals("ServiceOffresEmplois"))
       nomJNDI = "java:global/CabinetRecrutement/CabinetRecrutement_EJB/ServiceOffresEmplois!eu.telecom_bretagne.cabinet_recrutement.service.IServiceOffresEmplois";
-
+    else if(nomEJB.equals("ServiceQualification"))
+        nomJNDI = "java:global/CabinetRecrutement/CabinetRecrutement_EJB/ServiceQualification!eu.telecom_bretagne.cabinet_recrutement.service.IServiceQualification";
+    else if(nomEJB.equals("ServiceSecteurActivite"))
+        nomJNDI = "java:global/CabinetRecrutement/CabinetRecrutement_EJB/ServiceSecteurActivite!eu.telecom_bretagne.cabinet_recrutement.service.IServiceSecteurActivite";
+    
     // ATTENTION !!! La récupération d'un DAO n'existe ici que
     // pour les contrôles (utilisés dans la servlet ControleDAOServlet) :
     // ils ne sont normalement pas appelés par la couche IHM.

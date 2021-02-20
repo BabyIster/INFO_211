@@ -3,17 +3,22 @@
 <%@page import="eu.telecom_bretagne.cabinet_recrutement.front.utils.ServicesLocator,
                 eu.telecom_bretagne.cabinet_recrutement.front.utils.Utils,
                 eu.telecom_bretagne.cabinet_recrutement.service.IServiceCandidature,
+                eu.telecom_bretagne.cabinet_recrutement.service.IServiceQualification,
+                eu.telecom_bretagne.cabinet_recrutement.service.IServiceSecteurActivite,
                 eu.telecom_bretagne.cabinet_recrutement.data.model.Candidature,
                 eu.telecom_bretagne.cabinet_recrutement.data.model.Qualification,
                 eu.telecom_bretagne.cabinet_recrutement.data.model.SecteurActivite,
                 java.util.Date,
                 java.util.Set,
+                java.util.HashSet,
                 java.text.SimpleDateFormat,
                 java.text.DateFormat"%>
 
 <%
 
   IServiceCandidature serviceCandidature = (IServiceCandidature) ServicesLocator.getInstance().getRemoteInterface("ServiceCandidature");
+  IServiceQualification serviceQualification = (IServiceQualification) ServicesLocator.getInstance().getRemoteInterface("ServiceQualification");
+  IServiceSecteurActivite serviceSecteurActivite = (IServiceSecteurActivite) ServicesLocator.getInstance().getRemoteInterface("ServiceSecteurActivite");
 
   String erreur = null;
   int id = -1;
@@ -28,8 +33,9 @@
   Date dateNaissanceFormat = new Date(0,0,0);
 
   String mail = request.getParameter("mail");
-  Qualification qualification = null;
-  Set<SecteurActivite> secteur = null;
+  Qualification qualification = serviceQualification.getQualification(1);
+  Set<SecteurActivite> secteur = new HashSet<SecteurActivite>();
+  secteur.add(serviceSecteurActivite.getSecteurActivite(1));
   
   @SuppressWarnings("deprecation")
   Date today = new Date(0,0,0);
