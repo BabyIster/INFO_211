@@ -4,8 +4,7 @@
 <%
 String identifiantUser = request.getParameter("identifiantUser");
 
-if(identifiantUser == null && session.getAttribute("utilisateur") == null){
-	session.setAttribute("utilisateur", identifiantUser); %>
+if(identifiantUser == null && session.getAttribute("utilisateur") == null){%>
 
 <div class="row">
   <div class="col-lg-12">
@@ -49,7 +48,7 @@ if(identifiantUser == null && session.getAttribute("utilisateur") == null){
 		<div class="alert alert-info col-xs-offset-3 col-xs-6">
                          Vous êtes déjà connecté <%=identifiantUser %>
                          <ul>
-                           <li>Si vous voulez vous deconnectez cliquer ici : PAS ENCORE LE LIEN</li>
+                           <li>Si vous voulez vous deconnectez : <a href="template.jsp?action=deconnexion">login out</a></li>
                          </ul>
                          <br>
                          <em>Note : l'identification se fait sans mot de passe.</em>
@@ -61,4 +60,9 @@ if(identifiantUser == null && session.getAttribute("utilisateur") == null){
 </div> <!-- /.row -->
 <%
 }
+if(identifiantUser != null){
+session.setAttribute("utilisateur", identifiantUser); 
 %>
+
+<%
+}%>

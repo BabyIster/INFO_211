@@ -35,6 +35,8 @@
   }
   else{%>
 	<li><a href="#"><i class="fa fa-user fa-fw"></i>Utilisateur : <%=utilisateur %></a></li>
+	<li class="divider"></li>
+    <li><a href="template.jsp?action=deconnexion"><i class="fa fa-sign-in fa-fw"></i> Deconnexion</a></li>
 	<%  
   }
   %>
