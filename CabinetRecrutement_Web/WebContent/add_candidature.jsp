@@ -1,5 +1,23 @@
 <%@ page language="java" contentType="text/html" pageEncoding="ISO-8859-1"%>
 
+<%@page import="eu.telecom_bretagne.cabinet_recrutement.front.utils.ServicesLocator,
+                eu.telecom_bretagne.cabinet_recrutement.service.IServiceSecteurActivite,
+                eu.telecom_bretagne.cabinet_recrutement.data.model.Candidature,
+                eu.telecom_bretagne.cabinet_recrutement.data.model.SecteurActivite,
+                eu.telecom_bretagne.cabinet_recrutement.service.IServiceQualification,
+                eu.telecom_bretagne.cabinet_recrutement.data.model.Qualification,              
+                java.util.Set,
+                java.util.List"%>
+                
+<%
+IServiceSecteurActivite serviceSecteurActivite = (IServiceSecteurActivite) ServicesLocator.getInstance().getRemoteInterface("ServiceSecteurActivite");
+IServiceQualification serviceQualification = (IServiceQualification) ServicesLocator.getInstance().getRemoteInterface("ServiceQualification");
+
+List<SecteurActivite> allsecteurs = serviceSecteurActivite.listeDesSecteurActivites();
+List<Qualification> allqualifications = serviceQualification.listeDesQualifications();
+
+%>
+
 <div class="row">
   <div class="col-lg-12">
     <div class="panel panel-default">
@@ -32,6 +50,29 @@
 		    <label for="InputCV">CV</label>
 		    <textarea class="form-control" name="InputCV" placeholder="Detailler votre cv" rows="3" name="cv"></textarea>
 		  </div>
+		  
+		   <div class="form-group">
+			  <label for="InputSecteur">Secteur activité:</label>			 
+			    <%			  
+			     for (SecteurActivite q : allsecteurs)
+                 {%>
+                	 <label class="radio-inline"><input type="radio" name="InputSecteur"><%=q.getIntitule()%></label>
+                 <%
+                 }%>
+               </select>			 
+			</div>
+			
+			<div class="form-group">
+			  <label for="InputQualification">Qualification:</label>
+			  <select class="form-control" id="sel1">
+			    <%			  
+			     for (Qualification k : allqualifications)
+                 {%>
+                	 <option name="InputQualification"> <%=k.getIntitule()%></option>
+                 <%
+                 }%>
+               </select>			 
+			</div>
 		
 		  <button type="submit" class="btn btn-primary">Valider</button>
 		</form>
