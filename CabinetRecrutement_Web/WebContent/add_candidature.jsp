@@ -9,28 +9,28 @@
         
 		  <form action="template.jsp?action=add_candidature_persist" method="post">
 		  <div class="form-group">
-		    <label for="prenom">Prénom</label>
-		    <input type="text" class="form-control" id="prenom" aria-describedby="emailHelp" placeholder="Prénom">
+		    <label for="InputPrenom">Prenom</label>
+		    <input type="text" class="form-control" name="InputPrenom" aria-describedby="emailHelp" placeholder="Prénom">
+		  </div>
+		 <div class="form-group">
+		    <label for="InputNom">Nom</label>
+		    <input type="text" class="form-control" name="InputNom" aria-describedby="emailHelp" placeholder="Nom">
 		  </div>
 		  <div class="form-group">
-		    <label for="nom">Nom</label>
-		    <input type="text" class="form-control" id="nom" placeholder="Nom">
+		    <label for="Inputdate">Date de naissance (dd/MM/yyyy)</label>
+		    <input type="text" class="form-control" name="Inputdate" placeholder="Date de naissance">
 		  </div>
 		  <div class="form-group">
-		    <label for="date">Date de naissance (dd/MM/yyyy)</label>
-		    <input type="text" class="form-control" id="date" placeholder="Date de naissance">
+		    <label for="Inputadresse">Adresse postale</label>
+		    <input type="text" class="form-control" name="Inputadresse" placeholder="Adresse postale">
 		  </div>
 		  <div class="form-group">
-		    <label for="adresse">Adresse postale</label>
-		    <input type="text" class="form-control" id="adresse" placeholder="Adresse postale">
+		    <label for="Inputmail">Email</label>
+		    <input type="email" class="form-control" name="Inputmail" placeholder="Email">
 		  </div>
 		  <div class="form-group">
-		    <label for="mail">Email</label>
-		    <input type="email" class="form-control" id="mail" placeholder="Email">
-		  </div>
-		  <div class="form-group">
-		    <label for="cv">CV</label>
-		    <textarea class="form-control" placeholder="Detailler votre cv" rows="3" name="cv"></textarea>
+		    <label for="InputCV">CV</label>
+		    <textarea class="form-control" name="InputCV" placeholder="Detailler votre cv" rows="3" name="cv"></textarea>
 		  </div>
 		
 		  <button type="submit" class="btn btn-primary">Valider</button>
