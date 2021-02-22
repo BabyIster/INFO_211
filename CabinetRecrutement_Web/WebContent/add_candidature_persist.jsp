@@ -22,7 +22,7 @@ IServiceSecteurActivite serviceSecteurActivite = (IServiceSecteurActivite) Servi
 
   String erreur = null;
   int id = -1;
-  SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yyyy");
+  SimpleDateFormat formater = new SimpleDateFormat("dd-MM-yyyy");
   
   String prenom = request.getParameter("InputPrenom");
   String nom = request.getParameter("InputNom");
@@ -31,6 +31,12 @@ IServiceSecteurActivite serviceSecteurActivite = (IServiceSecteurActivite) Servi
   String mail = request.getParameter("Inputmail");
   String cv = request.getParameter("InputCV");
   
+  String Qualification = request.getParameter("InputQualification");
+  String Secteur = request.getParameter("InputSecteur");
+  
+  System.out.println("Qualification: " + Qualification);
+  System.out.println("Secteur: " + Secteur);
+
   Date dateNaissanceFormat = formater.parse(dateNaissance);
 
   Qualification qualification = serviceQualification.getQualification(1);
