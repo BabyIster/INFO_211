@@ -14,8 +14,15 @@
   String nom = request.getParameter("InputNomEntreprise");
   String desc = request.getParameter("InputDescEntreprise");
   String ville = request.getParameter("InputAdresseEntreprise");
-  Entreprise entreprise = new Entreprise(nom, desc, ville);
-  entreprise = serviceEntreprise.CreationEntreprise(entreprise);
+  
+  if(nom != null & desc != null & ville != null){
+	  Entreprise entreprise = new Entreprise(nom, desc, ville);
+	  entreprise = serviceEntreprise.CreationEntreprise(entreprise);  
+  }
+  else{
+	  erreur = "Un des paramétres n est pas bon";
+  }
+  
 %>
 
 <div class="row">

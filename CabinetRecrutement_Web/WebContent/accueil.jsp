@@ -13,10 +13,8 @@
   int nbEntreprises  = serviceEntreprise.listeDesEntreprises().size();
   int nbOffres       = serviceOffre.listeDesOffres().size();
   int nbCandidatures = serviceCandidature.listCandidatures().size();
- 
   
   String identifiantUser = request.getParameter("identifiant");
-  session.setAttribute("utilisateur", identifiantUser);
 %>
 
 <div class="row">
