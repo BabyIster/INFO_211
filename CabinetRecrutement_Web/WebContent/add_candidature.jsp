@@ -18,7 +18,7 @@
 		  </div>
 		  <div class="form-group">
 		    <label for="Inputdate">Date de naissance (dd/MM/yyyy)</label>
-		    <input type="text" class="form-control" name="Inputdate" placeholder="Date de naissance">
+		    <input type="date" class="form-control" name="Inputdate" placeholder="Date de naissance">
 		  </div>
 		  <div class="form-group">
 		    <label for="Inputadresse">Adresse postale</label>
