@@ -29,10 +29,36 @@ if(utilisateur instanceof Entreprise)
 {
 	Entreprise entreprise = (Entreprise) utilisateur;
 	
-	/*if(ville != null & ville.matches("[A-Za-z0-9]+")){
-		  erreur = "On ne met pas de chiffre dans le nom d'une ville !";
-	}*/
-	if(nom != null & desc != null & ville != null){
+	if(nom==null & desc==null & ville==null){
+		%>  
+		  <form action="template.jsp?action=update_entreprise" method="post">
+		  <div class="form-group">
+		    <input type="text" class="form-control" aria-describedby="emailHelp" value="ENT_<%=entreprise.getId() %>" disabled="disabled">
+		  </div>
+		  <div class="form-group">
+		    <label for="InputNomEntreprise">Nom</label>
+		    <input class="form-control" value="<%=entreprise.getNom() %>" name="InputNomEntreprise">
+		  </div>
+		  <div class="form-group">
+		    <label for="InputDescEntreprise">Description</label>
+		    <textarea type="text" class="form-control" name="InputDescEntreprise" rows="5"><%=entreprise.getDescriptif() %>"</textarea>
+		  </div>
+		  <div class="form-group">
+		    <label for="InputVilleEntreprise">Ville</label>
+		    <input type="text" class="form-control" name="InputVilleEntreprise" value="<%=entreprise.getAdressePostale() %>">
+		  </div>
+		 
+		  <button type="submit" class="btn btn-primary">Valider</button>
+		</form>
+<%
+	}
+	else if(nom.isEmpty() | desc.isEmpty() | ville.isEmpty()){
+		erreur = "Aucun des paramétres ne doit être nul";
+	}
+	else if(ville.matches("[A-Za-z0-9]+")){
+	    erreur = "On ne met pas de chiffre dans le nom d'une ville !";
+	}
+	else{
 		  
 		  entreprise.setAdressePostale(ville);
 		  entreprise.setDescriptif(desc);
@@ -67,49 +93,27 @@ if(utilisateur instanceof Entreprise)
 	        </div>
 	          <%
 	}
-	else{
-		%>  
-				  <form action="template.jsp?action=update_entreprise" method="post">
-				  <div class="form-group">
-				    <input type="text" class="form-control" aria-describedby="emailHelp" value="ENT_<%=entreprise.getId() %>" disabled="disabled">
-				  </div>
-				  <div class="form-group">
-				    <label for="InputNomEntreprise">Nom</label>
-				    <input class="form-control" value="<%=entreprise.getNom() %>" name="InputNomEntreprise">
-				  </div>
-				  <div class="form-group">
-				    <label for="InputDescEntreprise">Description</label>
-				    <textarea type="text" class="form-control" name="InputDescEntreprise" rows="5"><%=entreprise.getDescriptif() %>"</textarea>
-				  </div>
-				  <div class="form-group">
-				    <label for="InputVilleEntreprise">Ville</label>
-				    <input type="text" class="form-control" name="InputVilleEntreprise" value="<%=entreprise.getAdressePostale() %>">
-				  </div>
-				 
-				  <button type="submit" class="btn btn-primary">Valider</button>
-				</form>
-		<%
-	}
 }
 else
 {
 	erreur = "Vous n'êtes pas autorisé à accéder à cette page";
-	%>
-    <div class="row col-xs-offset-1 col-xs-10">
-      <div class="panel panel-red">
-        <div class="panel-heading ">
-          Impossible de traiter la demande
-        </div>
-        <div class="panel-body text-center">
-          <p class="text-danger"><strong><%=erreur%></strong></p>
-        </div>
-      </div>
-      <br><b><a href="template.jsp">Retour a l'accueil</a></b>
-    </div> <!-- /.row col-xs-offset-1 col-xs-10 -->
-    <%
 }
-
-%>
+if(erreur != null) // Une erreur a été détectée et est affichée.
+{
+ %>
+ <div class="row col-xs-offset-1 col-xs-10">
+   <div class="panel panel-red">
+     <div class="panel-heading ">
+       Impossible de traiter la demande
+     </div>
+     <div class="panel-body text-center">
+       <p class="text-danger"><strong><%=erreur%></strong></p>
+     </div>
+   </div>
+   <br><b><a href="template.jsp?action=update_entreprise">Retour a la page de modification</a></b>
+ </div> <!-- /.row col-xs-offset-1 col-xs-10 -->
+ <%
+ }%>
 		        </div> <!-- /.table-responsive -->
 		      </div> <!-- /.panel-body -->
 		    </div> <!-- /.panel -->

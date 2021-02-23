@@ -1,13 +1,19 @@
 <%@ page language="java" contentType="text/html" pageEncoding="ISO-8859-1"%>
 
 <%@page import="eu.telecom_bretagne.cabinet_recrutement.front.utils.ServicesLocator,
-                eu.telecom_bretagne.cabinet_recrutement.service.IServiceSecteurActivite,
+                eu.telecom_bretagne.cabinet_recrutement.front.utils.Utils,
+                eu.telecom_bretagne.cabinet_recrutement.service.IServiceCandidature,
                 eu.telecom_bretagne.cabinet_recrutement.data.model.Candidature,
-                eu.telecom_bretagne.cabinet_recrutement.data.model.SecteurActivite,
                 eu.telecom_bretagne.cabinet_recrutement.service.IServiceQualification,
-                eu.telecom_bretagne.cabinet_recrutement.data.model.Qualification,              
+                eu.telecom_bretagne.cabinet_recrutement.service.IServiceSecteurActivite,
+                eu.telecom_bretagne.cabinet_recrutement.data.model.Qualification,
+                eu.telecom_bretagne.cabinet_recrutement.data.model.SecteurActivite,
+                java.util.Date,
                 java.util.Set,
-                java.util.List"%>
+                java.util.List,
+                java.util.HashSet,
+                java.text.SimpleDateFormat,
+                java.text.DateFormat"%>
                 
 <%
 IServiceSecteurActivite serviceSecteurActivite = (IServiceSecteurActivite) ServicesLocator.getInstance().getRemoteInterface("ServiceSecteurActivite");

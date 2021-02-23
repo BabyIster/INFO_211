@@ -24,7 +24,7 @@ String ville = request.getParameter("InputAdresseEntreprise");
       <div class="panel-body">
         <%
 
-if(nom==null & desc==null & ville==null ){
+if(nom==null & desc==null & ville==null){
 	%>
 	<form action="template.jsp?action=add_entreprise" method="post">
 	  <div class="form-group">
