@@ -46,9 +46,9 @@ if(nom==null & desc==null & ville==null){
 else if(nom.isEmpty() | desc.isEmpty() | ville.isEmpty()){
 	erreur = "Aucun des paramétres ne doit être nul";
 }
-else if(ville.matches("[A-Za-z0-9]+")){
+/*else if(ville.matches("[A-Za-z0-9]+")){
     erreur = "On ne met pas de chiffre dans le nom d'une ville !";
-    }
+    }*/
 else{
 	
 	  Entreprise entreprise = new Entreprise(nom, desc, ville);

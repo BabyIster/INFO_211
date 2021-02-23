@@ -50,14 +50,38 @@ if(utilisateur instanceof Entreprise)
 		 
 		  <button type="submit" class="btn btn-primary">Valider</button>
 		</form>
+		<br><br>
+		<button class="btn btn-danger" data-toggle="modal" data-target="#messageSuppression">
+           <i class="glyphicon glyphicon-remove-sign fa-lg"></i> Supprimer l'entreprise
+        </button>
+        
+        <div class="modal fade" id="messageSuppression" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                      <h4 class="modal-title" id="myModalLabel">Vous être sur le point de supprimer votre entreprise<br>et les offres d'emploi associées.</h4>
+                    </div>
+                    <div class="modal-body">
+                      Attention, cette opération n'est pas réversible !
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                      <button type="button" class="btn btn-primary" onclick="window.location.href='template.jsp?action=delete_entreprise&id=<%= entreprise.getId()%>'">
+                        <b>Tout Supprimer</b>
+                      </button>
+                    </div>
+                  </div> <!-- /.modal-content -->
+                </div> <!-- /.modal-dialog -->
+              </div>
 <%
 	}
 	else if(nom.isEmpty() | desc.isEmpty() | ville.isEmpty()){
 		erreur = "Aucun des paramétres ne doit être nul";
 	}
-	else if(ville.matches("[A-Za-z0-9]+")){
+	/*else if(ville.matches("[A-Za-z0-9]+")){
 	    erreur = "On ne met pas de chiffre dans le nom d'une ville !";
-	}
+	}*/
 	else{
 		  
 		  entreprise.setAdressePostale(ville);
