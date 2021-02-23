@@ -29,5 +29,7 @@ public interface IServiceEntreprise
   public List<Entreprise> listeDesEntreprises();
   
   public Entreprise CreationEntreprise(Entreprise entreprise);
+  
+  public Entreprise UpdateEntreprise(Entreprise entreprise);
   //-----------------------------------------------------------------------------
 }
