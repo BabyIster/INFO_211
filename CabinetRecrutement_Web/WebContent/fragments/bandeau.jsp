@@ -35,7 +35,7 @@
   <%
   }
   else{
-  if(utilisateur instanceof Entreprise)
+  	if(utilisateur instanceof Entreprise)
 	  	{
 	  		Entreprise e = (Entreprise) utilisateur;
         %>

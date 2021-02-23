@@ -2,7 +2,26 @@
 
 <%@page import="eu.telecom_bretagne.cabinet_recrutement.front.utils.ServicesLocator,
                 eu.telecom_bretagne.cabinet_recrutement.service.IServiceEntreprise,
-                eu.telecom_bretagne.cabinet_recrutement.data.model.Entreprise"%>
+                eu.telecom_bretagne.cabinet_recrutement.data.model.Entreprise,
+                eu.telecom_bretagne.cabinet_recrutement.data.model.Candidature"%>
+                
+<%
+Object utilisateur = session.getAttribute("utilisateur");
+Entreprise entreprise = null;
+Candidature candidature = null;
+String user = null;
+
+if(utilisateur instanceof Entreprise)
+	{
+		entreprise = (Entreprise) utilisateur;
+		user = "entreprise";
+	}
+else if(utilisateur instanceof Candidature)
+	{
+		candidature = (Candidature) utilisateur;
+		user = "candidature";
+	}
+%>
 
 <div class="navbar-default sidebar" role="navigation">
   <div class="sidebar-nav navbar-collapse">
@@ -29,6 +48,39 @@
           <li><a href="template.jsp?action=liste_candidatures">Liste des candidatures</a></li>
         </ul> <!-- /.nav-second-level -->
       </li>
+
+<!--
+        MENU ENTREPRISE
+      -->
+      <%
+      if(user == "entreprise"){
+    	  %>
+	  <li><h4>&nbsp;</h4></li>
+      <li>
+        <a href="#"><i class="fa fa-th"></i> Menu <b>ENTREPRISE</b><span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level">
+          <li><a href="template.jsp?action=add_entreprise">Mettre à jour les informations de l'entreprise</a></li>
+          <li><a href="template.jsp?action=liste_entreprises">Poster une nouvelle offre</a></li>
+          <li><a href="template.jsp?action=liste_offres">Liste des offres publiées</a></li>
+        </ul> <!-- /.nav-second-level -->
+      </li>
+<%}%>
+
+<!--
+        MENU CANDIDAT
+      -->
+      <%
+      if(user == "candidature"){
+    	  %>
+	  <li><h4>&nbsp;</h4></li>
+      <li>
+        <a href="#"><i class="fa fa-th"></i> Menu <b>CANDIDAT</b><span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level">
+          <li><a href="template.jsp?action=add_entreprise">Mettre à jour sa candidature</a></li>
+          <li><a href="template.jsp?action=liste_entreprises">Offres potentielles</a></li>
+        </ul> <!-- /.nav-second-level -->
+      </li>
+<%}%>
 
       <!--
         MENU SECONDAIRE

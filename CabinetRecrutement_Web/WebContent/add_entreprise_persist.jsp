@@ -15,8 +15,13 @@
   String desc = request.getParameter("InputDescEntreprise");
   String ville = request.getParameter("InputAdresseEntreprise");
   
-  if(nom != null & desc != null & ville != null){
-	  Entreprise entreprise = new Entreprise(nom, desc, ville);
+  Entreprise entreprise = null;
+  
+  if(ville.matches("[A-Za-z0-9]+")){
+	  erreur = "On ne met pas de chiffre dans le nom d'une ville !";
+  }
+  else if(nom != null & desc != null & ville != null){
+	  entreprise = new Entreprise(nom, desc, ville);
 	  entreprise = serviceEntreprise.CreationEntreprise(entreprise);  
   }
   else{
@@ -28,7 +33,7 @@
 <div class="row">
   <div class="col-lg-12">
     <div class="panel panel-default">
-      <div class="panel-heading"><h3><i class="fa fa-th"></i> Success ,entreprise crée :</h3></div> <!-- /.panel-heading -->
+      <div class="panel-heading"><h3><i class="fa fa-th"></i> Info création entreprise:</h3></div> <!-- /.panel-heading -->
       <div class="panel-body">
         <%
         if(erreur != null) // Une erreur a été détectée et est affichée.
@@ -43,6 +48,7 @@
                <p class="text-danger"><strong><%=erreur%></strong></p>
              </div>
            </div>
+           <br><b><a href="template.jsp?action=add_entreprise">Retour a la page de création</a></b>
          </div> <!-- /.row col-xs-offset-1 col-xs-10 -->
          <%
          }
