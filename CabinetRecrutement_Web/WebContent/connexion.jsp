@@ -26,7 +26,7 @@ if(identifiantUser == null && identifiantSession == null){%>
 
         <div class="dataTable_wrapper">
         
-		  <form action="template.jsp?action=connexion" method="post">
+		  <form action="connexion.jsp" method="post">
 		  <div class="form-group">
 		    <label for="identifiantUser">Votre identifiant :</label>
 		    <input type="text" class="form-control" name="identifiantUser" placeholder="Identifiant">

@@ -2,7 +2,8 @@
 
 <%@page import="eu.telecom_bretagne.cabinet_recrutement.front.utils.ServicesLocator,
                 eu.telecom_bretagne.cabinet_recrutement.service.IServiceEntreprise,
-                eu.telecom_bretagne.cabinet_recrutement.data.model.Entreprise"%>
+                eu.telecom_bretagne.cabinet_recrutement.data.model.Entreprise,
+                eu.telecom_bretagne.cabinet_recrutement.data.model.Candidature"%>
 
 <%
   Object utilisateur = session.getAttribute("utilisateur");
@@ -33,8 +34,21 @@
     <li><a href="template.jsp?action=connexion"><i class="fa fa-sign-in fa-fw"></i> Login</a></li>
   <%
   }
-  else{%>
-	<li><a href="#"><i class="fa fa-user fa-fw"></i>Utilisateur : <%=utilisateur %></a></li>
+  else{
+  if(utilisateur instanceof Entreprise)
+	  	{
+	  		Entreprise e = (Entreprise) utilisateur;
+        %>
+	  		<li><a href="#"><i class="fa fa-user fa-fw"></i>Entreprise : <%=e.getNom()%></a></li>
+        <%
+	  	}
+	  	else if(utilisateur instanceof Candidature)
+	  	{
+	  		Candidature c = (Candidature) utilisateur;
+	      %>
+	      <li><a href="#"><i class="fa fa-user fa-fw"></i>Candidat : <%=c.getNom()%> <%=c.getPrenom()%></a></li>
+	      <%
+	  	}%>
 	<li class="divider"></li>
     <li><a href="deconnexion.jsp"><i class="fa fa-sign-in fa-fw"></i> Deconnexion</a></li>
 	<%  
