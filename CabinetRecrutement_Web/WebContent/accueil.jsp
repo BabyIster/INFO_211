@@ -3,24 +3,23 @@
 <%@page import="eu.telecom_bretagne.cabinet_recrutement.front.utils.ServicesLocator,
                 eu.telecom_bretagne.cabinet_recrutement.service.IServiceEntreprise,
                 eu.telecom_bretagne.cabinet_recrutement.service.IServiceCandidature,
-                eu.telecom_bretagne.cabinet_recrutement.service.IServiceOffresEmplois"%>
-
+                eu.telecom_bretagne.cabinet_recrutement.service.IServiceOffreEmploi"%>
 <%
   IServiceEntreprise serviceEntreprise = (IServiceEntreprise) ServicesLocator.getInstance().getRemoteInterface("ServiceEntreprise");
   IServiceCandidature serviceCandidature = (IServiceCandidature) ServicesLocator.getInstance().getRemoteInterface("ServiceCandidature");
-  IServiceOffresEmplois serviceOffre = (IServiceOffresEmplois) ServicesLocator.getInstance().getRemoteInterface("ServiceOffresEmplois");
+  IServiceOffreEmploi serviceOffre = (IServiceOffreEmploi) ServicesLocator.getInstance().getRemoteInterface("ServiceOffresEmplois");
 
   int nbEntreprises  = serviceEntreprise.listeDesEntreprises().size();
   int nbOffres       = serviceOffre.listeDesOffres().size();
   int nbCandidatures = serviceCandidature.listCandidatures().size();
+ 
   
   String identifiantUser = request.getParameter("identifiant");
-%>
-
+  
+  %>
 <div class="row">
-
 <div class="col-lg-4 col-md-6">
-    <div class="panel panel-primary">
+ <div class="panel panel-primary">
       <div class="panel-heading">
         <div class="row">
           <div class="col-xs-3">

@@ -19,14 +19,14 @@ import eu.telecom_bretagne.cabinet_recrutement.data.model.OffreEmploi;
  */
 @Stateless
 @LocalBean
-public class ServiceOffresEmplois implements IServiceOffresEmplois{
+public class ServiceOffreEmploi implements IServiceOffreEmploi{
 	//-----------------------------------------------------------------------------
 	@EJB private OffreEmploiDAO         offreEmploiDAO;
 	//-----------------------------------------------------------------------------
     /**
      * Default constructor. 
      */
-    public ServiceOffresEmplois() {
+    public ServiceOffreEmploi() {
         // TODO Auto-generated constructor stub
     }
     

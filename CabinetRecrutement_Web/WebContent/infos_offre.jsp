@@ -2,7 +2,7 @@
 
 <%@page import="eu.telecom_bretagne.cabinet_recrutement.front.utils.ServicesLocator,
                 eu.telecom_bretagne.cabinet_recrutement.front.utils.Utils,
-                eu.telecom_bretagne.cabinet_recrutement.service.IServiceOffresEmplois,
+                eu.telecom_bretagne.cabinet_recrutement.service.IServiceOffreEmploi,
                 eu.telecom_bretagne.cabinet_recrutement.data.model.OffreEmploi,
                 eu.telecom_bretagne.cabinet_recrutement.data.model.Qualification,
                 eu.telecom_bretagne.cabinet_recrutement.data.model.SecteurActivite,
@@ -10,7 +10,7 @@
                 java.text.SimpleDateFormat"%>
 
 <%
-  String erreur = null;
+	String erreur = null;
   String idStringValue = request.getParameter("id");
   int id = -1;
   OffreEmploi offre = null;
@@ -26,7 +26,7 @@
     {
       id = new Integer(idStringValue);
       // C'est OK : on a bien un id
-      IServiceOffresEmplois serviceOffre = (IServiceOffresEmplois) ServicesLocator.getInstance().getRemoteInterface("ServiceOffresEmplois");
+      IServiceOffreEmploi serviceOffre = (IServiceOffreEmploi) ServicesLocator.getInstance().getRemoteInterface("ServiceOffresEmplois");
       offre = serviceOffre.getOffre(id);
       if(offre == null)
       {

@@ -11,7 +11,7 @@ import eu.telecom_bretagne.cabinet_recrutement.data.model.OffreEmploi;
  * @author Florian GUILLOT
  */
 @Remote
-public interface IServiceOffresEmplois {
+public interface IServiceOffreEmploi {
 	
 	public List<OffreEmploi> listeDesOffres();
 	
