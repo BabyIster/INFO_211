@@ -52,15 +52,15 @@ java.text.SimpleDateFormat"%>
               <%
               for(OffreEmploi offre : offres){
                   Set <Qualification> offrequal = offre.getQualifications();
-        	      String qalif_candi = candidature.getQualification().toString();
+        	      String qalif_candi = candidature.getQualification().getIntitule();
         	      String s = "";
         	      
         	      for (Qualification q : offrequal) {
-        	    	s = s + q;  
+        	    	s = s + q.getIntitule();  
         	      }
         	      
-        	      System.out.println("" + s);
-        	      System.out.println("" + qalif_candi);
+        	   //   System.out.println("Offre : " + s);
+        	   //  System.out.println("Candi : " + qalif_candi);
         	      
         	      
         	      if(s.contains(qalif_candi)) {
