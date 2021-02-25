@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html" pageEncoding="ISO-8859-1"%>
 
 <%@page import="eu.telecom_bretagne.cabinet_recrutement.front.utils.ServicesLocator,
@@ -10,6 +11,8 @@
   String idStringValue = request.getParameter("id");
   int id = -1;
   Entreprise entreprise = null;
+  
+  SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yy");
   
   if(idStringValue == null)
   {

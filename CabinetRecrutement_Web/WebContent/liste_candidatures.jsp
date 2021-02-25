@@ -26,11 +26,6 @@ IServiceCandidature serviceCandidature = (IServiceCandidature) ServicesLocator.g
               <tr>
                 <th>Nom</th>
                 <th>Prénom</th>
-                <th>Date de naissance </th>
-                <th>Adresse postale </th>
-                <th>Adresse email</th>
-                <th>CV</th>
-                <th>Date de publication</th>
                 <th>Qualification</th>
                 <th>Secteur d'activité</th>
                 
@@ -47,11 +42,7 @@ IServiceCandidature serviceCandidature = (IServiceCandidature) ServicesLocator.g
                 <tr>
                  <td><%=candidature.getNom()%></td>
                  <td><%=candidature.getPrenom()%></td>
-                 <td><%=candidature.getDateNaissance()%></td>
-                 <td><%=candidature.getAdressePostale()%></td>
-                 <td><%=candidature.getAdresseEmail()%></td>
-                 <td><%=candidature.getCv()%></td>
-                 <td><%=candidature.getDateDepot()%></td>               
+              
                  <td><%=candidature.getQualification().getIntitule()%></td>
                  <td><%
                  Set<SecteurActivite> candidatureSecteur = candidature.getSecteurActivites();
@@ -60,8 +51,9 @@ IServiceCandidature serviceCandidature = (IServiceCandidature) ServicesLocator.g
                 	 <li><%=q.getIntitule()%></li>
                  <%
                  }
-                 %></td>
-                 
+                 %>
+                 </td>
+                   <td align="center"><a href="template.jsp?action=infos_candidature&id=<%=candidature.getId()%>"><i class="fa fa-eye fa-lg"></i></a></td>
                  <td>           
                 <%
               }
