@@ -51,16 +51,25 @@ java.text.SimpleDateFormat"%>
             <tbody>
               <%
               for(OffreEmploi offre : offres){
-              
-            	  System.out.println("" + offre.getQualifications().toString());
-        	      System.out.println("" + candidature.getQualification().toString());
+                  Set <Qualification> offrequal = offre.getQualifications();
+        	      String qalif_candi = candidature.getQualification().toString();
+        	      String s = "";
+        	      
+        	      for (Qualification q : offrequal) {
+        	    	s = s + q;  
+        	      }
+        	      
+        	      System.out.println("" + s);
+        	      System.out.println("" + qalif_candi);
+        	      
+        	      
+        	      if(s.contains(qalif_candi)) {
               %>
                 <tr>
                  <td>N°<%=offre.getId()%></td>
                  <td><%=offre.getTitre()%></td>
                  <td><%=offre.getEntreprise().getNom()%></td>
                  <td><%
-                 Set <Qualification> offrequal = offre.getQualifications();
                  for (Qualification q : offrequal)
                  {%>
                 	 <%=q.getIntitule()%>
@@ -73,6 +82,7 @@ java.text.SimpleDateFormat"%>
                 </tr>
                 <%
               }
+         }
   }
               %>
             </tbody>
