@@ -125,6 +125,8 @@
             </small>
             <br><b><a href="template.jsp">Retour a l'accueil</a></b>       
         </div>
+        4* 4
+        7        
           <%
         }
         %>
