@@ -28,6 +28,8 @@ public interface IServiceQualification
    */
   public List<Qualification> listeDesQualifications();
   
+  public Qualification getQualificationByName(String name);
+  
   public Qualification CreationQualification(Qualification qualification);
   //-----------------------------------------------------------------------------
 }

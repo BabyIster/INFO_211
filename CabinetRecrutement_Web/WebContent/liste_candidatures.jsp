@@ -53,8 +53,8 @@ IServiceCandidature serviceCandidature = (IServiceCandidature) ServicesLocator.g
                  }
                  %>
                  </td>
-                   <td align="center"><a href="template.jsp?action=infos_candidature&id=<%=candidature.getId()%>"><i class="fa fa-eye fa-lg"></i></a></td>
-                 <td>           
+                 <td align="center"><a href="template.jsp?action=infos_candidature&id=<%=candidature.getId()%>"><i class="fa fa-eye fa-lg"></i></a></td>
+                         
                 <%
               }
               %>

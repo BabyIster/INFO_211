@@ -48,4 +48,13 @@ public class ServiceQualification implements IServiceQualification
     return QualificationDAO.persist(Qualification);
   }
   //-----------------------------------------------------------------------------
+	@Override
+	public Qualification getQualificationByName(String name) {
+		for(Qualification q : listeDesQualifications()) {
+			if(q.getIntitule().equalsIgnoreCase(name)) {
+				return q;
+			}
+		}
+		return null;
+	}
 }

@@ -60,8 +60,7 @@ List<Qualification> allqualifications = serviceQualification.listeDesQualificati
 		   <div class="form-group">
 			  <label for="InputSecteur">Secteur activité:</label>			 
 			    <%			  
-			     for (SecteurActivite q : allsecteurs)
-                 {%>
+			     for (SecteurActivite q : allsecteurs) {%>
                 	 <label class="radio-inline"><input type="radio" name="InputSecteur"><%=q.getIntitule()%></label>
                  <%
                  }%>
@@ -70,10 +69,9 @@ List<Qualification> allqualifications = serviceQualification.listeDesQualificati
 			
 			<div class="form-group">
 			  <label for="InputQualification">Qualification:</label>
-			  <select class="form-control" id="sel1">
+			  <select class="form-control" id="InputQualification" name= "InputQualification">
 			    <%			  
-			     for (Qualification k : allqualifications)
-                 {%>
+			     for (Qualification k : allqualifications) {%>
                 	 <option name="InputQualification"> <%=k.getIntitule()%></option>
                  <%
                  }%>

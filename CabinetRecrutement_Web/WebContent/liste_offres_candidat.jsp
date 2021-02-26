@@ -56,13 +56,9 @@ java.text.SimpleDateFormat"%>
         	      String s = "";
         	      
         	      for (Qualification q : offrequal) {
-        	    	s = s + q.getIntitule();  
+        	    	s = s + q.getIntitule();    
         	      }
-        	      
-        	   //   System.out.println("Offre : " + s);
-        	   //  System.out.println("Candi : " + qalif_candi);
-        	      
-        	      
+
         	      if(s.contains(qalif_candi)) {
               %>
                 <tr>

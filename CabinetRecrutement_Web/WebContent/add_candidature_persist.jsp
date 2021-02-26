@@ -39,7 +39,7 @@ IServiceSecteurActivite serviceSecteurActivite = (IServiceSecteurActivite) Servi
 
   Date dateNaissanceFormat = formater.parse(dateNaissance);
 
-  Qualification qualification = serviceQualification.getQualification(1);
+  Qualification qualification = serviceQualification.getQualificationByName(Qualification);
   Set<SecteurActivite> secteur = new HashSet<SecteurActivite>();
   secteur.add(serviceSecteurActivite.getSecteurActivite(1));
 
@@ -103,6 +103,10 @@ IServiceSecteurActivite serviceSecteurActivite = (IServiceSecteurActivite) Servi
                 <tr class="warning">
                   <td><strong>Date de dépot</strong></td>
                   <td><%=formater.format(candidature.getDateDepot())%></td>
+                </tr>
+                <tr class="warning">
+                  <td><strong>Qualification</strong></td>
+                  <td><%=candidature.getQualification().getIntitule()%></td>
                 </tr>
               </tbody>
             </table>
