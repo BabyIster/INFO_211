@@ -34,27 +34,27 @@ List<Qualification> allqualifications = serviceQualification.listeDesQualificati
 		  <form action="template.jsp?action=add_candidature_persist" method="post">
 		  <div class="form-group">
 		    <label for="InputPrenom">Prenom</label>
-		    <input type="text" class="form-control" name="InputPrenom" aria-describedby="emailHelp" placeholder="Prénom">
+		    <input type="text" class="form-control" name="InputPrenom" aria-describedby="emailHelp" placeholder="Prénom" required>
 		  </div>
 		 <div class="form-group">
 		    <label for="InputNom">Nom</label>
-		    <input type="text" class="form-control" name="InputNom" aria-describedby="emailHelp" placeholder="Nom">
+		    <input type="text" class="form-control" name="InputNom" aria-describedby="emailHelp" placeholder="Nom" required>
 		  </div>
 		  <div class="form-group">
 		    <label for="Inputdate">Date de naissance (dd/MM/yyyy)</label>
-		    <input type="date" class="form-control" name="Inputdate" placeholder="Date de naissance">
+		    <input type="date" class="form-control" name="Inputdate" placeholder="Date de naissance" required>
 		  </div>
 		  <div class="form-group">
 		    <label for="Inputadresse">Adresse postale</label>
-		    <input type="text" class="form-control" name="Inputadresse" placeholder="Adresse postale">
+		    <input type="text" class="form-control" name="Inputadresse" placeholder="Adresse postale" required>
 		  </div>
 		  <div class="form-group">
 		    <label for="Inputmail">Email</label>
-		    <input type="email" class="form-control" name="Inputmail" placeholder="Email">
+		    <input type="email" class="form-control" name="Inputmail" placeholder="Email" required>
 		  </div>
 		  <div class="form-group">
 		    <label for="InputCV">CV</label>
-		    <textarea class="form-control" name="InputCV" placeholder="Detailler votre cv" rows="3" name="cv"></textarea>
+		    <textarea class="form-control" name="InputCV" placeholder="Detailler votre cv" rows="3" name="cv" required></textarea>
 		  </div>
 		  
 		   <div class="form-group">

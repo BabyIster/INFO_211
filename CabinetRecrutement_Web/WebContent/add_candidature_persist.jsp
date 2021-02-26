@@ -34,8 +34,6 @@ IServiceSecteurActivite serviceSecteurActivite = (IServiceSecteurActivite) Servi
   String Qualification = request.getParameter("InputQualification");
   String Secteur = request.getParameter("InputSecteur");
   
-  System.out.println("Secteur: " + Secteur);
-
   Date dateNaissanceFormat = formater.parse(dateNaissance);
 
   Qualification qualification = serviceQualification.getQualificationByName(Qualification);
