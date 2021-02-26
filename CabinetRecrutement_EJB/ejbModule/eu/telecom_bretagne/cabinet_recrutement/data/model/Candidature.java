@@ -209,5 +209,15 @@ public class Candidature implements Serializable {
 	public void setSecteurActivites(Set<SecteurActivite> secteurActivites) {
 		this.secteurActivites = secteurActivites;
 	}
+	
+	public String getSecteurActiviteString() {
+		String result = "";
+		
+		Set<SecteurActivite> offreSecteur = this.getSecteurActivites();
+        for (SecteurActivite q : offreSecteur) {
+        	result = result + " " + q.getIntitule();
+        }
+        return result;
+	}
 
 }

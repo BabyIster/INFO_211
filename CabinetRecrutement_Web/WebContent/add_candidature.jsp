@@ -58,13 +58,12 @@ List<Qualification> allqualifications = serviceQualification.listeDesQualificati
 		  </div>
 		  
 		   <div class="form-group">
-			  <label for="InputSecteur">Secteur activité:</label>			 
+			  <label for="InputSecteur">Secteur activité:</label>	
 			    <%			  
 			     for (SecteurActivite q : allsecteurs) {%>
-                	 <label class="radio-inline"><input type="radio" name="InputSecteur"><%=q.getIntitule()%></label>
+                	 <label class="radio-inline"><input type="radio" name="InputSecteur" value="<%=q.getId()%>"><%=q.getIntitule()%></label>
                  <%
                  }%>
-               </select>			 
 			</div>
 			
 			<div class="form-group">

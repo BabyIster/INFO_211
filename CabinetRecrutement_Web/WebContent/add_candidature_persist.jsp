@@ -34,14 +34,13 @@ IServiceSecteurActivite serviceSecteurActivite = (IServiceSecteurActivite) Servi
   String Qualification = request.getParameter("InputQualification");
   String Secteur = request.getParameter("InputSecteur");
   
-  System.out.println("Qualification: " + Qualification);
   System.out.println("Secteur: " + Secteur);
 
   Date dateNaissanceFormat = formater.parse(dateNaissance);
 
   Qualification qualification = serviceQualification.getQualificationByName(Qualification);
   Set<SecteurActivite> secteur = new HashSet<SecteurActivite>();
-  secteur.add(serviceSecteurActivite.getSecteurActivite(1));
+  secteur.add(serviceSecteurActivite.getSecteurActivite(Integer.parseInt(Secteur)));
 
   Candidature candidature = new Candidature(prenom, nom, dateNaissanceFormat, ville, mail, cv, dateNaissanceFormat, qualification, secteur);
   candidature = servicecandidature.CreationCandidature(candidature);
@@ -107,6 +106,10 @@ IServiceSecteurActivite serviceSecteurActivite = (IServiceSecteurActivite) Servi
                 <tr class="warning">
                   <td><strong>Qualification</strong></td>
                   <td><%=candidature.getQualification().getIntitule()%></td>
+                </tr>
+                <tr class="warning">
+                  <td><strong>Secteur d'activité</strong></td>
+                  <td><%=candidature.getSecteurActiviteString()%></td>
                 </tr>
               </tbody>
             </table>
