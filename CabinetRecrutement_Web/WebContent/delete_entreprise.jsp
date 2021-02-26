@@ -26,6 +26,8 @@ if(utilisateur instanceof Entreprise)
 		erreur = "Vous ne pouvez supprimer que votre entreprise ! Pas celle des autres !!!";
 	}
 	else{
+		serviceEntreprise.DeleteEntreprise(entreprise);
+		session.invalidate();
 		%>
 		<div class="col-lg-4">
         <div class="panel panel-danger">
@@ -34,6 +36,8 @@ if(utilisateur instanceof Entreprise)
             </div>
             <div class="panel-body">
                 <p>L'entreprise <%=entreprise.getNom() %> n'est désormait plus dans notre base de données</p>
+                <p>Votre compte a donc été supprimé, vous allez-être déconnecter</p>
+                <b><a href="template.jsp">Retour à l'accueil</a></b>
             </div>
         </div>
     </div>

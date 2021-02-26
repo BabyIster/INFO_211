@@ -60,7 +60,7 @@ else if(utilisateur instanceof Candidature)
         <a href="#"><i class="fa fa-th"></i> Menu <b>ENTREPRISE</b><span class="fa arrow"></span></a>
         <ul class="nav nav-second-level">
           <li><a href="template.jsp?action=update_entreprise">Mettre à jour les informations de l'entreprise</a></li>
-          <li><a href="template.jsp?action=liste_entreprises">Poster une nouvelle offre</a></li>
+          <li><a href="template.jsp?action=add_offre">Poster une nouvelle offre</a></li>
           <li><a href="template.jsp?action=offres_entreprise">Vos offres publiées</a></li>
         </ul> <!-- /.nav-second-level -->
       </li>

@@ -67,8 +67,8 @@ public class OffreEmploi implements Serializable {
 	private Entreprise entreprise;
 
 	//bi-directional many-to-many association to Qualification
-	@ManyToMany(mappedBy="offreEmplois", fetch=FetchType.EAGER)
-	private Set<Qualification> qualifications;
+	//@ManyToMany(mappedBy="offreEmplois", fetch=FetchType.EAGER)
+	//private Set<Qualification> qualifications;
 
 	//bi-directional many-to-many association to SecteurActivite
 	@ManyToMany(mappedBy="offreEmplois", fetch=FetchType.EAGER)
@@ -179,12 +179,12 @@ public class OffreEmploi implements Serializable {
 		this.entreprise = entreprise;
 	}
 
-	public Set<Qualification> getQualifications() {
-		return this.qualifications;
+	public Qualification getQualifications() {
+		return this.qualification;
 	}
 
-	public void setQualifications(Set<Qualification> qualifications) {
-		this.qualifications = qualifications;
+	public void setQualifications(Qualification qualification) {
+		this.qualification = qualification;
 	}
 
 	public Set<SecteurActivite> getSecteurActivites() {

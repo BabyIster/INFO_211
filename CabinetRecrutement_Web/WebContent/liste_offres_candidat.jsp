@@ -10,7 +10,7 @@ java.util.Set,
 java.text.SimpleDateFormat"%>
 
 <%
-	IServiceOffreEmploi serviceOffresEmplois = (IServiceOffreEmploi) ServicesLocator.getInstance().getRemoteInterface("ServiceOffresEmplois");
+	IServiceOffreEmploi serviceOffresEmplois = (IServiceOffreEmploi) ServicesLocator.getInstance().getRemoteInterface("ServiceOffreEmploi");
   List<OffreEmploi> offres = serviceOffresEmplois.listeDesOffres();
   
   SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yy");
@@ -51,35 +51,18 @@ java.text.SimpleDateFormat"%>
             <tbody>
               <%
               for(OffreEmploi offre : offres){
-                  Set <Qualification> offrequal = offre.getQualifications();
-        	      String qalif_candi = candidature.getQualification().getIntitule();
-        	      String s = "";
-        	      
-        	      for (Qualification q : offrequal) {
-        	    	s = s + q.getIntitule();    
-        	      }
-
-        	      if(s.contains(qalif_candi)) {
               %>
                 <tr>
                  <td>N°<%=offre.getId()%></td>
                  <td><%=offre.getTitre()%></td>
                  <td><%=offre.getEntreprise().getNom()%></td>
-                 <td><%
-                 for (Qualification q : offrequal)
-                 {%>
-                	 <%=q.getIntitule()%>
-                 <%
-                 }
-                 %>
-                 </td>
+                 <td><%=offre.getQualifications().getIntitule()%></td>
                  <td><%=formater.format(offre.getDateDepot())%></td>
                   <td align="center"><a href="template.jsp?action=infos_offre&id=<%=offre.getId()%>"><i class="fa fa-eye fa-lg"></i></a></td>
                 </tr>
                 <%
               }
          }
-  }
               %>
             </tbody>
           </table>

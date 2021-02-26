@@ -3,7 +3,7 @@
 <%@page import="eu.telecom_bretagne.cabinet_recrutement.front.utils.ServicesLocator,eu.telecom_bretagne.cabinet_recrutement.service.IServiceOffreEmploi,eu.telecom_bretagne.cabinet_recrutement.service.IServiceEntreprise,eu.telecom_bretagne.cabinet_recrutement.data.model.Qualification,eu.telecom_bretagne.cabinet_recrutement.data.model.Entreprise,eu.telecom_bretagne.cabinet_recrutement.data.model.OffreEmploi,java.util.List,java.util.Set,java.text.SimpleDateFormat"%>
 
 <%
-	IServiceOffreEmploi serviceOffresEmplois = (IServiceOffreEmploi) ServicesLocator.getInstance().getRemoteInterface("ServiceOffresEmplois");
+	IServiceOffreEmploi serviceOffresEmplois = (IServiceOffreEmploi) ServicesLocator.getInstance().getRemoteInterface("ServiceOffreEmploi");
   IServiceEntreprise serviceEntreprise = (IServiceEntreprise) ServicesLocator.getInstance().getRemoteInterface("ServiceEntreprise");
   
   SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yy");
@@ -50,15 +50,7 @@
                  <td>N°<%=offre.getId()%></td>
                  <td><%=offre.getTitre()%></td>
                  <td><%=offre.getEntreprise().getNom()%></td>
-                 <td><%
-                 Set <Qualification> offrequal = offre.getQualifications();
-                 for (Qualification q : offrequal)
-                 {%>
-                	 <%=q.getIntitule()%>
-                 <%
-                 }
-                 %>
-                 </td>
+                 <td><%=offre.getQualifications().getIntitule()%></td>
                  <td><%=formater.format(offre.getDateDepot())%></td>
                   <td align="center"><a href="template.jsp?action=infos_offre&id=<%=offre.getId()%>"><i class="fa fa-eye fa-lg"></i></a></td>
                 </tr>
@@ -91,5 +83,3 @@
 		 <%
 
 	}%>
-  
-%>

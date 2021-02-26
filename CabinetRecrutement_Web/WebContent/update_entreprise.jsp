@@ -41,7 +41,7 @@ if(utilisateur instanceof Entreprise)
 		  </div>
 		  <div class="form-group">
 		    <label for="InputDescEntreprise">Description</label>
-		    <textarea type="text" class="form-control" name="InputDescEntreprise" rows="5"><%=entreprise.getDescriptif() %>"</textarea>
+		    <textarea type="text" class="form-control" name="InputDescEntreprise" rows="5"><%=entreprise.getDescriptif()%></textarea>
 		  </div>
 		  <div class="form-group">
 		    <label for="InputVilleEntreprise">Ville</label>
@@ -134,7 +134,7 @@ if(erreur != null) // Une erreur a été détectée et est affichée.
        <p class="text-danger"><strong><%=erreur%></strong></p>
      </div>
    </div>
-   <br><b><a href="template.jsp?action=update_entreprise">Retour a la page de modification</a></b>
+   <br><b><a href="template.jsp">Retour a l'accueil</a></b>
  </div> <!-- /.row col-xs-offset-1 col-xs-10 -->
  <%
  }%>

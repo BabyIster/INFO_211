@@ -41,5 +41,11 @@ public class ServiceOffreEmploi implements IServiceOffreEmploi{
     {
       return offreEmploiDAO.findById(id);
     }
+  //-----------------------------------------------------------------------------
+    @Override
+    public OffreEmploi CreationOffre(OffreEmploi offreEmploi)
+    {
+      return offreEmploiDAO.persist(offreEmploi);
+    }
 
 }

@@ -26,7 +26,7 @@
     {
       id = new Integer(idStringValue);
       // C'est OK : on a bien un id
-      IServiceOffreEmploi serviceOffre = (IServiceOffreEmploi) ServicesLocator.getInstance().getRemoteInterface("ServiceOffresEmplois");
+      IServiceOffreEmploi serviceOffre = (IServiceOffreEmploi) ServicesLocator.getInstance().getRemoteInterface("ServiceOffreEmploi");
       offre = serviceOffre.getOffre(id);
       if(offre == null)
       {
@@ -124,9 +124,7 @@
             </table>
             </small>
             <br><b><a href="template.jsp">Retour a l'accueil</a></b>       
-        </div>
-        4* 4
-        7        
+        </div>      
           <%
         }
         %>

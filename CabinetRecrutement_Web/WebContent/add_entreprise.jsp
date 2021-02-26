@@ -14,8 +14,6 @@ String nom = request.getParameter("InputNomEntreprise");
 String desc = request.getParameter("InputDescEntreprise");
 String ville = request.getParameter("InputAdresseEntreprise");
 
-
-
 %>
 <div class="row">
   <div class="col-lg-12">

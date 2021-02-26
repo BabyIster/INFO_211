@@ -54,4 +54,10 @@ public class ServiceEntreprise implements IServiceEntreprise
     return entrepriseDAO.update(entreprise);
   }
   //-----------------------------------------------------------------------------
+  @Override
+  public void DeleteEntreprise(Entreprise entreprise)
+  {
+    entrepriseDAO.remove(entreprise);
+  }
+  //-----------------------------------------------------------------------------
 }

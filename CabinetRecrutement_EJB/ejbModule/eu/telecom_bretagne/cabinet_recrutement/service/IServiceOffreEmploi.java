@@ -16,5 +16,7 @@ public interface IServiceOffreEmploi {
 	public List<OffreEmploi> listeDesOffres();
 	
 	public OffreEmploi getOffre(int id);
+	
+	public OffreEmploi CreationOffre(OffreEmploi offreEmploi);
 
 }

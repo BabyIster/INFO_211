@@ -31,5 +31,7 @@ public interface IServiceEntreprise
   public Entreprise CreationEntreprise(Entreprise entreprise);
   
   public Entreprise UpdateEntreprise(Entreprise entreprise);
+  
+  public void DeleteEntreprise(Entreprise entreprise);
   //-----------------------------------------------------------------------------
 }
