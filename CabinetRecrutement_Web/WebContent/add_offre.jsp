@@ -159,7 +159,7 @@ if(utilisateur instanceof Entreprise)
 		                 Set <SecteurActivite> secteursList = offre.getSecteurActivites();
 		                 for (SecteurActivite s : secteursList)
 		                 {%>
-		                	 <%=s.getIntitule()%>
+		                	 <li><%=s.getIntitule()%></li>
 		                 <%
 		                 }
 		                 %>
@@ -167,7 +167,8 @@ if(utilisateur instanceof Entreprise)
 		              </tr>
 		            </tbody>
 		          </table>
-		          </small>      
+		          </small>
+		          <br><b><a href="template.jsp">Retour a l'accueil</a></b>      
 		      </div>
 		        <%
 	      }
@@ -188,7 +189,7 @@ if(utilisateur instanceof Entreprise)
              <p class="text-danger"><strong><%=erreur%></strong></p>
            </div>
          </div>
-         <br><b><a href="template.jsp?action=add_offre">Retour a la page de création</a></b>
+         <br><b><a href="template.jsp">Retour a l'accueil</a></b>
        </div> <!-- /.row col-xs-offset-1 col-xs-10 -->
        <%
        }%>		

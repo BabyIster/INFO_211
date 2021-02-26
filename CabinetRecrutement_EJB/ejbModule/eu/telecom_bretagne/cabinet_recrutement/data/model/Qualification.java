@@ -79,7 +79,7 @@ public class Qualification implements Serializable {
 		this.candidatures = candidatures;
 	}
 
-	public Candidature addCandidature(Candidature candidature) {
+	/*public Candidature addCandidature(Candidature candidature) {
 		getCandidatures().add(candidature);
 		candidature.setQualification(this);
 
@@ -91,7 +91,7 @@ public class Qualification implements Serializable {
 		candidature.setQualification(null);
 
 		return candidature;
-	}
+	}*/
 
 	public Set<OffreEmploi> getOffreEmplois() {
 		return this.offreEmplois;

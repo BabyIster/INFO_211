@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -33,7 +34,7 @@ public class SecteurActivite implements Serializable {
 	private String intitule;
 
 	//bi-directional many-to-many association to Candidature
-	@ManyToMany
+	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(
 		name="index_activite_candidature"
 		, joinColumns={
@@ -46,7 +47,7 @@ public class SecteurActivite implements Serializable {
 	private Set<Candidature> candidatures;
 
 	//bi-directional many-to-many association to OffreEmploi
-	@ManyToMany
+	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(
 		name="index_activite"
 		, joinColumns={
@@ -88,6 +89,18 @@ public class SecteurActivite implements Serializable {
 	public void setCandidatures(Set<Candidature> candidatures) {
 		this.candidatures = candidatures;
 	}
+	
+	public Candidature addCandidature(Candidature candidature) {
+		getCandidatures().add(candidature);
+
+		return candidature;
+	}
+
+	public Candidature removeCandidature(Candidature candidature) {
+		getCandidatures().remove(candidature);
+
+		return candidature;
+	}
 
 	public Set<OffreEmploi> getOffreEmplois() {
 		return this.offreEmplois;
@@ -95,6 +108,18 @@ public class SecteurActivite implements Serializable {
 
 	public void setOffreEmplois(Set<OffreEmploi> offreEmplois) {
 		this.offreEmplois = offreEmplois;
+	}
+	
+	public OffreEmploi addOffreEmplois(OffreEmploi offreEmploi) {
+		getOffreEmplois().add(offreEmploi);
+
+		return offreEmploi;
+	}
+
+	public OffreEmploi removeOffreEmplois(OffreEmploi offreEmploi) {
+		getOffreEmplois().remove(offreEmploi);
+
+		return offreEmploi;
 	}
 
 }

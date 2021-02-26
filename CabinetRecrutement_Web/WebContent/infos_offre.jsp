@@ -81,16 +81,8 @@
                   <td><%=offre.getProfilRecherche()%></td>
                 </tr>
                 <tr class="warning">
-                  <td><strong>Qualification(s)</strong></td>
-                  <td><ul><%
-                 Set<Qualification> offrequal = offre.getQualifications();
-                 for (Qualification q : offrequal)
-                 {%>
-                	 <li><%=q.getIntitule()%></li>
-                 <%
-                 }
-                 %>
-                 </ul></td>
+                  <td><strong>Qualification</strong></td>
+                  <td><%=offre.getQualifications().getIntitule()%></td>
                 </tr>
                 <tr class="warning">
                   <td><strong>Secteur(s)</strong></td>
@@ -123,7 +115,7 @@
               </tbody>
             </table>
             </small>
-            <br><b><a href="template.jsp">Retour a l'accueil</a></b>       
+            <br><b><a href=javascript:history.go(-1)>Retour</a></b>       
         </div>      
           <%
         }

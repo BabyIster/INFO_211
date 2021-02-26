@@ -12,6 +12,8 @@ import eu.telecom_bretagne.cabinet_recrutement.data.dao.EntrepriseDAO;
 import eu.telecom_bretagne.cabinet_recrutement.data.dao.OffreEmploiDAO;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.Entreprise;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.OffreEmploi;
+import eu.telecom_bretagne.cabinet_recrutement.data.model.SecteurActivite;
+import java.util.Set;
 
 /**
  * Session Bean implementation class ServiceOffresEmplois
@@ -45,7 +47,13 @@ public class ServiceOffreEmploi implements IServiceOffreEmploi{
     @Override
     public OffreEmploi CreationOffre(OffreEmploi offreEmploi)
     {
-      return offreEmploiDAO.persist(offreEmploi);
+      OffreEmploi offreReturn = offreEmploiDAO.persist(offreEmploi);
+      Set<SecteurActivite> secteurs = offreReturn.getSecteurActivites();
+      
+      for(SecteurActivite s : secteurs) {
+    	  s.addOffreEmplois(offreReturn);
+      }
+      return offreReturn;
     }
 
 }
