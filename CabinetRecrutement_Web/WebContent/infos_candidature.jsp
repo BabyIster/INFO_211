@@ -85,7 +85,7 @@
                 </tr>
                 <tr class="warning">
                   <td><strong>Date de Naissance</strong></td>
-                  <td><%=candidature.getDateNaissance()%></td>
+                  <td><%=formater.format(candidature.getDateNaissance())%></td>
                 </tr>
                  <tr class="warning">
                   <td><strong>Adresse postale (ville)</strong></td>

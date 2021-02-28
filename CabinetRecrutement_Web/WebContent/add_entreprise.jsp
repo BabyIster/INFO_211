@@ -27,15 +27,15 @@ if(nom==null & desc==null & ville==null){
 	<form action="template.jsp?action=add_entreprise" method="post">
 	  <div class="form-group">
 	    <label for="InputNomEntreprise">Nom</label>
-	    <input type="text" class="form-control" name="InputNomEntreprise" aria-describedby="emailHelp" placeholder="Nom de l'entreprise">
+	    <input type="text" class="form-control" name="InputNomEntreprise" aria-describedby="emailHelp" placeholder="Nom de l'entreprise" required>
 	  </div>
 	  <div class="form-group">
 	    <label for="InputDescEntreprise">Descriptif</label>
-	    <textarea class="form-control" placeholder="Descriptif de l'entreprise" rows="3" name="InputDescEntreprise"></textarea>
+	    <textarea class="form-control" placeholder="Descriptif de l'entreprise" rows="3" name="InputDescEntreprise" required></textarea>
 	  </div>
 	  <div class="form-group">
 	    <label for="InputAdresseEntreprise">Adresse postale (Ville)</label>
-	    <input type="text" class="form-control" name="InputAdresseEntreprise" placeholder="Ville de l'entreprise">
+	    <input type="text" class="form-control" name="InputAdresseEntreprise" placeholder="Ville de l'entreprise" required>
 	  </div>
 	  <button type="submit" class="btn btn-primary">Valider</button>
 	</form>

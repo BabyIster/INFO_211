@@ -28,7 +28,7 @@ IServiceCandidature serviceCandidature = (IServiceCandidature) ServicesLocator.g
                 <th>Prénom</th>
                 <th>Qualification</th>
                 <th>Secteur d'activité</th>
-                
+                <th>Informations</th>
               </tr>
             </thead>
             <!--
