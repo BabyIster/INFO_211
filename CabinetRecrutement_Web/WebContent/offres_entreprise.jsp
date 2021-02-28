@@ -1,10 +1,21 @@
 <%@ page language="java" contentType="text/html" pageEncoding="ISO-8859-1"%>
 
-<%@page import="eu.telecom_bretagne.cabinet_recrutement.front.utils.ServicesLocator,eu.telecom_bretagne.cabinet_recrutement.service.IServiceOffreEmploi,eu.telecom_bretagne.cabinet_recrutement.service.IServiceEntreprise,eu.telecom_bretagne.cabinet_recrutement.data.model.Qualification,eu.telecom_bretagne.cabinet_recrutement.data.model.Entreprise,eu.telecom_bretagne.cabinet_recrutement.data.model.OffreEmploi,java.util.List,java.util.Set,java.text.SimpleDateFormat"%>
+<%@page import="eu.telecom_bretagne.cabinet_recrutement.front.utils.ServicesLocator,
+eu.telecom_bretagne.cabinet_recrutement.service.IServiceOffreEmploi,
+eu.telecom_bretagne.cabinet_recrutement.service.IServiceEntreprise,
+eu.telecom_bretagne.cabinet_recrutement.service.IServiceCandidature,
+eu.telecom_bretagne.cabinet_recrutement.data.model.Qualification,
+eu.telecom_bretagne.cabinet_recrutement.data.model.Entreprise,
+eu.telecom_bretagne.cabinet_recrutement.data.model.Candidature,
+eu.telecom_bretagne.cabinet_recrutement.data.model.OffreEmploi,
+java.util.List,
+java.util.
+Set,java.text.SimpleDateFormat"%>
 
 <%
-	IServiceOffreEmploi serviceOffresEmplois = (IServiceOffreEmploi) ServicesLocator.getInstance().getRemoteInterface("ServiceOffreEmploi");
+  IServiceOffreEmploi serviceOffresEmplois = (IServiceOffreEmploi) ServicesLocator.getInstance().getRemoteInterface("ServiceOffreEmploi");
   IServiceEntreprise serviceEntreprise = (IServiceEntreprise) ServicesLocator.getInstance().getRemoteInterface("ServiceEntreprise");
+  IServiceCandidature serviceCandidature = (IServiceCandidature) ServicesLocator.getInstance().getRemoteInterface("ServiceCandidature");
   
   SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yy");
   
@@ -12,7 +23,9 @@
   String erreur=null;
   int idEnt=-1;
   Set<OffreEmploi> offres=null;
-
+	
+  List<Candidature> candidaturesRecu;
+  
   if(utilisateur instanceof Entreprise)
   {
 	  Entreprise entreprise = (Entreprise) utilisateur;
@@ -54,7 +67,15 @@
                  <td><%=offre.getEntreprise().getNom()%></td>
                  <td><%=offre.getQualifications().getIntitule()%></td>
                  <td><%=formater.format(offre.getDateDepot())%></td>
-                 <td>En construction</td>
+                 <td><%
+                 	candidaturesRecu = serviceCandidature.listCandidaturesPotentielles(offre.getSecteurActivites(), offre.getQualifications());
+                 	for(Candidature c : candidaturesRecu){
+                 		%><li><a href="template.jsp?action=infos_candidature&id=<%=c.getId()%>"><%=c.getNom() %> <%=c.getPrenom() %></a></li><%
+                 	}
+                 	if(candidaturesRecu.isEmpty()){
+                 		%>Pas de candidat potentiel pour le moment<%
+                 	}
+                 %></td>
                  <td align="center"><a href="template.jsp?action=update_offre&id=<%=offre.getId()%>"><i class="fa fa-pencil-square-o fa-lg"></i></a></td>
                   <td align="center"><a href="template.jsp?action=infos_offre&id=<%=offre.getId()%>"><i class="fa fa-eye fa-lg"></i></a></td>
                 </tr>

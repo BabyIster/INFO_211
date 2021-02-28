@@ -20,5 +20,4 @@ public interface IServiceOffreEmploi {
 	public OffreEmploi CreationOffre(OffreEmploi offreEmploi);
 	
 	public OffreEmploi UpdateOffre(OffreEmploi offre);
-
 }

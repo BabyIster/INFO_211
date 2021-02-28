@@ -29,8 +29,8 @@
     {
       id = new Integer(idStringValue);
       // C'est OK : on a bien un id
-      IServiceCandidature servicecandidature = (IServiceCandidature) ServicesLocator.getInstance().getRemoteInterface("ServiceCandidature");
-      candidature = servicecandidature.getCandidature(id);
+      IServiceCandidature serviceCandidature = (IServiceCandidature) ServicesLocator.getInstance().getRemoteInterface("ServiceCandidature");
+      candidature = serviceCandidature.getCandidature(id);
       if(candidature == null)
       {
         erreur="Aucune candidature ne correspond à cet identifiant : " + id;

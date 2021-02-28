@@ -1,16 +1,12 @@
 package eu.telecom_bretagne.cabinet_recrutement.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
-import javax.jws.WebService;
 
-import eu.telecom_bretagne.cabinet_recrutement.data.dao.EntrepriseDAO;
 import eu.telecom_bretagne.cabinet_recrutement.data.dao.OffreEmploiDAO;
-import eu.telecom_bretagne.cabinet_recrutement.data.model.Entreprise;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.OffreEmploi;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.SecteurActivite;
 import java.util.Set;
@@ -61,5 +57,5 @@ public class ServiceOffreEmploi implements IServiceOffreEmploi{
     {
       return offreEmploiDAO.update(offre);
     }
-
+  //-----------------------------------------------------------------------------
 }

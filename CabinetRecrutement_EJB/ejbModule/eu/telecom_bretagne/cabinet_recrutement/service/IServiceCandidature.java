@@ -1,10 +1,12 @@
 package eu.telecom_bretagne.cabinet_recrutement.service;
 
 import java.util.List;
+import java.util.Set;
+import eu.telecom_bretagne.cabinet_recrutement.data.model.Candidature;
+import eu.telecom_bretagne.cabinet_recrutement.data.model.SecteurActivite;
+import eu.telecom_bretagne.cabinet_recrutement.data.model.Qualification;
 
 import javax.ejb.Remote;
-
-import eu.telecom_bretagne.cabinet_recrutement.data.model.Candidature;
 
 /**
  * Interface du service gérant les entreprises.
@@ -30,4 +32,6 @@ public interface IServiceCandidature
   //-----------------------------------------------------------------------------
   
   public Candidature CreationCandidature(Candidature candidature);
+  
+  public List<Candidature> listCandidaturesPotentielles(Set<SecteurActivite> secteurs, Qualification qualification);
 }

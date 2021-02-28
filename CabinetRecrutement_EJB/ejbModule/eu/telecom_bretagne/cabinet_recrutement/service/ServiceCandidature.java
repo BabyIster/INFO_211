@@ -2,6 +2,8 @@ package eu.telecom_bretagne.cabinet_recrutement.service;
 
 import java.util.List;
 import java.util.Set;
+import java.util.ArrayList;
+import java.util.HashSet;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -11,6 +13,7 @@ import eu.telecom_bretagne.cabinet_recrutement.data.dao.CandidatureDAO;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.Candidature;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.Entreprise;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.SecteurActivite;
+import eu.telecom_bretagne.cabinet_recrutement.data.model.Qualification;
 
 /**
  * Session Bean implementation class ServiceEntreprise
@@ -54,6 +57,26 @@ public class ServiceCandidature implements IServiceCandidature
     }
     
     return candReturn;
+  }
+  //-----------------------------------------------------------------------------
+  @Override
+  public List<Candidature> listCandidaturesPotentielles(Set<SecteurActivite> secteurs, Qualification qualification)
+  {
+	List<Candidature> candidatures = new ArrayList<Candidature>();
+	List<Candidature> candidaturesRecu = new ArrayList<Candidature>();
+	
+	for(SecteurActivite s : secteurs) {
+		candidaturesRecu = candidatureDAO.findBySectorAndQualification(s.getId(), qualification.getId());
+		if(candidaturesRecu != null) {
+			for(Candidature c : candidaturesRecu) {
+				candidatures.add(c);
+			}
+		}
+	}
+	Set<Candidature> setTemp = new HashSet<Candidature>(candidatures);
+	List<Candidature> candidaturesFinal = new ArrayList<Candidature>(setTemp);
+	
+    return candidaturesFinal;
   }
   //-----------------------------------------------------------------------------
 }
