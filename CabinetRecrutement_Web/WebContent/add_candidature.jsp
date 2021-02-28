@@ -24,6 +24,7 @@ List<SecteurActivite> allsecteurs = serviceSecteurActivite.listeDesSecteurActivi
 List<Qualification> allqualifications = serviceQualification.listeDesQualifications();
 
 SimpleDateFormat formater = new SimpleDateFormat("dd-MM-yyyy");
+SimpleDateFormat formater2 = new SimpleDateFormat("yyyy-MM-dd");
 
 String erreur = null;
 String prenom = request.getParameter("InputPrenom");
@@ -126,7 +127,7 @@ if(request.getParameter("InputSecteur")!=null){
 	    if(erreur==null){
 		      Qualification qualification = serviceQualification.getQualification(idQual);
 		      
-		      Date dateNaissanceFormat = formater.parse(dateNaissance);
+		      Date dateNaissanceFormat = formater2.parse(dateNaissance);
 		      
 		      Candidature candidature = new Candidature(prenom, nom, dateNaissanceFormat, ville, mail, cv, date, qualification, secteurs);
 		      candidature = servicecandidature.CreationCandidature(candidature);
