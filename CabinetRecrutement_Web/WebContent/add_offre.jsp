@@ -67,15 +67,15 @@ if(utilisateur instanceof Entreprise)
 		<form action="template.jsp?action=add_offre" method="post">
 		  <div class="form-group">
 		    <label for="InputTitreOffre">Titre</label>
-		    <input type="text" class="form-control" name="InputTitreOffre" aria-describedby="emailHelp" placeholder="Titre de l'offre">
+		    <input type="text" class="form-control" name="InputTitreOffre" aria-describedby="emailHelp" placeholder="Titre de l'offre" required>
 		  </div>
 		  <div class="form-group">
 		    <label for="InputDescOffre">Descriptif</label>
-		    <textarea class="form-control" placeholder="Descriptif de l'offre" rows="5" name="InputDescOffre"></textarea>
+		    <textarea class="form-control" placeholder="Descriptif de l'offre" rows="5" name="InputDescOffre" required></textarea>
 		  </div>
 		  <div class="form-group">
 		    <label for="InputProfilOffre">Profil recherché</label>
-		    <input type="text" class="form-control" name="InputProfilOffre" placeholder="Indiquer ici le profil recherché">
+		    <input type="text" class="form-control" name="InputProfilOffre" placeholder="Indiquer ici le profil recherché" required>
 		  </div>
 		  <div class="form-group">
 				  <label for="InputSecteurOffre">Secteur activité :</label>			 
@@ -84,8 +84,7 @@ if(utilisateur instanceof Entreprise)
 	                 {%>
 	                	 <INPUT type="checkbox" name="InputSecteurOffre" value="<%=q.getId()%>"> <%=q.getIntitule() %>
 	                 <%
-	                 }%>
-	               </select>			 
+	                 }%>			 
 				</div>
 				<div class="form-group">
 				  <label for="InputQualOffre">Qualification demandé :</label>
@@ -113,7 +112,7 @@ if(utilisateur instanceof Entreprise)
 	    	  idQual=Integer.parseInt(qual);
 	      }
 	      catch(Exception e){
-	    	  erreur ="Erreur sur la qualification, l'id ("+qual+")";
+	    	  erreur ="Erreur sur la qualification, l'id ("+qual+") est mauvais";
 	      }
 	      
 	      if(erreur==null){

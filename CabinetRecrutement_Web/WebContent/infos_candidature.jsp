@@ -105,21 +105,22 @@
                 </tr>
                   <tr class="warning">
                   <td><strong>Secteur d'activité</strong></td>
-                  <%
+                  <td><%
                  Set<SecteurActivite> candidatureSecteur = candidature.getSecteurActivites();
                  for (SecteurActivite q : candidatureSecteur)
                  {%>
                 	 <li><%=q.getIntitule()%></li>
                  <%
                  }
-                 %>
+                 %></td>
+                 </tr>
                  <tr class="warning">
                   <td><strong>Qualification</strong></td>
                   <td><%=candidature.getQualification().getIntitule()%></td>
               </tbody>
             </table>
             </small>
-            <br><b><a href="template.jsp">Retour a l'accueil</a></b>       
+            <br><b><a href=javascript:history.go(-1)>Retour</a></b>       
         </div>
           <%
         }

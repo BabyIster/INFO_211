@@ -55,5 +55,11 @@ public class ServiceOffreEmploi implements IServiceOffreEmploi{
       }
       return offreReturn;
     }
+    //-----------------------------------------------------------------------------
+    @Override
+    public OffreEmploi UpdateOffre(OffreEmploi offre)
+    {
+      return offreEmploiDAO.update(offre);
+    }
 
 }

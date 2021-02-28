@@ -36,6 +36,8 @@
                 <th>Entreprise</th>
                 <th>Qualification requise</th>
                 <th>Date de dépôt</th>
+                <th>Candidats potentiels</th>
+                <th>Modification</th>
                 <th>Informations</th>
               </tr>
             </thead>
@@ -52,6 +54,8 @@
                  <td><%=offre.getEntreprise().getNom()%></td>
                  <td><%=offre.getQualifications().getIntitule()%></td>
                  <td><%=formater.format(offre.getDateDepot())%></td>
+                 <td>En construction</td>
+                 <td align="center"><a href="template.jsp?action=update_offre&id=<%=offre.getId()%>"><i class="fa fa-pencil-square-o fa-lg"></i></a></td>
                   <td align="center"><a href="template.jsp?action=infos_offre&id=<%=offre.getId()%>"><i class="fa fa-eye fa-lg"></i></a></td>
                 </tr>
                 <%
