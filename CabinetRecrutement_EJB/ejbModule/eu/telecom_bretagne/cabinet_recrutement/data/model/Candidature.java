@@ -196,7 +196,7 @@ public class Candidature implements Serializable {
 	}
 
 	public MessageOffreEmploi removeMessageOffreEmploi(MessageOffreEmploi messageOffreEmploi) {
-		getMessageOffreEmplois().remove(messageOffreEmploi);
+		//getMessageOffreEmplois().remove(messageOffreEmploi);
 		messageOffreEmploi.setCandidature(null);
 
 		return messageOffreEmploi;
