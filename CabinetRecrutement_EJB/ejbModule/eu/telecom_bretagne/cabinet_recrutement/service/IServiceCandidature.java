@@ -3,6 +3,7 @@ package eu.telecom_bretagne.cabinet_recrutement.service;
 import java.util.List;
 import java.util.Set;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.Candidature;
+import eu.telecom_bretagne.cabinet_recrutement.data.model.Entreprise;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.SecteurActivite;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.Qualification;
 
@@ -34,4 +35,8 @@ public interface IServiceCandidature
   public Candidature CreationCandidature(Candidature candidature);
   
   public List<Candidature> listCandidaturesPotentielles(Set<SecteurActivite> secteurs, Qualification qualification);
+  
+  public void DeleteCandidature(Candidature candidature);
+  
+  public Candidature UpdateCandidature(Candidature candidature);
 }

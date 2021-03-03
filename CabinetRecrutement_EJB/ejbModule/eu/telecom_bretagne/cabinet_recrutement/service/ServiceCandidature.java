@@ -1,9 +1,9 @@
 package eu.telecom_bretagne.cabinet_recrutement.service;
 
-import java.util.List;
-import java.util.Set;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -11,9 +11,8 @@ import javax.ejb.Stateless;
 
 import eu.telecom_bretagne.cabinet_recrutement.data.dao.CandidatureDAO;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.Candidature;
-import eu.telecom_bretagne.cabinet_recrutement.data.model.Entreprise;
-import eu.telecom_bretagne.cabinet_recrutement.data.model.SecteurActivite;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.Qualification;
+import eu.telecom_bretagne.cabinet_recrutement.data.model.SecteurActivite;
 
 /**
  * Session Bean implementation class ServiceEntreprise
@@ -60,8 +59,7 @@ public class ServiceCandidature implements IServiceCandidature
   }
   //-----------------------------------------------------------------------------
   @Override
-  public List<Candidature> listCandidaturesPotentielles(Set<SecteurActivite> secteurs, Qualification qualification)
-  {
+  public List<Candidature> listCandidaturesPotentielles(Set<SecteurActivite> secteurs, Qualification qualification) {
 	List<Candidature> candidatures = new ArrayList<Candidature>();
 	List<Candidature> candidaturesRecu = new ArrayList<Candidature>();
 	
@@ -79,4 +77,12 @@ public class ServiceCandidature implements IServiceCandidature
     return candidaturesFinal;
   }
   //-----------------------------------------------------------------------------
+  @Override
+  public void DeleteCandidature(Candidature candidature) {
+    candidatureDAO.remove(candidature);
+  }
+  @Override
+  public Candidature UpdateCandidature(Candidature candidature) {
+    return candidatureDAO.update(candidature);
+  }
 }
