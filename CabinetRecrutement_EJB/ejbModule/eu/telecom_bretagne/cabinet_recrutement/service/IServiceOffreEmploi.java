@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.Remote;
 
 import eu.telecom_bretagne.cabinet_recrutement.data.model.OffreEmploi;
+import eu.telecom_bretagne.cabinet_recrutement.data.model.Qualification;
 
 /**
  * Interface du service gérant les entreprises.
@@ -22,4 +23,7 @@ public interface IServiceOffreEmploi {
 	public OffreEmploi UpdateOffre(OffreEmploi offre);
 	
 	public void RemoveOffre(OffreEmploi offre);
+	
+	public List<OffreEmploi> listOffreQualification(Qualification qualification);
+
 }

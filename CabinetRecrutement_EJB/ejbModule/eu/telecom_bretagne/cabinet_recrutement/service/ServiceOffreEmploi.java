@@ -10,6 +10,7 @@ import eu.telecom_bretagne.cabinet_recrutement.data.dao.OffreEmploiDAO;
 import eu.telecom_bretagne.cabinet_recrutement.data.dao.Secteur_activiteDAO;
 import eu.telecom_bretagne.cabinet_recrutement.data.dao.EntrepriseDAO;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.OffreEmploi;
+import eu.telecom_bretagne.cabinet_recrutement.data.model.Qualification;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.SecteurActivite;
 import java.util.Set;
 
@@ -72,4 +73,17 @@ public class ServiceOffreEmploi implements IServiceOffreEmploi{
       offreEmploiDAO.remove(offre);
     }
   //-----------------------------------------------------------------------------
+
+	@Override
+	public List<OffreEmploi> listOffreQualification(Qualification qualification) {
+		List<OffreEmploi> toreturn = listeDesOffres();
+		
+		for(OffreEmploi offre : toreturn) {
+			if(!offre.getQualifications().getIntitule().equalsIgnoreCase(qualification.getIntitule())) {
+				toreturn.remove(offre);
+			}
+		}
+		
+		return toreturn;
+	}
 }

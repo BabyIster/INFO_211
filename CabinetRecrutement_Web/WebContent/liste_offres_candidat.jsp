@@ -10,19 +10,21 @@ java.util.Set,
 java.text.SimpleDateFormat"%>
 
 <%
-	IServiceOffreEmploi serviceOffresEmplois = (IServiceOffreEmploi) ServicesLocator.getInstance().getRemoteInterface("ServiceOffreEmploi");
-  List<OffreEmploi> offres = serviceOffresEmplois.listeDesOffres();
-  
-  SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yy");
-  
-  Object utilisateur = session.getAttribute("utilisateur");
-  String erreur=null;
-  int idCand = -1;
+IServiceOffreEmploi serviceOffresEmplois = (IServiceOffreEmploi) ServicesLocator.getInstance().getRemoteInterface("ServiceOffreEmploi");
 
-  if(utilisateur instanceof Candidature)
-  {
-	  Candidature candidature = (Candidature) utilisateur;
+SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yy");
+
+Object utilisateur = session.getAttribute("utilisateur");
+String erreur=null;
+List<OffreEmploi> offres  = null;
+Candidature candidature = null;
+int idCand = -1;
+if(utilisateur instanceof Candidature)
+{
+	  candidature = (Candidature) utilisateur;
 	  idCand = candidature.getId();
+	  offres = serviceOffresEmplois.listeDesOffres();
+}
 %>
 
 <div class="row">
@@ -48,9 +50,9 @@ java.text.SimpleDateFormat"%>
             <!--
               Contenu du tableau
             -->
-            <tbody>
               <%
               for(OffreEmploi offre : offres){
+            	   if(offre.getQualifications().getIntitule().equalsIgnoreCase(candidature.getQualification().getIntitule())) {
               %>
                 <tr>
                  <td>N°<%=offre.getId()%></td>
@@ -61,9 +63,13 @@ java.text.SimpleDateFormat"%>
                   <td align="center"><a href="template.jsp?action=infos_offre&id=<%=offre.getId()%>"><i class="fa fa-eye fa-lg"></i></a></td>
                 </tr>
                 <%
+              	}
               }
-         }
-              %>
+         
+       %>
+
+            <tbody>
+            
             </tbody>
           </table>
         </div> <!-- /.table-responsive -->
