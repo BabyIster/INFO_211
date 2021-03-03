@@ -12,8 +12,6 @@
                 
 <%
 IServiceEntreprise serviceEntreprise = (IServiceEntreprise) ServicesLocator.getInstance().getRemoteInterface("ServiceEntreprise");
-IServiceOffreEmploi serviceOffre = (IServiceOffreEmploi) ServicesLocator.getInstance().getRemoteInterface("ServiceOffreEmploi");
-IServiceOffreEmploi serviceOffre = (IServiceOffreEmploi) ServicesLocator.getInstance().getRemoteInterface("ServiceMessageOffre");
 
 Object utilisateur = session.getAttribute("utilisateur");
 
@@ -34,14 +32,6 @@ if(utilisateur instanceof Entreprise)
 		erreur = "Vous ne pouvez supprimer que votre entreprise ! Pas celle des autres !!!";
 	}
 	else{
-		Set<OffreEmploi> offresEnt = entreprise.getOffreEmplois();
-		
-		for(OffreEmploi o : offresEnt){
-			
-			serviceOffre.RemoveOffre(o);
-		}
-		serviceEntreprise.DeleteEntreprise(entreprise);
-		session.invalidate();
 		%>
 		<div class="col-lg-4">
         <div class="panel panel-danger">
@@ -56,6 +46,9 @@ if(utilisateur instanceof Entreprise)
         </div>
     </div>
     <%
+    serviceEntreprise.DeleteEntreprise(entreprise);
+	
+	session.invalidate();
 	}
 	if(erreur != null) // Une erreur a été détectée et est affichée.
 	{

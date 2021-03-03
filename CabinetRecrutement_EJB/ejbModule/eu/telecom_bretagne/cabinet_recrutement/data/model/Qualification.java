@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,7 +33,7 @@ public class Qualification implements Serializable {
 	private String intitule;
 
 	//bi-directional many-to-one association to Candidature
-	@OneToMany(mappedBy="qualification")
+	@OneToMany(mappedBy="qualification", fetch=FetchType.EAGER)
 	private Set<Candidature> candidatures;
 	
 	//bi-directional many-to-many association to OffreEmploi
@@ -78,20 +79,6 @@ public class Qualification implements Serializable {
 	public void setCandidatures(Set<Candidature> candidatures) {
 		this.candidatures = candidatures;
 	}
-
-	/*public Candidature addCandidature(Candidature candidature) {
-		getCandidatures().add(candidature);
-		candidature.setQualification(this);
-
-		return candidature;
-	}
-
-	public Candidature removeCandidature(Candidature candidature) {
-		getCandidatures().remove(candidature);
-		candidature.setQualification(null);
-
-		return candidature;
-	}*/
 
 	public Set<OffreEmploi> getOffreEmplois() {
 		return this.offreEmplois;

@@ -5,6 +5,7 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
 import eu.telecom_bretagne.cabinet_recrutement.data.dao.MessageOffreEmploiDAO;
+import eu.telecom_bretagne.cabinet_recrutement.data.model.MessageOffreEmploi;
 
 /**
  * Session Bean implementation class ServiceEntreprise
@@ -22,6 +23,14 @@ public class ServiceMessageOffre implements IServiceMessageOffre
    */
   public ServiceMessageOffre()
   {
+	  
     // TODO Auto-generated constructor stub
   }
+  //-----------------------------------------------------------------------------
+  @Override
+  public void RemoveMessageOffre(MessageOffreEmploi message)
+  {
+    messageOffreDAO.remove(message);
+  }
+  //-----------------------------------------------------------------------------
 }

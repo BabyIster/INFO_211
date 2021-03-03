@@ -60,11 +60,11 @@ public class Candidature implements Serializable {
 	private Qualification qualification;
 
 	//bi-directional many-to-one association to MessageCandidature
-	@OneToMany(mappedBy="candidature")
+	@OneToMany(mappedBy="candidature", fetch=FetchType.EAGER)
 	private Set<MessageCandidature> messageCandidatures;
 
 	//bi-directional many-to-one association to MessageOffreEmploi
-	@OneToMany(mappedBy="candidature")
+	@OneToMany(mappedBy="candidature", fetch=FetchType.EAGER)
 	private Set<MessageOffreEmploi> messageOffreEmplois;
 
 	//bi-directional many-to-many association to SecteurActivite

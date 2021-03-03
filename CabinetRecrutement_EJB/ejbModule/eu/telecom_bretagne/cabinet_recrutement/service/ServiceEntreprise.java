@@ -2,6 +2,7 @@ package eu.telecom_bretagne.cabinet_recrutement.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -9,7 +10,13 @@ import javax.ejb.Stateless;
 import javax.jws.WebService;
 
 import eu.telecom_bretagne.cabinet_recrutement.data.dao.EntrepriseDAO;
+import eu.telecom_bretagne.cabinet_recrutement.data.dao.OffreEmploiDAO;
+import eu.telecom_bretagne.cabinet_recrutement.data.dao.MessageOffreEmploiDAO;
+import eu.telecom_bretagne.cabinet_recrutement.data.dao.MessageCandidatureDAO;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.Entreprise;
+import eu.telecom_bretagne.cabinet_recrutement.data.model.MessageCandidature;
+import eu.telecom_bretagne.cabinet_recrutement.data.model.MessageOffreEmploi;
+import eu.telecom_bretagne.cabinet_recrutement.data.model.OffreEmploi;
 
 /**
  * Session Bean implementation class ServiceEntreprise
@@ -21,6 +28,9 @@ public class ServiceEntreprise implements IServiceEntreprise
 {
   //-----------------------------------------------------------------------------
   @EJB private EntrepriseDAO         entrepriseDAO;
+  @EJB private OffreEmploiDAO         offreDAO;
+  @EJB private MessageOffreEmploiDAO         messageOffreDAO;
+  @EJB private MessageCandidatureDAO         messageCandidatureDAO;
   //-----------------------------------------------------------------------------
   /**
    * Default constructor.
@@ -57,6 +67,21 @@ public class ServiceEntreprise implements IServiceEntreprise
   @Override
   public void DeleteEntreprise(Entreprise entreprise)
   {
+	
+	for(OffreEmploi o : entreprise.getOffreEmplois()){
+		
+	    for(MessageOffreEmploi m : o.getMessageOffreEmplois()) {
+	    	o.getMessageOffreEmplois().remove(m);
+	    	messageOffreDAO.remove(m);
+	    }
+	    for(MessageCandidature m : o.getMessageCandidatures()) {
+	    	o.getMessageCandidatures().remove(m);
+	    	messageCandidatureDAO.remove(m);
+	    }
+	    entreprise.getOffreEmplois().remove(o);
+	    offreDAO.remove(o);
+	}
+	
     entrepriseDAO.remove(entreprise);
   }
   //-----------------------------------------------------------------------------
