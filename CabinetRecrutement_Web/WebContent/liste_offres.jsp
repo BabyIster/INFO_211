@@ -9,7 +9,7 @@ java.util.Set,
 java.text.SimpleDateFormat"%>
 
 <%
-	IServiceOffreEmploi serviceOffresEmplois = (IServiceOffreEmploi) ServicesLocator.getInstance().getRemoteInterface("ServiceOffreEmploi");
+  IServiceOffreEmploi serviceOffresEmplois = (IServiceOffreEmploi) ServicesLocator.getInstance().getRemoteInterface("ServiceOffreEmploi");
   List<OffreEmploi> offres = serviceOffresEmplois.listeDesOffres();
   
   SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yy");

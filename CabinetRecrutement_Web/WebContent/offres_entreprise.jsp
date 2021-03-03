@@ -9,8 +9,8 @@ eu.telecom_bretagne.cabinet_recrutement.data.model.Entreprise,
 eu.telecom_bretagne.cabinet_recrutement.data.model.Candidature,
 eu.telecom_bretagne.cabinet_recrutement.data.model.OffreEmploi,
 java.util.List,
-java.util.
-Set,java.text.SimpleDateFormat"%>
+java.util.Set,
+java.text.SimpleDateFormat"%>
 
 <%
   IServiceOffreEmploi serviceOffresEmplois = (IServiceOffreEmploi) ServicesLocator.getInstance().getRemoteInterface("ServiceOffreEmploi");

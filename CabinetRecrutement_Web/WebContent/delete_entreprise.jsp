@@ -6,6 +6,7 @@
                 
 <%
 IServiceEntreprise serviceEntreprise = (IServiceEntreprise) ServicesLocator.getInstance().getRemoteInterface("ServiceEntreprise");
+IServiceEntreprise serviceOffre = (IServiceEntreprise) ServicesLocator.getInstance().getRemoteInterface("ServiceOffreEmploi");
 
 Object utilisateur = session.getAttribute("utilisateur");
 

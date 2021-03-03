@@ -7,6 +7,8 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
 import eu.telecom_bretagne.cabinet_recrutement.data.dao.OffreEmploiDAO;
+import eu.telecom_bretagne.cabinet_recrutement.data.dao.Secteur_activiteDAO;
+import eu.telecom_bretagne.cabinet_recrutement.data.dao.EntrepriseDAO;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.OffreEmploi;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.SecteurActivite;
 import java.util.Set;
@@ -20,6 +22,8 @@ import java.util.Set;
 public class ServiceOffreEmploi implements IServiceOffreEmploi{
 	//-----------------------------------------------------------------------------
 	@EJB private OffreEmploiDAO         offreEmploiDAO;
+	@EJB private Secteur_activiteDAO         secteurDAO;
+	@EJB private EntrepriseDAO         entrepriseDAO;
 	//-----------------------------------------------------------------------------
     /**
      * Default constructor. 
@@ -46,8 +50,12 @@ public class ServiceOffreEmploi implements IServiceOffreEmploi{
       OffreEmploi offreReturn = offreEmploiDAO.persist(offreEmploi);
       Set<SecteurActivite> secteurs = offreReturn.getSecteurActivites();
       
+      offreReturn.getEntreprise().addOffreEmploi(offreReturn);
+      entrepriseDAO.update(offreReturn.getEntreprise());
+      
       for(SecteurActivite s : secteurs) {
     	  s.addOffreEmplois(offreReturn);
+    	  //secteurDAO.update(s);
       }
       return offreReturn;
     }
@@ -56,6 +64,12 @@ public class ServiceOffreEmploi implements IServiceOffreEmploi{
     public OffreEmploi UpdateOffre(OffreEmploi offre)
     {
       return offreEmploiDAO.update(offre);
+    }
+  //-----------------------------------------------------------------------------
+    @Override
+    public void RemoveOffre(OffreEmploi offre)
+    {
+      offreEmploiDAO.remove(offre);
     }
   //-----------------------------------------------------------------------------
 }

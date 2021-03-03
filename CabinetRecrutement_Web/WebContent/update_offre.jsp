@@ -67,7 +67,7 @@ if(idStringValue != null){
 <div class="row">
 		  <div class="col-lg-12">
 		    <div class="panel panel-default">
-		      <div class="panel-heading"><h3><i class="fa fa-th"></i> Mettre à jour les informations de l'entreprise</h3></div> <!-- /.panel-heading -->
+		      <div class="panel-heading"><h3><i class="fa fa-th"></i> Mettre à jour les informations de l'offre</h3></div> <!-- /.panel-heading -->
 		      <div class="panel-body">
 		        <div class="dataTable_wrapper">
 <%

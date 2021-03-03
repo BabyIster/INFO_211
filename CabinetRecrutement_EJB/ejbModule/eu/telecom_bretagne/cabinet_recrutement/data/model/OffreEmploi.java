@@ -44,7 +44,7 @@ public class OffreEmploi implements Serializable {
 	private String descriptif;
 	
 	//bi-directional many-to-one association to Qualification
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="id_qualification")
 	private Qualification qualification;
 
@@ -62,7 +62,7 @@ public class OffreEmploi implements Serializable {
 	private Set<MessageOffreEmploi> messageOffreEmplois;
 
 	//bi-directional many-to-one association to Entreprise
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="id_entreprise")
 	private Entreprise entreprise;
 
