@@ -3,14 +3,17 @@
 <%@page import="eu.telecom_bretagne.cabinet_recrutement.front.utils.ServicesLocator,
                 eu.telecom_bretagne.cabinet_recrutement.service.IServiceEntreprise,
                 eu.telecom_bretagne.cabinet_recrutement.service.IServiceOffreEmploi,
+                eu.telecom_bretagne.cabinet_recrutement.service.IServiceMessageOffre,
                 eu.telecom_bretagne.cabinet_recrutement.data.model.Entreprise,
                 eu.telecom_bretagne.cabinet_recrutement.data.model.OffreEmploi,
+                eu.telecom_bretagne.cabinet_recrutement.data.model.MessageOffreEmploi,
                 java.util.List,
 				java.util.Set"%>
                 
 <%
 IServiceEntreprise serviceEntreprise = (IServiceEntreprise) ServicesLocator.getInstance().getRemoteInterface("ServiceEntreprise");
 IServiceOffreEmploi serviceOffre = (IServiceOffreEmploi) ServicesLocator.getInstance().getRemoteInterface("ServiceOffreEmploi");
+IServiceOffreEmploi serviceOffre = (IServiceOffreEmploi) ServicesLocator.getInstance().getRemoteInterface("ServiceMessageOffre");
 
 Object utilisateur = session.getAttribute("utilisateur");
 
@@ -34,6 +37,7 @@ if(utilisateur instanceof Entreprise)
 		Set<OffreEmploi> offresEnt = entreprise.getOffreEmplois();
 		
 		for(OffreEmploi o : offresEnt){
+			
 			serviceOffre.RemoveOffre(o);
 		}
 		serviceEntreprise.DeleteEntreprise(entreprise);
