@@ -2,11 +2,15 @@
 
 <%@page import="eu.telecom_bretagne.cabinet_recrutement.front.utils.ServicesLocator,
                 eu.telecom_bretagne.cabinet_recrutement.service.IServiceEntreprise,
-                eu.telecom_bretagne.cabinet_recrutement.data.model.Entreprise"%>
+                eu.telecom_bretagne.cabinet_recrutement.service.IServiceOffreEmploi,
+                eu.telecom_bretagne.cabinet_recrutement.data.model.Entreprise,
+                eu.telecom_bretagne.cabinet_recrutement.data.model.OffreEmploi,
+                java.util.List,
+				java.util.Set"%>
                 
 <%
 IServiceEntreprise serviceEntreprise = (IServiceEntreprise) ServicesLocator.getInstance().getRemoteInterface("ServiceEntreprise");
-IServiceEntreprise serviceOffre = (IServiceEntreprise) ServicesLocator.getInstance().getRemoteInterface("ServiceOffreEmploi");
+IServiceOffreEmploi serviceOffre = (IServiceOffreEmploi) ServicesLocator.getInstance().getRemoteInterface("ServiceOffreEmploi");
 
 Object utilisateur = session.getAttribute("utilisateur");
 
@@ -27,6 +31,11 @@ if(utilisateur instanceof Entreprise)
 		erreur = "Vous ne pouvez supprimer que votre entreprise ! Pas celle des autres !!!";
 	}
 	else{
+		Set<OffreEmploi> offresEnt = entreprise.getOffreEmplois();
+		
+		for(OffreEmploi o : offresEnt){
+			serviceOffre.RemoveOffre(o);
+		}
 		serviceEntreprise.DeleteEntreprise(entreprise);
 		session.invalidate();
 		%>
