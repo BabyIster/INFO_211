@@ -18,6 +18,7 @@
     <span class="icon-bar"></span>
   </button>
   <h4><a class="navbar-brand" href="template.jsp">Cabinet de recrutement</a></h4><br/>
+  
 
 </div> <!-- /.navbar-header -->
 
