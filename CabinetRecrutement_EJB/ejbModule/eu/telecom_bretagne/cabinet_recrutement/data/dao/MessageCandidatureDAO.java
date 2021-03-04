@@ -124,10 +124,10 @@ public class MessageCandidatureDAO
    *    * @param MessageCandidature à supprimer
    */
   public void remove(MessageCandidature messageCandidature) {
-	  if (messageCandidature != null) {
-		  MessageCandidature temp = entityManager.merge(messageCandidature);
-          entityManager.remove(temp);
-      }
+	  if(!entityManager.contains(messageCandidature)){
+		  messageCandidature = entityManager.merge(messageCandidature);
+	  }
+	  entityManager.remove(messageCandidature);
   }
   //-----------------------------------------------------------------------------
 }

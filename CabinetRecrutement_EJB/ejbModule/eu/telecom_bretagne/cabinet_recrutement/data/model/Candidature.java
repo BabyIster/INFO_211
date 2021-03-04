@@ -188,7 +188,7 @@ public class Candidature implements Serializable {
 		this.messageOffreEmplois = messageOffreEmplois;
 	}
 
-	public MessageOffreEmploi addMessageOffreEmploi(MessageOffreEmploi messageOffreEmploi) {
+	/*public MessageOffreEmploi addMessageOffreEmploi(MessageOffreEmploi messageOffreEmploi) {
 		getMessageOffreEmplois().add(messageOffreEmploi);
 		messageOffreEmploi.setCandidature(this);
 
@@ -200,7 +200,7 @@ public class Candidature implements Serializable {
 		messageOffreEmploi.setCandidature(null);
 
 		return messageOffreEmploi;
-	}
+	}*/
 
 	public Set<SecteurActivite> getSecteurActivites() {
 		return this.secteurActivites;

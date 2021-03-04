@@ -83,10 +83,10 @@ public class MessageOffreEmploiDAO
   }
 
   public void remove(MessageOffreEmploi messageOffreEmploi) {
-	  if (messageOffreEmploi != null) {
-		  MessageOffreEmploi temp = entityManager.merge(messageOffreEmploi);
-          entityManager.remove(temp);
-      }
+	  if(!entityManager.contains(messageOffreEmploi)){
+		  messageOffreEmploi = entityManager.merge(messageOffreEmploi);
+	  }
+	  entityManager.remove(messageOffreEmploi);
   }
   //-----------------------------------------------------------------------------
 }

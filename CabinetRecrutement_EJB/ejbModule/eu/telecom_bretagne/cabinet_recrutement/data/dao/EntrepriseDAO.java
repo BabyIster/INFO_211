@@ -92,13 +92,11 @@ public class EntrepriseDAO
    *    * @param entreprise a supprimer
    */
   public void remove(Entreprise entreprise) {
-	  try {
-		  Entreprise temp = entityManager.merge(entreprise);
-          entityManager.remove(temp);
-	} catch (Exception e) {
-		e.printStackTrace();
-		return;
-	}
+	  
+    if(!entityManager.contains(entreprise)){
+      entreprise = entityManager.merge(entreprise);
+    }
+    entityManager.remove(entreprise);
   }
   //-----------------------------------------------------------------------------
 }

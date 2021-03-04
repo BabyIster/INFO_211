@@ -75,20 +75,16 @@ public class OffreEmploiDAO
   }
 
   public OffreEmploi update(OffreEmploi offreEmploi) {
-	  if (offreEmploi != null) {
-          entityManager.merge(offreEmploi);
-      }
+       entityManager.merge(offreEmploi);
       return offreEmploi;
   } 
 
   public void remove(OffreEmploi offreEmploi) {
-	  try {
-		  OffreEmploi temp = entityManager.merge(offreEmploi);
-          entityManager.remove(temp);
-	} catch (Exception e) {
-		e.printStackTrace();
-		return;
-	}
+	  
+	  if(!entityManager.contains(offreEmploi)){
+		  offreEmploi = entityManager.merge(offreEmploi);
+	    }
+	    entityManager.remove(offreEmploi);
 		  
       
   }

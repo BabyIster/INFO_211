@@ -51,6 +51,12 @@
 	  	}%>
 	<li class="divider"></li>
     <li><a href="deconnexion.jsp"><i class="fa fa-sign-in fa-fw"></i> Deconnexion</a></li>
+    
+    <!-- Menu message -->
+      <a href="template.jsp?action=liste_messages">
+        <i class="fa fa-envelope fa-2x"></i>
+        <i>Voir mes messages</i>
+      </a>
 	<%  
   }
   %>
