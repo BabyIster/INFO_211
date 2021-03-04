@@ -129,7 +129,7 @@ if(erreur == null){
                       <br><%=expediteur %><br>
                     </td>
                     <td width="50" align="center">
-                      <i class="fa fa-send fa-2x"></i>
+                      <img src="images/poste.gif" alt="Camion de la Poste" width="200px">
                     </td>
                     <td width="200" align="center">
                       <i class="fa fa-inbox fa-2x"></i>
