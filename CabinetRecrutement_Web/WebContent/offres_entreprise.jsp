@@ -70,7 +70,10 @@ java.text.SimpleDateFormat"%>
                  <td><%
                  	candidaturesRecu = serviceCandidature.listCandidaturesPotentielles(offre.getSecteurActivites(), offre.getQualifications());
                  	for(Candidature c : candidaturesRecu){
-                 		%><li><a href="template.jsp?action=infos_candidature&id=<%=c.getId()%>"><%=c.getNom() %> <%=c.getPrenom() %></a></li><%
+                 		%>
+                 		<li><a href="template.jsp?action=infos_candidature&id=<%=c.getId()%>"><%=c.getNom() %> <%=c.getPrenom() %></a>
+                 	<a href="template.jsp?action=new_message&exp=<%=offre.getId() %>&dest=<%=c.getId() %>"><i class="fa fa-envelope"></i></a></li>
+                 		<%
                  	}
                  	if(candidaturesRecu.isEmpty()){
                  		%>Pas de candidat potentiel pour le moment<%
