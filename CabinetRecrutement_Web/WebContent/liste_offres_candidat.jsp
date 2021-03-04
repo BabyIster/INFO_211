@@ -44,6 +44,7 @@ if(utilisateur instanceof Candidature)
                 <th>Entreprise</th>
                 <th>Qualification requise</th>
                 <th>Date de dépôt</th>
+                <th>Message</th>
                 <th>Informations</th>
               </tr>
             </thead>
@@ -60,7 +61,10 @@ if(utilisateur instanceof Candidature)
                  <td><%=offre.getEntreprise().getNom()%></td>
                  <td><%=offre.getQualifications().getIntitule()%></td>
                  <td><%=formater.format(offre.getDateDepot())%></td>
-                  <td align="center"><a href="template.jsp?action=infos_offre&id=<%=offre.getId()%>"><i class="fa fa-eye fa-lg"></i></a></td>
+                 <td align="center">
+                 	<a href="template.jsp?action=new_message&dest=<%=offre.getId()%>&exp=<%=idCand%>"><i class="fa fa-envelope"></i></a>
+                 </td>
+                 <td align="center"><a href="template.jsp?action=infos_offre&id=<%=offre.getId()%>"><i class="fa fa-eye fa-lg"></i></a></td>
                 </tr>
                 <%
               	}
