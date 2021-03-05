@@ -5,6 +5,7 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
 import eu.telecom_bretagne.cabinet_recrutement.data.dao.CandidatureDAO;
+import eu.telecom_bretagne.cabinet_recrutement.data.dao.EntrepriseDAO;
 import eu.telecom_bretagne.cabinet_recrutement.data.dao.MessageOffreEmploiDAO;
 import eu.telecom_bretagne.cabinet_recrutement.data.dao.OffreEmploiDAO;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.MessageCandidature;
@@ -22,6 +23,7 @@ public class ServiceMessageOffre implements IServiceMessageOffre
   @EJB private MessageOffreEmploiDAO         messageOffreDAO;
   @EJB private OffreEmploiDAO         offreEmploiDAO;
   @EJB private CandidatureDAO         candidatureDAO;
+  @EJB private EntrepriseDAO         entrepriseDAO;
   //-----------------------------------------------------------------------------
   /**
    * Default constructor.

@@ -12,6 +12,9 @@
                 java.text.SimpleDateFormat"%>
 
 <%
+
+IServiceEntreprise serviceEntreprise = (IServiceEntreprise) ServicesLocator.getInstance().getRemoteInterface("ServiceEntreprise");
+
 String erreur = null;
 Object utilisateur = session.getAttribute("utilisateur");
 

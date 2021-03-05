@@ -121,6 +121,9 @@ if(utilisateur instanceof Entreprise)
 			  OffreEmploi offre = new OffreEmploi(titre, desc, profil, entreprise, date, qualification, secteurs);
 			  offre = serviceOffre.CreationOffre(offre);
 			  
+			  entreprise = serviceEntreprise.getEntreprise(entreprise.getId());
+			  session.setAttribute("utilisateur", entreprise);
+			  
 			  %>
 		      	<p>Page création</p>
 		      	<div class="table-responsive">

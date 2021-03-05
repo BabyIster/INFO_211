@@ -52,63 +52,101 @@ int idExp = -1;
 if(utilisateur == null){
 	erreur = "Vous devez vous connectez pour envoyer des messages";
 }
-if(envoi != null){
+else if(envoi != null){
+	
+	if(formExpediteur == null | formDestinataire ==null){
+		erreur = "Les id du destinataire et/ou de l'expéditeur sont null ";
+	}
+	else if(message == null){
+		erreur = "Le message ne peut_pas être nul";
+	}
 	try {
 		  idExp = new Integer(formExpediteur);
 		  idDest = new Integer(formDestinataire);
 	}
 	catch(NumberFormatException e)
 	{
-	erreur = "Les id du destinataire et/ou de l'expéditeur ne sont pas numérique";
+	erreur = "Impossible d'envoyer le message, les id du destinataire et/ou de l'expéditeur ne sont pas numérique";
 	}
-}
-if(envoi != null & erreur == null){
-	if(message == null){
-		erreur = "Le message ne peut_pas être nul";
-	}
-	else if(utilisateur instanceof Candidature)
-	{
-	  candidatUser = (Candidature) utilisateur;
-	}
-	else if(utilisateur instanceof Entreprise)
-	{
-	  entreprise = (Entreprise) utilisateur;
-	  offre = serviceOffresEmplois.getOffre(idExp);
-	  candidat = serviceCandidature.getCandidature(idDest);
-	  
-	  Date date = new Date();
-	  MessageOffreEmploi messageOffre = new MessageOffreEmploi(message, date, offre, candidat);
-	  
-	  %>
-	  <div class="table-responsive">
-          <small>
-          <table class="table">
-            <tbody>
-              <tr class="success">
-                <td width="200"><strong>Identifiant du message</strong></td>
-                <td><%=messageOffre.getId()%></td>
-              </tr>
-              <tr class="warning">
-                <td><strong>Candidature</strong></td>
-                <td><%=messageOffre.getCandidature().getPrenom()%> <%=messageOffre.getCandidature().getNom()%>(CAND_<%=messageOffre.getCandidature().getId()%>)</td>
-              </tr>
-              <tr class="warning">
-                <td><strong>Offre d'emploi</strong></td>
-                <td><%=messageOffre.getOffreEmploi().getTitre()%>(<%=messageOffre.getOffreEmploi().getEntreprise().getNom()%>)</td>
-              </tr>
-              <tr class="warning">
-                <td><strong>Date de'envoi)</strong></td>
-                <td><%=formater.format(messageOffre.getDateEnvoi())%></td>
-              </tr>
-              <tr class="warning">
-                <td><strong>Message</strong></td>
-                <td><%=Utils.text2HTML(messageOffre.getCorpsMessage())%></td>
-              </tr>
-            </tbody>
-          </table>
-          </small>      
-      </div>
-	  <%
+	if(erreur == null){
+		%><div class="table-responsive">
+        <small>
+        <table class="table">
+          <tbody>
+            <tr class="success"><%
+		if(utilisateur instanceof Candidature)
+		{
+		  candidatUser = (Candidature) utilisateur;
+		  offre = serviceOffresEmplois.getOffre(idDest);
+		  candidat = serviceCandidature.getCandidature(idExp);
+		  
+		  Date date = new Date();
+		  MessageCandidature messageAEnvoyer = new MessageCandidature(message, date, candidat, offre);
+		  messageAEnvoyer = serviceMessageCand.CreationMessageCand(messageAEnvoyer);
+		  
+		  candidatUser = serviceCandidature.getCandidature(candidatUser.getId());
+	      session.setAttribute("utilisateur", candidatUser);
+	      %>
+	                <td width="200"><strong>Identifiant du message</strong></td>
+	                <td><%=messageAEnvoyer.getId()%></td>
+	              </tr>
+	              <tr class="warning">
+	                <td><strong>Candidature (Expéditeur)</strong></td>
+	                <td><%=messageAEnvoyer.getCandidature().getPrenom()%> <%=messageAEnvoyer.getCandidature().getNom()%>(CAND_<%=messageAEnvoyer.getCandidature().getId()%>)</td>
+	              </tr>
+	              <tr class="warning">
+	                <td><strong>Offre d'emploi (Destinateur)</strong></td>
+	                <td><%=messageAEnvoyer.getOffreEmploi().getTitre()%>(<%=messageAEnvoyer.getOffreEmploi().getEntreprise().getNom()%>)</td>
+	              </tr>
+	              <tr class="warning">
+	                <td><strong>Date de'envoi)</strong></td>
+	                <td><%=formater.format(messageAEnvoyer.getDateEnvoi())%></td>
+	              </tr>
+	              <tr class="warning">
+	                <td><strong>Message</strong></td>
+	                <td><%=Utils.text2HTML(messageAEnvoyer.getCorpsMessage())%></td>
+		  <%
+		}
+		else
+		{
+		  entreprise = (Entreprise) utilisateur;
+		  offre = serviceOffresEmplois.getOffre(idExp);
+		  candidat = serviceCandidature.getCandidature(idDest);
+		  
+		  Date date = new Date();
+		  MessageOffreEmploi messageAEnvoyer = new MessageOffreEmploi(message, date, offre, candidat);
+		  messageAEnvoyer = serviceMessageOffre.CreationMessageOffre(messageAEnvoyer);
+		  
+		  entreprise = serviceEntreprise.getEntreprise(entreprise.getId());
+		  session.setAttribute("utilisateur", entreprise);
+		  %>
+               <td width="200"><strong>Identifiant du message</strong></td>
+               <td><%=messageAEnvoyer.getId()%></td>
+             </tr>
+             <tr class="warning">
+               <td><strong>Candidature (Destinateur)</strong></td>
+               <td><%=messageAEnvoyer.getCandidature().getPrenom()%> <%=messageAEnvoyer.getCandidature().getNom()%>(CAND_<%=messageAEnvoyer.getCandidature().getId()%>)</td>
+             </tr>
+             <tr class="warning">
+               <td><strong>Offre d'emploi (Expéditeur)</strong></td>
+               <td><%=messageAEnvoyer.getOffreEmploi().getTitre()%>(<%=messageAEnvoyer.getOffreEmploi().getEntreprise().getNom()%>)</td>
+             </tr>
+             <tr class="warning">
+               <td><strong>Date de'envoi)</strong></td>
+               <td><%=formater.format(messageAEnvoyer.getDateEnvoi())%></td>
+             </tr>
+             <tr class="warning">
+               <td><strong>Message</strong></td>
+               <td><%=Utils.text2HTML(messageAEnvoyer.getCorpsMessage())%></td>
+		  <%
+		}
+            %>
+            </tr>
+	            </tbody>
+	          </table>
+	          </small>      
+	      </div>
+            <%
 	}
 }
 else{
@@ -223,8 +261,8 @@ else{
 	              
 	              <form role="form" action="template.jsp?action=new_message" method="post">
 	                <input type="hidden" name="envoi" value="nouveau_message">
-	                <input type="hidden" name="formExpediteur" value="<%=expediteur %>">
-	                <input type="hidden" name="formDestinataire" value="<%=destinataire %>">
+	                <input type="hidden" name="formExpediteur" value="<%=idExp%>">
+	                <input type="hidden" name="formDestinataire" value="<%=idDest%>">
 	                <div class="form-group">
 	                  <textarea class="form-control" placeholder="Contenu du message" rows="5" name="corps_message" required></textarea>
 	                </div>
