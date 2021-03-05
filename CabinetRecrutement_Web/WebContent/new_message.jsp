@@ -222,11 +222,11 @@ else{
 	if(erreur == null){
 		if(utilisateur instanceof Candidature)
 		{
+			
 			expediteur = candidat.getPrenom() + " " + candidat.getNom();
 			
-			destinataire = entreprise.getNom() + " <br>(" + offre.getTitre() + ")";
+			destinataire = offre.getEntreprise().getNom() + " <br>(" + offre.getTitre() + ")";
 			
-			String type = "ent";
 		}
 		if(utilisateur instanceof Entreprise)
 		{
@@ -235,7 +235,6 @@ else{
 			
 			destinataire = candidat.getPrenom() + " " + candidat.getNom();
 			
-			String type = "cand";
 		}
 	%>                            
 	            <div class="col-lg-offset-2 col-lg-8
