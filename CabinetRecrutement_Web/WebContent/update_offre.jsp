@@ -43,7 +43,6 @@ Set<SecteurActivite> secteurs = new HashSet<SecteurActivite>();
 int idSec=1;
 OffreEmploi offre=null;
 int secBool=0;
-
 if(request.getParameter("InputSecteurOffre")!=null){
 		for(String sec : secteurInput){
 			try{
@@ -88,7 +87,7 @@ if(utilisateur instanceof Entreprise)
 		  </div>
 		  <div class="form-group">
 		    <label for="InputDescOffre">Description</label>
-		    <textarea type="text" class="form-control" name="InputDescOffre" rows="5"><%=offre.getDescriptif()%></textarea>
+		    <textarea class="form-control" name="InputDescOffre" rows="5"><%=offre.getDescriptif()%></textarea>
 		  </div>
 		  <div class="form-group">
 		    <label for="InputProfilOffre">Profil recherché</label>
@@ -169,7 +168,6 @@ if(utilisateur instanceof Entreprise)
 		erreur = "Aucun des paramétres ne doit être nul";
 	}
 	else{
-		  
 	  int idQual = 1;
       
       try{
@@ -179,14 +177,14 @@ if(utilisateur instanceof Entreprise)
     	  erreur ="Erreur sur la qualification, l'id ("+qual+")";
       }
 		if(erreur==null){
-		
+		  
 		  offre.setDescriptif(desc);
 		  offre.setProfilRecherche(profil);
 		  offre.setTitre(titre);
 		  offre.setQualifications(serviceQualification.getQualification(idQual));
 		  offre.setSecteurActivites(secteurs);
-		  offre = serviceOffre.UpdateOffre(offre);
 		  
+		  offre = serviceOffre.UpdateOffre(offre);
 		  %>
 	        <div class="table-responsive">
 		          <small>

@@ -45,7 +45,7 @@
           <div class="clearfix"></div>
         </div>
       </a> 
-      <a href="template.jsp?action=cabinet_recrutement_candidature_rss">
+      <a href="cabinet_recrutement_candidature_rss.jsp">
         <div class="panel-footer">
           <span class="pull-left">Flux RSS des candiatures</span>
           <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -75,7 +75,7 @@
           <div class="clearfix"></div>
         </div>
       </a> 
-      <a href="template.jsp?action=cabinet_recrutement_offres_rss">
+      <a href="cabinet_recrutement_offres_rss.jsp">
         <div class="panel-footer">
           <span class="pull-left">Flux RSS des offres</span>
           <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
