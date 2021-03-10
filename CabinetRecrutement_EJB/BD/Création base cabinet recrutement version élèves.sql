@@ -95,7 +95,7 @@ create table index_activite
   id_activite integer NOT NULL,
   id_offre_emploi integer NOT NULL,
   primary key (id_activite,id_offre_emploi),
-  foreign key (id_offre_emploi) references candidature(id),
+  foreign key (id_offre_emploi) references offre_emploi(id),
   foreign key (id_activite) references secteur_activite(id)
 );
 
