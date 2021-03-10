@@ -37,7 +37,7 @@ public class Qualification implements Serializable {
 	private Set<Candidature> candidatures;
 	
 	//bi-directional many-to-many association to OffreEmploi
-		@ManyToMany
+		@ManyToMany(fetch=FetchType.EAGER)
 		@JoinTable(
 			name="index_activite"
 			, joinColumns={

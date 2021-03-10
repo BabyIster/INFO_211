@@ -66,11 +66,11 @@ public class ServiceOffreEmploi implements IServiceOffreEmploi{
       
       for(SecteurActivite s : secteurs) {
     	  s.addOffreEmplois(offreReturn);
-    	  secteurDAO.update(s);
+    	  //secteurDAO.update(s);
       }
       
       offreReturn.getQualifications().getOffreEmplois().add(offreReturn);
-      qualificationDAO.update(offreReturn.getQualifications());
+      //qualificationDAO.update(offreReturn.getQualifications());
       
       
       return offreReturn;
