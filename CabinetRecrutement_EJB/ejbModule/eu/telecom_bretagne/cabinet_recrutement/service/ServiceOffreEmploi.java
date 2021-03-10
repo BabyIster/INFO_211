@@ -7,6 +7,7 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
 import eu.telecom_bretagne.cabinet_recrutement.data.dao.OffreEmploiDAO;
+import eu.telecom_bretagne.cabinet_recrutement.data.dao.QualificationDAO;
 import eu.telecom_bretagne.cabinet_recrutement.data.dao.Secteur_activiteDAO;
 import eu.telecom_bretagne.cabinet_recrutement.data.dao.EntrepriseDAO;
 import eu.telecom_bretagne.cabinet_recrutement.data.dao.CandidatureDAO;
@@ -33,6 +34,7 @@ public class ServiceOffreEmploi implements IServiceOffreEmploi{
     @EJB private MessageOffreEmploiDAO         messageOffreDAO;
     @EJB private MessageCandidatureDAO         messageCandidatureDAO;
     @EJB private CandidatureDAO         candidatureDAO;
+    @EJB private QualificationDAO		qualificationDAO;
 	//-----------------------------------------------------------------------------
     /**
      * Default constructor. 
@@ -64,8 +66,13 @@ public class ServiceOffreEmploi implements IServiceOffreEmploi{
       
       for(SecteurActivite s : secteurs) {
     	  s.addOffreEmplois(offreReturn);
-    	  //secteurDAO.update(s);
+    	  secteurDAO.update(s);
       }
+      
+      offreReturn.getQualifications().getOffreEmplois().add(offreReturn);
+      qualificationDAO.update(offreReturn.getQualifications());
+      
+      
       return offreReturn;
     }
     //-----------------------------------------------------------------------------

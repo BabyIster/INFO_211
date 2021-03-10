@@ -55,6 +55,8 @@ public class ServiceCandidature implements IServiceCandidature
   	  s.addCandidature(candReturn);
     }
     
+    candReturn.getQualification().getCandidatures().add(candReturn);
+    
     return candReturn;
   }
   //-----------------------------------------------------------------------------
