@@ -200,7 +200,7 @@ if(request.getParameter("InputSecteur")!=null){
              <p class="text-danger"><strong><%=erreur%></strong></p>
            </div>
          </div>
-         <br><b><a href=javascript:history.go(-1)>Retour</a></b>
+         <br><b><a href="template.jsp">Retour a l'accueil</a></b>  
        </div> <!-- /.row col-xs-offset-1 col-xs-10 -->
        <%
        }%>

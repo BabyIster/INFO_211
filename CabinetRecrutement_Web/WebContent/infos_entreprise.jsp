@@ -85,7 +85,7 @@
               </tbody>
             </table>
             </small>
-            <br><b><a href="template.jsp">Retour a l'accueil</a></b>       
+            <br><b><a href=javascript:history.go(-1)>Retour</a></b>      
         </div>
           <%
         }

@@ -6,23 +6,31 @@
                 eu.telecom_bretagne.cabinet_recrutement.service.IServiceEntreprise,
                 eu.telecom_bretagne.cabinet_recrutement.data.model.Entreprise,
                 eu.telecom_bretagne.cabinet_recrutement.front.utils.Utils,
-                java.util.List"%>
+                java.util.List,
+                java.text.SimpleDateFormat,
+                java.util.Date"%>
 
 <%
 IServiceCandidature serviceCandidature = (IServiceCandidature) ServicesLocator.getInstance().getRemoteInterface("ServiceCandidature");
 
+SimpleDateFormat formater2 = new SimpleDateFormat("yyyy-MM-dd");
+SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yy");
+
 Object utilisateur = session.getAttribute("utilisateur");
 String erreur = null;
 
-String nom = request.getParameter("InputNomEntreprise");
-String desc = request.getParameter("InputDescEntreprise");
-String ville = request.getParameter("InputVilleEntreprise");
+String nom = request.getParameter("InputNomCand");
+String prenom = request.getParameter("InputPrenomCand");
+String cv = request.getParameter("InputCV");
+String ville = request.getParameter("InputVilleCand");
+String naissance = request.getParameter("InputDateNaissance");
+String mail = request.getParameter("InputMailCand");
 
 %>
 <div class="row">
 		  <div class="col-lg-12">
 		    <div class="panel panel-default">
-		      <div class="panel-heading"><h3><i class="fa fa-th"></i> Mettre à jour les informations de l'entreprise</h3></div> <!-- /.panel-heading -->
+		      <div class="panel-heading"><h3><i class="fa fa-th"></i> Mettre à jour les informations de votre candidature</h3></div> <!-- /.panel-heading -->
 		      <div class="panel-body">
 		        <div class="dataTable_wrapper">
 <%
@@ -31,37 +39,36 @@ if(utilisateur instanceof Candidature)
 {
 	Candidature candidature = (Candidature) utilisateur;
 	
-	if(nom==null & desc==null & ville==null){
+	if(nom==null & cv==null & ville==null & prenom==null & naissance==null & mail==null){
 		%>  
 		  <form action="template.jsp?action=update_candidature" method="post">
 		  <div class="form-group">
 		    <input type="text" class="form-control" aria-describedby="emailHelp" value="CAND_<%=candidature.getId() %>" disabled="disabled">
 		  </div>
 		  <div class="form-group">
-		    <label for="InputNomEntreprise">Nom</label>
-		    <input class="form-control" value="<%=candidature.getNom() %>" name="InputNomEntreprise">
+		    <label for="InputNomCand">Nom</label>
+		    <input class="form-control" value="<%=candidature.getNom() %>" name="InputNomCand">
 		  </div>
 		  <div class="form-group">
-		    <label for="InputDescEntreprise">Prénom</label>
-		    <textarea type="text" class="form-control" name="InputDescEntreprise" rows="5"><%=candidature.getPrenom()%></textarea>
+		    <label for="InputPrenomCand">Prénom</label>
+		    <input class="form-control" name="InputPrenomCand" value="<%=candidature.getPrenom()%>">
 		  </div>
 		  <div class="form-group">
-		    <label for="InputVilleEntreprise">Ville</label>
-		    <input type="text" class="form-control" name="InputVilleEntreprise" value="<%=candidature.getAdressePostale() %>">
+		    <label for="InputVilleCand">Ville</label>
+		    <input type="text" class="form-control" name="InputVilleCand" value="<%=candidature.getAdressePostale() %>">
 		  </div>
 		   <div class="form-group">
-		    <label for="InputVilleEntreprise">CV</label>
-		    <input type="text" class="form-control" name="InputVilleEntreprise" value="<%=candidature.getCv() %>">
+		    <label for="InputCV">CV</label>
+		    <textarea type="text" class="form-control" name="InputCV" row="5"><%=candidature.getCv() %></textarea>
+		  </div>
+		  <div class="form-group">
+		    <label for="InputDateNaissance">Date de naissance</label>
+		    <input type="date" class="form-control" name="InputDateNaissance" placeholder="Date de naissance" value="<%=formater2.format(candidature.getDateNaissance()) %>" required>
 		  </div>
 		   </div>
 		   <div class="form-group">
-		    <label for="InputVilleEntreprise">Date de naissance</label>
-		    <input type="text" class="form-control" name="InputVilleEntreprise" value="<%=candidature.getDateNaissance() %>">
-		  </div>
-		   </div>
-		   <div class="form-group">
-		    <label for="InputVilleEntreprise">Email</label>
-		    <input type="text" class="form-control" name="InputVilleEntreprise" value="<%=candidature.getAdresseEmail() %>">
+		    <label for="InputMailCand">Email</label>
+		    <input type="text" class="form-control" name="InputMailCand" value="<%=candidature.getAdresseEmail() %>">
 		  </div>
 		 
 		  <button type="submit" class="btn btn-primary">Valider</button>
@@ -92,17 +99,18 @@ if(utilisateur instanceof Candidature)
               </div>
 <%
 	}
-	else if(nom.isEmpty() | desc.isEmpty() | ville.isEmpty()){
+	else if(nom.isEmpty() | cv.isEmpty() | ville.isEmpty() | prenom.isEmpty() | naissance.isEmpty() | mail.isEmpty()){
 		erreur = "Aucun des paramétres ne doit être nul";
 	}
-	/*else if(ville.matches("[A-Za-z0-9]+")){
-	    erreur = "On ne met pas de chiffre dans le nom d'une ville !";
-	}*/
 	else{
-		  
+		Date dateNaissance = formater2.parse(naissance);
+		
 		  candidature.setAdressePostale(ville);
-//		  candidature.setDescriptif(desc);
 		  candidature.setNom(nom);
+		  candidature.setCv(cv);
+		  candidature.setPrenom(prenom);
+		  candidature.setAdresseEmail(mail);
+		  candidature.setDateNaissance(dateNaissance);
 		  candidature = serviceCandidature.UpdateCandidature(candidature);
 		  
 		  %>
@@ -132,11 +140,11 @@ if(utilisateur instanceof Candidature)
 	                </tr>
 	                <tr class="warning">
 	                  <td><strong>Date de naissance</strong></td>
-	                  <td><%=candidature.getDateNaissance()%></td>
+	                  <td><%=formater.format(candidature.getDateNaissance())%></td>
 	                </tr>
 	                <tr class="warning">
 	                  <td><strong>Qualification</strong></td>
-	                  <td><%=candidature.getQualification()%></td>
+	                  <td><%=candidature.getQualification().getIntitule()%></td>
 	                </tr>
 	                
 	            </table>

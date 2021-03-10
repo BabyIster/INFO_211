@@ -24,6 +24,7 @@ IServiceCandidature serviceCandidature = (IServiceCandidature) ServicesLocator.g
             -->
             <thead>
               <tr>
+                <th>Identifiant</th>
                 <th>Nom</th>
                 <th>Prénom</th>
                 <th>Qualification</th>
@@ -40,6 +41,7 @@ IServiceCandidature serviceCandidature = (IServiceCandidature) ServicesLocator.g
               {
                 %>
                 <tr>
+                <td>CAND_<%=candidature.getId()%></td>
                  <td><%=candidature.getNom()%></td>
                  <td><%=candidature.getPrenom()%></td>
               
